@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 using namespace std;
 
 
@@ -12,4 +13,7 @@ int main()
 {
 	//WE HAVE STARTED ZEBRAAAAAAA
 	cout << "Chris Has started code ZEBRA.";
+	cout << "\nAna Has joined!";
 }
+
+//functions
