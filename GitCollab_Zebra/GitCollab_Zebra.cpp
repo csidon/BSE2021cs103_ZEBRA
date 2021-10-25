@@ -7,7 +7,7 @@ using namespace std;
 //structure
 
 //function prototype 
-
+void i_am_hungry_too();
 
 int main()
 {
@@ -19,3 +19,8 @@ int main()
 }
 
 //functions
+
+void i_am_hungry_too()
+{
+	cout << "Me want chocolate";
+}
