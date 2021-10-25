@@ -15,6 +15,7 @@ int main()
 	cout << "Chris Has started code ZEBRA.";
 	cout << "\nAna Has joined!";
 	cout << "testing both working at the same time -- Chris";
+	cout << "I am hungry";
 }
 
 //functions
