@@ -16,6 +16,7 @@ int main()
 	cout << "\nAna Has joined!";
 	cout << "testing both working at the same time -- Chris";
 	cout << "I am hungry";
+	cout << "I want to sleep";
 }
 
 //functions
