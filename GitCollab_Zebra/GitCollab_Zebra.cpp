@@ -8,6 +8,7 @@ using namespace std;
 
 //function prototype 
 void i_am_hungry_too();
+void are_you_awake();
 
 int main()
 {
@@ -16,6 +17,7 @@ int main()
 	cout << "\nAna Has joined!";
 	cout << "testing both working at the same time -- Chris";
 	cout << "I am hungry";
+	cout << "I want to sleep";
 }
 
 //functions
@@ -23,4 +25,9 @@ int main()
 void i_am_hungry_too()
 {
 	cout << "Me want chocolate";
+}
+
+void are_you_awake()
+{
+
 }
