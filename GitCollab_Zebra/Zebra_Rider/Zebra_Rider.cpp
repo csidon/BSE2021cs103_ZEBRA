@@ -258,6 +258,7 @@ valid_email:
 	cout << "\n\t[Note: This will also";
 	cout << "\n\tbe your username]\t:  ";
 	getline(cin, ri.r_emailusrname);
+
 	if (email_valid(ri.r_emailusrname) == 0)
 	{
 		cout << "\n\t!!Please enter a valid email address!!";
@@ -353,27 +354,40 @@ int email_valid(string remail)
 	vector<char> remail_arr; //defining a vector called remail_arr
 	for (int i = 0; i < remail.length(); i++)
 	{
-		remail_arr.push_back(remail[i]);
-		cout << remail[i] << "\t"; //for debugging purposes
+		cout << remail[0];
+		cout << (!(is_a_digit(remail[0])));
+		cout << (!(is_small_char(remail[0])));
+		cout << !(is_big_char(remail[0]));
+		if (is_a_digit(remail[0]) || is_small_char(remail[0]) || is_big_char(remail[0]))
+		{
+			remail_arr.push_back(remail[i]);
+			cout << remail[i] << "\t"; //for debugging purposes
 
-		//This section checks that there is only ONE @ and at least one '.' char
-		if (has_AT(remail[i]))
-		{
-			AT_num += 1;
+			//This section checks that there is only ONE @ and at least one '.' char
+			if (has_AT(remail[i]))
+			{
+				AT_num += 1;
+			}
+			if (has_dot(remail[i]))
+			{
+				dot_num += 1;
+			}
 		}
-		if (has_dot(remail[i]))
+		else
 		{
-			dot_num += 1;
+			cout << "\nPlease enter a valid email address -- why is this wrong";
+			return 0;
 		}
+		
 	}
-	if (AT_num == 1 && (dot_num >= 1 && dot_num <= 3)) //allow 3 dots for domains like .co.nz
+if (AT_num == 1 && (dot_num >= 1 && dot_num <= 3)) //allow 3 dots for domains like .co.nz
 	{
-		cout << "EMAIL IS VALID!!";
+		//cout << "EMAIL IS VALID!!";  //for debugging purposes
 		return 1;
 	}
 	else
 	{
-		cout << "EMAIL FAIL!!";
+		cout << "\nPlease enter a valid email address";
 		return 0;
 	}
 }
