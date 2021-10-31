@@ -1,2 +1,3 @@
 C:\Users\200856629\OneDrive - UP Education\Desktop\Assignment_CS103\GitCollab\BSE2021cs103_ZEBRA\GitCollab_Zebra\Zebra_Drivers\Zebra_Drivers_Functions\Debug\Zebra_Drivers_Functions.exe
 C:\Users\200856629\OneDrive - UP Education\Desktop\Assignment_CS103\GitCollab\BSE2021cs103_ZEBRA\GitCollab_Zebra\Zebra_Drivers\Zebra_Drivers_Functions\Debug\Zebra_Drivers_Functions.pdb
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\Zebra_Drivers\Zebra_Drivers_Functions\Debug\Zebra_Drivers_Functions.exe
