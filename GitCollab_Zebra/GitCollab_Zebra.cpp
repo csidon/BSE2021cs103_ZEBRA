@@ -13,6 +13,7 @@ using namespace std;
 
 int main()
 {
+
 	//*****************************************************************************
 	//Examples on how to use decorative functions available in makepretty.cpp file
 	//*****************************************************************************
@@ -50,5 +51,6 @@ int main()
 //	{
 //		goto valid_pass;
 //	}
+
 }
 
