@@ -13,6 +13,33 @@ using namespace std;
 
 int main()
 {
+	
+	disp_main_logo();
+	//****** Chris will neaten this up************
+	//int main_input;
+	////####### Main Page ########[Chris]
+	//system("Color 8");
+	//disp_main_logo();
+	//disp_h2_lines("The Best NZ Taxi Booking System");
+	//disp_h3_lines("Select: ");
+	//cout << "\n\t1. Driver\n";
+	//cout << "\n\t2. Passenger\n";
+	//disp_dash_line();
+	//cout << "\n\t3. Admin\n";
+	//cout << "\n\t4. Exit\n";
+
+	//disp_star_line();
+	//cout << "\tSelect [1], [2], [3], or [4]\n\tChoose: \n\t";
+	//cin >> main_input;
+	//if (main_input == 2)
+	//{
+	//	//####### Goes To Main Rider Page #######[Chris]
+	//	system("Color 9"); //anything rider-related will be displayed in this color
+	//	rider_main(rider_input_info, rider_retrieve_info);
+	//	writeRiderToFile(rider_input_info);
+	//	//email_valid(rider_input_info);
+	//}
+	
 	//*****************************************************************************
 	//Examples on how to use decorative functions available in makepretty.cpp file
 	//*****************************************************************************
