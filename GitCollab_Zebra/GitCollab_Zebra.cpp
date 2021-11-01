@@ -13,6 +13,7 @@ using namespace std;
 
 int main()
 {
+<<<<<<< HEAD
 	
 	disp_main_logo();
 	//****** Chris will neaten this up************
@@ -40,6 +41,9 @@ int main()
 	//	//email_valid(rider_input_info);
 	//}
 	
+=======
+
+>>>>>>> a3080d111c3957b7c983a8ae3b3457cb094692a3
 	//*****************************************************************************
 	//Examples on how to use decorative functions available in makepretty.cpp file
 	//*****************************************************************************
@@ -77,5 +81,6 @@ int main()
 //	{
 //		goto valid_pass;
 //	}
+
 }
 
