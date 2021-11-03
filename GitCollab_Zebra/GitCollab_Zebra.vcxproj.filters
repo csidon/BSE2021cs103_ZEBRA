@@ -27,6 +27,9 @@
     <ClCompile Include="makepretty.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="distance_calc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="zebra_rider.h">

@@ -1,3 +1,4 @@
 ﻿  Zebra_Drivers_Functions.cpp
-C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\Zebra_Drivers\Zebra_Drivers_Functions\Zebra_Drivers_Functions.cpp(58,10): warning C4129: '_': unrecognized character escape sequence
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\Zebra_Drivers\Zebra_Drivers_Functions\Zebra_Drivers_Functions.cpp(51,9): warning C4091: '': ignored on left of 'Drivers' when no variable is declared
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\Zebra_Drivers\Zebra_Drivers_Functions\Zebra_Drivers_Functions.cpp(89,10): warning C4129: '_': unrecognized character escape sequence
   Zebra_Drivers_Functions.vcxproj -> C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\Zebra_Drivers\Zebra_Drivers_Functions\Debug\Zebra_Drivers_Functions.exe

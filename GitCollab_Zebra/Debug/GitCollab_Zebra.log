@@ -1,4 +1,8 @@
 ﻿  GitCollab_Zebra.cpp
+  pswd_email_validation.cpp
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\pswd_email_validation.cpp(56,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\pswd_email_validation.cpp(110,20): warning C4018: '<': signed/unsigned mismatch
   zebra_rider.cpp
   Generating Code...
-  GitCollab_Zebra.vcxproj -> C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
+GitCollab_Zebra.obj : error LNK2005: _main already defined in distance_calc.obj
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe : fatal error LNK1169: one or more multiply defined symbols found
