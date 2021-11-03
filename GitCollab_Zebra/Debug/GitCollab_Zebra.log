@@ -1,6 +1,3 @@
-﻿  GitCollab_Zebra.cpp
-  zebra_rider.cpp
-C:\Users\Chris\Desktop\Yoobee\CS103_Oct21\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_rider.cpp(123,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\CS103_Oct21\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_rider.cpp(189,21): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-  GitCollab_Zebra.vcxproj -> C:\Users\Chris\Desktop\Yoobee\CS103_Oct21\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
+﻿  zebra_driver.cpp
+C:\Users\200856629\OneDrive - UP Education\Desktop\Assignment_CS103\GitCollab\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(115,20): warning C4018: '<': signed/unsigned mismatch
+  GitCollab_Zebra.vcxproj -> C:\Users\200856629\OneDrive - UP Education\Desktop\Assignment_CS103\GitCollab\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe

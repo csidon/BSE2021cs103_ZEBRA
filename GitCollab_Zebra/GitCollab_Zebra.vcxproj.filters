@@ -27,6 +27,9 @@
     <ClCompile Include="makepretty.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="zebra_driver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="zebra_rider.h">
@@ -36,6 +39,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="makepretty.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="zebra_driver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GitCollab_Zebra.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
