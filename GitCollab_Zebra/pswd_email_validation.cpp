@@ -62,7 +62,7 @@ int email_valid(string remail)
 		if (is_a_digit(remail[0]) || is_small_char(remail[0]) || is_big_char(remail[0]))
 		{
 			remail_arr.push_back(remail[i]);
-			cout << remail[i] << "\t"; //for debugging purposes
+			//cout << remail[i] << "\t"; //uncomment for debugging purposes
 
 			//This section checks that there is only ONE @ and at least one '.' char
 			if (has_AT(remail[i]))
@@ -110,7 +110,7 @@ int pswd_valid(string rpswd)
 	for (int i = 0; i < rpswd.length(); i++)
 	{
 		rpswd_arr.push_back(rpswd[i]);
-		cout << rpswd[i] << "\t"; //for debugging purposes
+		//cout << rpswd[i] << "\t"; //for debugging purposes
 		if (is_small_char(rpswd[i]))
 		{
 			smchar += 1;
