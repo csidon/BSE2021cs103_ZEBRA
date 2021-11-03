@@ -140,6 +140,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="GitCollab_Zebra.cpp" />
+    <ClCompile Include="pswd_email_validation.cpp" />
+    <ClCompile Include="makepretty.cpp" />
+    <ClCompile Include="zebra_rider.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="makepretty.h" />
+    <ClInclude Include="pswd_email_validation.h" />
+    <ClInclude Include="zebra_rider.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
