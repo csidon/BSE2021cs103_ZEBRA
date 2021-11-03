@@ -18,7 +18,9 @@ int main()
 
 	//Initialising vector class for structure Rider_pid so that the structure can take unlimited entries
 	vector <Rider_pid> rider_input_info;
-	vector <Rider_pid> rider_retrieve_info;
+	vector <Rider_pid> rider_read_file_info;
+	vector <Rider_pid> rider_tempfile;
+
 
 	////####### Main Page ########[Chris]
 	system("Color 8");
@@ -38,12 +40,12 @@ int main()
 	{
 		//####### Goes To Main Rider Page #######[Chris]
 		system("Color 9"); //anything rider-related will be displayed in this color
-		rider_main(rider_input_info, rider_retrieve_info);
-		writeRiderToFile(rider_input_info);
-		//email_valid(rider_input_info);
+		//rider_main(rider_input_info);
+		rider_read_file_info = rider_main(rider_input_info);
+
 	}
-	pswd_reset(rider_retrieve_info);  /////******#############***************CURRENTLY WORKING ON THIS IN RIDER.CPP FILE!!!! *******************#################*************
-	
+	//pswd_reset(rider_retrieve_info);  /////******#############***************CURRENTLY WORKING ON THIS IN RIDER.CPP FILE!!!! *******************#################*************
+
 
 	//*****************************************************************************
 	//Examples on how to use decorative functions available in makepretty.cpp file
