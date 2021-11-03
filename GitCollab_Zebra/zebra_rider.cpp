@@ -21,8 +21,10 @@ using namespace std;
 ////###############################################
 
 //This function displays the options on the main Rider Page
-void rider_main(vector <Rider_pid>& rinput, vector <Rider_pid>& rretrieve)
+vector <Rider_pid> rider_main(vector <Rider_pid>& rinput)
 {
+	vector <Rider_pid> rider_read_file_info;
+
 	int rider_main_input;
 	system("cls");
 	disp_rider_logo();
@@ -40,7 +42,15 @@ void rider_main(vector <Rider_pid>& rinput, vector <Rider_pid>& rretrieve)
 	{
 		system("cls");
 		rider_register(rinput);
+		writeRiderToFile(rinput);
+		
+		cout << "Rinput has been written to file? ";
 	}
+	rider_read_file_info=rider_retrieve_info();
+	return (rider_read_file_info);
+	//pswd_reset(rinput);
+	//rretrieve = pswd_reset(rinput);
+
 }
 
 
@@ -122,6 +132,7 @@ void writeRiderToFile(vector <Rider_pid>& write_r)
 	fstream riderpid_file("riderpid.csv", ios::app);
 	for (int i = 0; i < write_r.size(); i++)
 	{
+		cout << "Your code made it here"; //debugging
 		riderpid_file << write_r[i].r_fname << "," << write_r[i].r_lname << "," << write_r[i].r_pname << ",";
 		riderpid_file << write_r[i].r_contact << "," << write_r[i].r_address << "," << write_r[i].r_emailusrname << ",";
 		riderpid_file << write_r[i].r_pswd << endl;
@@ -138,6 +149,7 @@ vector <Rider_pid> rider_retrieve_info()
 
 	Rider_pid read_r;
 	string line;
+	cout << "Your code made it here"; //debugging purposes
 
 	while (getline(riderpid_file, line))
 	{
@@ -160,6 +172,8 @@ vector <Rider_pid> rider_retrieve_info()
 		read_r.r_emailusrname = get_val;
 		getline(linestream, get_val, ',');
 		read_r.r_pswd = get_val;
+		cout << "\n" << read_r.r_emailusrname << "\tyour code made it to pulling the username\n"; //debugging purposes
+		cout << read_r.r_pswd << "\tyour code made it to pulling the pswd\n"; //debugging purposes
 
 		tempFile.push_back(read_r);
 
@@ -184,15 +198,41 @@ valid_emailusrname:
 	cout << "\tPlease check your email to reset your password and enter your 5-digit password reset code below.\n";
 	cout << "\t[For the purposes of this assignment, please enter 12345]\n";
 	cout << "\tEnter password reset code:\t";
+	cin >> reset_code; 
 	if (reset_code == 12345)
 	{
 		for (int i = 0; i < read_from_file.size(); i++)
 		{
+
 			if (read_from_file[i].r_emailusrname == search_email)
 			{
-				
-				cin >> new_pswd;
+				//Keeping it simple to start:
+
+				cout << "Email exists in database"; //debugging purposes
 			valid_pass:
+				cout << "\n\tEnter a new secure password:\t";
+				cin >> new_pswd;
+				if (pswd_valid(new_pswd) == 0)
+				{
+					cout << "New Pswd Invalid"; //debugging purposes
+					goto valid_pass;
+				}
+				else
+				{
+					cout << "New Pswd valid - Writing to file"; //debugging purposes
+					read_from_file[i].r_pswd = new_pswd;
+				}
+
+			}
+			else
+			{
+				cout << "Email doesn't exist in database";
+				goto valid_emailusrname;
+			}
+		
+				
+				
+			/*valid_pass:
 				cout << "\n\tEnter a new secure password:\t";
 				cout << "\n\t[Passwords must be";
 				cout << "\n\tlonger than 8 chars,";
@@ -213,10 +253,10 @@ valid_emailusrname:
 			{
 				cout << "You don't have a Zebra account with that email address.\n\tPlease try again.";
 				goto valid_emailusrname;
-			}
-			riderpid_file << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ",";
-			riderpid_file << read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ",";
-			riderpid_file << read_from_file[i].r_pswd << endl;
+			}*/
+			riderpid_file << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ","
+			<< read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ","
+			<< read_from_file[i].r_pswd << endl;
 		}
 	}
 	riderpid_file.close();

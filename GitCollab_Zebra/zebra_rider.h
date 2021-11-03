@@ -35,7 +35,7 @@ struct Rider_pid
 };
 
 //Rider Main function prototypes
-void rider_main(vector <Rider_pid>& rinput, vector <Rider_pid>& rretrieve);
+vector <Rider_pid> rider_main(vector <Rider_pid>& rinput);
 vector <Rider_pid> rider_register(vector <Rider_pid>& rinput);
 void writeRiderToFile(vector <Rider_pid>& write_r);
 vector <Rider_pid> rider_retrieve_info();
