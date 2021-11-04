@@ -4,6 +4,8 @@
 #include "makepretty.h"
 #include "pswd_email_validation.h"
 #include "zebra_rider.h"
+#include "zebra_driver.h"
+#include "GitCollab_Zebra.h"
 
 
 using namespace std;
@@ -22,6 +24,16 @@ int main()
 	vector <Rider_pid> rider_read_file_info;
 	vector <Rider_pid> rider_tempfile;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+	//Initialising vector class for structure Rider_pid so that the structure can take unlimited entries
+
+=======
+
+>>>>>>> 32d0ff8a31a1647ef19d6245f7d1bd5f722c55de
+>>>>>>> 0158707d1c308c94f755346749710f8fe6bf9192
+>>>>>>> 399a6ce996ddec83c3124dc02ad2ef880b427c27
 	////####### Main Page ########[Chris]
 	system("Color 8");
 	disp_main_logo();
@@ -36,7 +48,11 @@ int main()
 	disp_star_line();
 	cout << "\tSelect [1], [2], [3], or [4]\n\tChoose: \n\t";
 	cin >> main_input;
-	if (main_input == 2)
+	if (main_input == 1)
+	{
+		driver_main();
+	}
+	else if (main_input == 2)
 	{
 		//####### Goes To Main Rider Page #######[Chris]
 		system("Color 9"); //anything rider-related will be displayed in this color
