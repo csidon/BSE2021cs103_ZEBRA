@@ -14,13 +14,7 @@ using namespace std;
 
 int main()
 {
-<<<<<<< HEAD
-//<<<<<<< HEAD
-	
 	disp_main_logo();
-	//****** Chris will neaten this up************
-	//int main_input;
-=======
 	int main_input;
 
 	//Initialising vector class for structure Rider_pid so that the structure can take unlimited entries
@@ -28,8 +22,6 @@ int main()
 	vector <Rider_pid> rider_read_file_info;
 	vector <Rider_pid> rider_tempfile;
 
-
->>>>>>> 32d0ff8a31a1647ef19d6245f7d1bd5f722c55de
 	////####### Main Page ########[Chris]
 	system("Color 8");
 	disp_main_logo();
@@ -52,9 +44,7 @@ int main()
 		rider_read_file_info = rider_main(rider_input_info);
 
 	}
-	//pswd_reset(rider_retrieve_info);  /////******#############***************CURRENTLY WORKING ON THIS IN RIDER.CPP FILE!!!! *******************#################*************
 
-<<<<<<< HEAD
 	//disp_star_line();
 	//cout << "\tSelect [1], [2], [3], or [4]\n\tChoose: \n\t";
 	//cin >> main_input;
