@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="distance_calc.cpp" />
     <ClCompile Include="GitCollab_Zebra.cpp" />
     <ClCompile Include="pswd_email_validation.cpp" />
     <ClCompile Include="makepretty.cpp" />

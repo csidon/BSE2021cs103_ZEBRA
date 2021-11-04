@@ -27,7 +27,11 @@
     <ClCompile Include="makepretty.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="zebra_driver.cpp">
+=======
+    <ClCompile Include="distance_calc.cpp">
+>>>>>>> 0158707d1c308c94f755346749710f8fe6bf9192
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -139,7 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="pswd_email_validation.cpp" />
     <ClCompile Include="Zebra_Drivers_Functions.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pswd_email_validation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
