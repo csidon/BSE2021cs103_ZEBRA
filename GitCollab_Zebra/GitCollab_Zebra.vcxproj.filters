@@ -1,55 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="distance_calc.cpp" />
+    <ClCompile Include="GitCollab_Zebra.cpp" />
+    <ClCompile Include="pswd_email_validation.cpp" />
+    <ClCompile Include="makepretty.cpp" />
+    <ClCompile Include="zebra_driver.cpp" />
+    <ClCompile Include="zebra_rider.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GitCollab_Zebra.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="zebra_rider.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pswd_email_validation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="makepretty.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="zebra_driver.cpp">
-=======
-    <ClCompile Include="distance_calc.cpp">
->>>>>>> 0158707d1c308c94f755346749710f8fe6bf9192
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="zebra_rider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pswd_email_validation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="makepretty.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="zebra_driver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GitCollab_Zebra.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="zebra_driver.h" />
+    <ClInclude Include="makepretty.h" />
+    <ClInclude Include="pswd_email_validation.h" />
+    <ClInclude Include="zebra_rider.h" />
   </ItemGroup>
 </Project>

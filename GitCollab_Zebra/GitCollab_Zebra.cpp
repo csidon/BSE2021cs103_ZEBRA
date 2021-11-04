@@ -24,16 +24,7 @@ int main()
 	vector <Rider_pid> rider_read_file_info;
 	vector <Rider_pid> rider_tempfile;
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-	//Initialising vector class for structure Rider_pid so that the structure can take unlimited entries
 
-=======
-
->>>>>>> 32d0ff8a31a1647ef19d6245f7d1bd5f722c55de
->>>>>>> 0158707d1c308c94f755346749710f8fe6bf9192
->>>>>>> 399a6ce996ddec83c3124dc02ad2ef880b427c27
 	////####### Main Page ########[Chris]
 	system("Color 8");
 	disp_main_logo();
@@ -75,10 +66,7 @@ int main()
 	
 
 
-//>>>>>>> a3080d111c3957b7c983a8ae3b3457cb094692a3
-=======
 
->>>>>>> 32d0ff8a31a1647ef19d6245f7d1bd5f722c55de
 	//*****************************************************************************
 	//Examples on how to use decorative functions available in makepretty.cpp file
 	//*****************************************************************************
