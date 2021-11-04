@@ -31,7 +31,7 @@ void driver_main()
 	switch (n)
 	{
 	case 1:
-	//	driver_eligibility(driver, driverFromFile);
+		driver_eligibility(driver, driverFromFile);
 		driverFromFile = readFromFile();
 		break;
 	case 2:
@@ -75,11 +75,11 @@ void driver_eligibility(vector<Drivers>& driver, vector<Drivers>& driverFromFile
 
 void driver_registration(vector<Drivers>& driver, vector<Drivers>& driverFromFile)
 {
-	//input_drivers(driver);
-	//cout << driver[0].fname << endl;
-	//writeToFile(driver);
+	input_drivers(driver);
+	//cout << driver[0].fname << endl;//debugging purposes 
+	writeToFile(driver);
 	driverFromFile = readFromFile();
-	cout << driverFromFile[0].mail << driverFromFile[0].password<<endl;
+	
 }
 
 
@@ -98,17 +98,17 @@ vector <Drivers> input_drivers(vector<Drivers>& driver)
 	cout << "\n\tE-mail adress";
 	cout << "\n\t[Note: This will also be  Your username]: ";
 	cin >> d.mail;
-	//email_valid(d.mail);
+	email_valid(d.mail);
 	cout << "\n\tPassword: ";
 	cin >> d.password;
-	//pswd_valid(d.password);
+	pswd_valid(d.password);
 	driver.push_back(d);
 	return (driver);
 }
 
 void writeToFile(vector<Drivers>& driver)
 {
-	//cout << driver[0].fname;
+	//cout << driver[0].fname;//debugging purposes
 	cout << "\nFisrt debug";
 	fstream driverFile("driverFile.csv", ios::app);
 	cout <<"/nsize of driver"<< driver.size();
