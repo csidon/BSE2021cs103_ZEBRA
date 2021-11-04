@@ -1,6 +1,17 @@
+<<<<<<< HEAD
+﻿  GitCollab_Zebra.cpp
+  pswd_email_validation.cpp
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\pswd_email_validation.cpp(56,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\pswd_email_validation.cpp(110,20): warning C4018: '<': signed/unsigned mismatch
+  zebra_rider.cpp
+  Generating Code...
+GitCollab_Zebra.obj : error LNK2005: _main already defined in distance_calc.obj
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe : fatal error LNK1169: one or more multiply defined symbols found
+=======
 ﻿  GitCollab_Zebra.cpp
   zebra_rider.cpp
 C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_rider.cpp(133,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_rider.cpp(204,21): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
   GitCollab_Zebra.vcxproj -> C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
+>>>>>>> 32d0ff8a31a1647ef19d6245f7d1bd5f722c55de

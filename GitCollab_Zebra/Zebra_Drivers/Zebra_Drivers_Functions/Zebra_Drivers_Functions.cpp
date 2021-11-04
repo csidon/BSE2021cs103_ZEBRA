@@ -1,24 +1,27 @@
 #include <iostream>
-#include<string>
-#include <fstream>
-#include<sstream>
-#include <stdlib.h>
-
+#include <string>
+#include <fstream> // to handle file operations
+#include <sstream> // to handle string stream convertion
+#include "pswd_email_validation.h"
+#include <vector> // to handle unlimited structure array
 using namespace std;
+
 
 //STRUCTURE
 
 struct Drivers
 {
-	string name;
+	string fname;
+	string sname;
 	string pref_name;
 	string phone_num;
 	string address;
 	string mail;
 	string password;
-	Drivers(string n = "", string pn = "", string phn = "", string ad = "", string m = "", string pw = "")
+	Drivers(string fn = "",string sn ="", string pn = "", string phn = "", string ad = "", string m = "", string pw = "")
 	{
-		name = n;
+		fname = fn;
+		sname = sn;
 		pref_name = pn;
 		phone_num = phn;
 		address = ad;
@@ -35,13 +38,17 @@ void disp_dash_line();
 void disp_star_line();
 void driver_main();
 void driver_eligibility();
-void driver_login();
-void driver_registration();;
+//void driver_login();
+void driver_registration();
+vector <Drivers> input_drivers(vector<Drivers>& driver);//returns a Marker vector
+void writeToFile(vector<Drivers>& driver);//returns nothing
+vector <Drivers> readFromFile();//returns a Marker vector
+//vector<Drivers> searchAndUpdate(vector < Drivers > markerFromFile);
 
 
 int main()
 {
-	Drivers 
+	Drivers;
 	int main_input;
 	//####### Main Page ########
 	system("Color 8");
@@ -57,9 +64,9 @@ int main()
 	disp_star_line();
 	cout << "\t[Enter your choice - 1, 2, 3, or 4]\n\tChoose: \n";
 	cin >> main_input;
-	if (main_input == 2)
+	if (main_input == 1)
 	{
-		
+		driver_main();
 	}
 
 	system("Color 9");
@@ -165,6 +172,7 @@ void disp_star_line()
 
 void driver_main()
 {
+
 	int n;
 	cout << "\n1. Register";
 	cout << "\n2. Login";
@@ -178,7 +186,7 @@ void driver_main()
 		driver_eligibility();
 		break;
 	case 2:
-		driver_login();
+		//driver_login();
 		break;
 	case 3:
 		main();
@@ -218,5 +226,73 @@ void driver_eligibility()
 
 void driver_registration()
 {
+	vector <Drivers> driver;
+	vector <Drivers> driverFromFile;
+	input_drivers(driver);
+	writeToFile(driver);
+	driverFromFile = readFromFile();
 
+}
+
+
+vector <Drivers> input_drivers(vector<Drivers>& driver)
+{
+	Drivers d;
+	cout << "\n\tPlease, enter your: ";
+	cout << "\n\tFirst Name: ";
+	cin >> d.fname;
+	cout << "\n\tSecond Name: ";
+	cin >> d.sname;
+	cout << "\n\tPreferred Name: ";
+	cin >> d.pref_name;
+	cout << "\n\tContact number: ";
+	cin >> d.phone_num;
+	cout << "\n\tE-mail adress";
+	cout << "\n\t[Note: This will also be  Your username]: ";
+	cin >> d.mail;
+	email_valid(d.mail);
+	cout << "\n\tPassword: ";
+	cin >> d.password;
+	pswd_valid(d.password);
+	return (driver);
+}
+
+void writeToFile(vector<Drivers>& driver)
+{
+	cout << "\nFisrt debug";
+	fstream driverFile("driverFile.csv", ios::app);
+	for (int i = 0; i < driver.size(); i++)
+	{
+		cout << "\nsecond DEBUG";
+		driverFile << driver[i].fname << "," << driver[i].sname << "," << driver[i].pref_name << "," << driver[i].phone_num << "," << driver[i].mail << "," << driver[i].password << endl;
+	}
+	driverFile.close();
+
+}
+
+vector <Drivers> readFromFile()
+{
+	fstream driverFile("driverFile.csv", ios::in);
+	vector<Drivers> tempDriver;
+
+	Drivers d;
+	string line;
+	cout << "\n\tHello " << d.pref_name << ", please check your registration details: ";
+	while (getline(driverFile, line))
+	{
+		cout << line << endl;
+		istringstream linestream(line);
+		string user;
+		getline(linestream, user, ',');
+		d.fname = user;
+		getline(linestream, user, ',');
+		d.sname = user;
+		getline(linestream, user, ',');
+		d.phone_num = user;
+		getline(linestream, user, ',');
+		d.mail = user;
+		tempDriver.push_back(d);
+	}
+	driverFile.close();
+	return(tempDriver);
 }
