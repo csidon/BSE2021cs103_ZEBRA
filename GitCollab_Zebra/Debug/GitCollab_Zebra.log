@@ -1,4 +1,9 @@
 <<<<<<< HEAD
+﻿  zebra_driver.cpp
+C:\Users\200856629\OneDrive - UP Education\Desktop\Assignment_CS103\GitCollab\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(115,20): warning C4018: '<': signed/unsigned mismatch
+  GitCollab_Zebra.vcxproj -> C:\Users\200856629\OneDrive - UP Education\Desktop\Assignment_CS103\GitCollab\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
+=======
+<<<<<<< HEAD
 ﻿  GitCollab_Zebra.cpp
   pswd_email_validation.cpp
 C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\pswd_email_validation.cpp(56,20): warning C4018: '<': signed/unsigned mismatch
@@ -15,3 +20,4 @@ C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_
   Generating Code...
   GitCollab_Zebra.vcxproj -> C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
 >>>>>>> 32d0ff8a31a1647ef19d6245f7d1bd5f722c55de
+>>>>>>> 0158707d1c308c94f755346749710f8fe6bf9192
