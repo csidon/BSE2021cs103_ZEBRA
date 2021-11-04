@@ -26,6 +26,7 @@ vector <Rider_pid> rider_main(vector <Rider_pid>& rinput)
 	vector <Rider_pid> rider_read_file_info;
 
 	int rider_main_input;
+rider_main_page:
 	system("cls");
 	disp_rider_logo();
 	disp_h2_lines("Hello");
@@ -44,9 +45,22 @@ vector <Rider_pid> rider_main(vector <Rider_pid>& rinput)
 		rider_register(rinput);
 		writeRiderToFile(rinput);
 		
-		cout << "Rinput has been written to file? ";
+		cout << "Rinput has been written to file! "; //debugging purposes
+		cout << "\nYou are now a Zebra Rider!\n";
+		system("pause");
+		goto rider_main_page;
+		
 	}
-	rider_read_file_info=rider_retrieve_info();
+	else if (rider_main_input == 3)
+	{
+		rider_read_file_info = rider_retrieve_info();
+
+		rider_read_file_info = pswd_reset(rider_read_file_info);
+		cout << "\nYour password has been reset\n";
+		system("pause");
+		goto rider_main_page;
+	}
+	
 	return (rider_read_file_info);
 	//pswd_reset(rinput);
 	//rretrieve = pswd_reset(rinput);
@@ -149,7 +163,7 @@ vector <Rider_pid> rider_retrieve_info()
 
 	Rider_pid read_r;
 	string line;
-	cout << "Your code made it here"; //debugging purposes
+	cout << "Your code made it to the start of rider_retrieve_info()"; //debugging purposes
 
 	while (getline(riderpid_file, line))
 	{
@@ -190,49 +204,27 @@ vector<Rider_pid> pswd_reset(vector <Rider_pid> read_from_file)
 	fstream riderpid_file("riderpid.csv", ios::out);
 
 	string search_email, new_pswd;
-	int reset_code = 0;
+	int reset_code = 0, email_exists=0;
 valid_emailusrname:
 	cout << "\t\nPlease enter your email address:\t";
 	cin >> search_email;
 	disp_dash_line();
-	cout << "\tPlease check your email to reset your password and enter your 5-digit password reset code below.\n";
-	cout << "\t[For the purposes of this assignment, please enter 12345]\n";
-	cout << "\tEnter password reset code:\t";
-	cin >> reset_code; 
-	if (reset_code == 12345)
+
+	for (int i = 0; i < read_from_file.size(); i++)
 	{
-		for (int i = 0; i < read_from_file.size(); i++)
+		if (read_from_file[i].r_emailusrname == search_email)
 		{
+			//Keeping it simple to start:
 
-			if (read_from_file[i].r_emailusrname == search_email)
+			cout << "Email exists in database"; //debugging purposes
+			cout << "\tPlease check your email to reset your password and enter your 5-digit password reset code below.\n";
+			cout << "\t[For the purposes of this assignment, please enter 12345]\n";
+			cout << "\tEnter password reset code:\t";
+			cin >> reset_code;
+			if (reset_code == 12345)
 			{
-				//Keeping it simple to start:
-
-				cout << "Email exists in database"; //debugging purposes
-			valid_pass:
-				cout << "\n\tEnter a new secure password:\t";
-				cin >> new_pswd;
-				if (pswd_valid(new_pswd) == 0)
-				{
-					cout << "New Pswd Invalid"; //debugging purposes
-					goto valid_pass;
-				}
-				else
-				{
-					cout << "New Pswd valid - Writing to file"; //debugging purposes
-					read_from_file[i].r_pswd = new_pswd;
-				}
-
-			}
-			else
-			{
-				cout << "Email doesn't exist in database";
-				goto valid_emailusrname;
-			}
-		
-				
-				
-			/*valid_pass:
+			enter_new_pass:
+				cin.ignore();
 				cout << "\n\tEnter a new secure password:\t";
 				cout << "\n\t[Passwords must be";
 				cout << "\n\tlonger than 8 chars,";
@@ -241,26 +233,25 @@ valid_emailusrname:
 				getline(cin, new_pswd);
 				if (pswd_valid(new_pswd) == 0)
 				{
-					goto valid_pass;
+					cout << "New Pswd Invalid"; //debugging purposes
+					goto enter_new_pass;
 				}
-				else
-				{
-					read_from_file[i].r_pswd = new_pswd;
-				}
+				read_from_file[i].r_pswd = new_pswd;
 				
+				email_exists += 1;
 			}
-			else
-			{
-				cout << "You don't have a Zebra account with that email address.\n\tPlease try again.";
-				goto valid_emailusrname;
-			}*/
-			riderpid_file << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ","
-			<< read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ","
-			<< read_from_file[i].r_pswd << endl;
 		}
+		riderpid_file << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ","
+		<< read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ","
+		<< read_from_file[i].r_pswd << endl;
 	}
+	if (email_exists == 0)
+	{
+		cout << "\n\tYou don't have a Zebra account with that email address.\n\tPlease try again.\n";
+		goto valid_emailusrname;
+	}
+	
 	riderpid_file.close();
-
 	read_from_file = rider_retrieve_info();
 	return (read_from_file);
 

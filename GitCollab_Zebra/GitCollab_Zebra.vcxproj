@@ -147,7 +147,6 @@
     <ClCompile Include="zebra_rider.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GitCollab_Zebra.h" />
     <ClInclude Include="zebra_driver.h" />
     <ClInclude Include="makepretty.h" />
     <ClInclude Include="pswd_email_validation.h" />
