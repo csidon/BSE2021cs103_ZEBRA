@@ -51,7 +51,8 @@ void driver_eligibility(vector<Drivers>& driver, vector<Drivers>&driverFromFile)
 void driver_registration(vector<Drivers>& driver, vector<Drivers>& driverFromFile);
 vector <Drivers> input_drivers(vector<Drivers>& driver);
 void writeToFile(vector<Drivers>& driver);//returns nothing
-vector <Drivers> readFromFile();
+//vector <Drivers> readFromFile();
 //vector<Drivers> searchAndUpdate(vector < Drivers > driverrFromFile);
+void output_drivers(vector<Drivers>& driver);
 
 #endif

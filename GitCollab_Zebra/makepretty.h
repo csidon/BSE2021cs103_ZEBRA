@@ -27,6 +27,7 @@ void disp_h2_lines(string title);
 void disp_dash_line();
 void disp_star_line();
 void disp_rider_logo();
+void disp_driver_regist();
 
 
 #endif
