@@ -22,7 +22,6 @@ int main()
 	//Initialising vector class for structure Rider_pid so that the structure can take unlimited entries
 	vector <Rider_pid> rider_input_info;
 	vector <Rider_pid> rider_read_file_info;
-	vector <Rider_pid> rider_tempfile;
 
 
 	////####### Main Page ########[Chris]
@@ -48,7 +47,7 @@ int main()
 		//####### Goes To Main Rider Page #######[Chris]
 		system("Color 9"); //anything rider-related will be displayed in this color
 		//rider_main(rider_input_info);
-		rider_read_file_info = rider_main(rider_input_info);
+		rider_read_file_info = rider_main(rider_input_info); //This function will write the new data into the riderpid.csv file. Full function in zebra_rider.cpp file
 
 	}
 

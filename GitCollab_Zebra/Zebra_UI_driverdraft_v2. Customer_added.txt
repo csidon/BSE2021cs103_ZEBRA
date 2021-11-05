@@ -658,7 +658,7 @@ cout << "    \n";
 	|    Book Your Trip, We do The rest! 	|
 	+---------------------------------------+
 
-	Your trip number is: #93958673                //random generator
+	Your trip number is: #93958673                //client generated # + next system trip number
 	Enter your:
 	Name			:
 	Surname			:
