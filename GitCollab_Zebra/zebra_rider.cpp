@@ -39,6 +39,8 @@ rider_main_page:
 	disp_star_line();
 	cout << "\tSelect [1], [2], [3], or [4]\n\tChoose: \n\t";
 	cin >> rider_main_input;
+
+	//This section calls the Rider Registration function 
 	if (rider_main_input == 2)
 	{
 		system("cls");
@@ -51,24 +53,24 @@ rider_main_page:
 		goto rider_main_page;
 		
 	}
+	//This section calls the password reset function 
 	else if (rider_main_input == 3)
 	{
 		rider_read_file_info = rider_retrieve_info();
 
 		rider_read_file_info = pswd_reset(rider_read_file_info);
-		cout << "\nYour password has been reset\n";
+		cout << "\nPassword reset successful :)\n";
 		system("pause");
 		goto rider_main_page;
 	}
 	
 	return (rider_read_file_info);
-	//pswd_reset(rinput);
-	//rretrieve = pswd_reset(rinput);
+
 
 }
 
 
-//This section takes rider input data from user
+//RIDER REGISTRATION FUNCTION: This section takes rider input data from user
 vector <Rider_pid> rider_register(vector <Rider_pid>& rinput)
 {
 	int rreg_confirmation;
@@ -146,7 +148,7 @@ void writeRiderToFile(vector <Rider_pid>& write_r)
 	fstream riderpid_file("riderpid.csv", ios::app);
 	for (int i = 0; i < write_r.size(); i++)
 	{
-		cout << "Your code made it here"; //debugging
+		//cout << "Your code made it here"; //debugging
 		riderpid_file << write_r[i].r_fname << "," << write_r[i].r_lname << "," << write_r[i].r_pname << ",";
 		riderpid_file << write_r[i].r_contact << "," << write_r[i].r_address << "," << write_r[i].r_emailusrname << ",";
 		riderpid_file << write_r[i].r_pswd << endl;
@@ -163,7 +165,7 @@ vector <Rider_pid> rider_retrieve_info()
 
 	Rider_pid read_r;
 	string line;
-	cout << "Your code made it to the start of rider_retrieve_info()"; //debugging purposes
+	//cout << "Your code made it to the start of rider_retrieve_info()"; //debugging purposes
 
 	while (getline(riderpid_file, line))
 	{
@@ -186,8 +188,8 @@ vector <Rider_pid> rider_retrieve_info()
 		read_r.r_emailusrname = get_val;
 		getline(linestream, get_val, ',');
 		read_r.r_pswd = get_val;
-		cout << "\n" << read_r.r_emailusrname << "\tyour code made it to pulling the username\n"; //debugging purposes
-		cout << read_r.r_pswd << "\tyour code made it to pulling the pswd\n"; //debugging purposes
+		//cout << "\n" << read_r.r_emailusrname << "\tyour code made it to pulling the username\n"; //debugging purposes
+		//cout << read_r.r_pswd << "\tyour code made it to pulling the pswd\n"; //debugging purposes
 
 		tempFile.push_back(read_r);
 
@@ -197,8 +199,7 @@ vector <Rider_pid> rider_retrieve_info()
 }
 
 
-/////******#############***************CURRENTLY WORKING ON THIS!!!! *******************#################*************
-//This function searches for the username and updates the corresponding password
+//This function searches to find the username in the database, and updates the corresponding password
 vector<Rider_pid> pswd_reset(vector <Rider_pid> read_from_file)
 {
 	fstream riderpid_file("riderpid.csv", ios::out);
@@ -206,25 +207,27 @@ vector<Rider_pid> pswd_reset(vector <Rider_pid> read_from_file)
 	string search_email, new_pswd;
 	int reset_code = 0, email_exists=0;
 valid_emailusrname:
-	cout << "\t\nPlease enter your email address:\t";
+	cout << "\n\tNeed to reset your password? Please enter your email address:\t";
 	cin >> search_email;
 	disp_dash_line();
 
+	//searching for the provided email address/username
 	for (int i = 0; i < read_from_file.size(); i++)
 	{
 		if (read_from_file[i].r_emailusrname == search_email)
 		{
-			//Keeping it simple to start:
-
-			cout << "Email exists in database"; //debugging purposes
+			cout << "\tEmail exists in database\n"; //debugging purposes
 			cout << "\tPlease check your email to reset your password and enter your 5-digit password reset code below.\n";
 			cout << "\t[For the purposes of this assignment, please enter 12345]\n";
-			cout << "\tEnter password reset code:\t";
+		//reset_code added to simulate "email verification"
+		enter_reset_code:
+			cout << "\n\tEnter password reset code:\t";
 			cin >> reset_code;
 			if (reset_code == 12345)
 			{
 			enter_new_pass:
 				cin.ignore();
+				cout << "\n\tGreat, let's reset your password!";
 				cout << "\n\tEnter a new secure password:\t";
 				cout << "\n\t[Passwords must be";
 				cout << "\n\tlonger than 8 chars,";
@@ -237,13 +240,22 @@ valid_emailusrname:
 					goto enter_new_pass;
 				}
 				read_from_file[i].r_pswd = new_pswd;
-				
-				email_exists += 1;
+				email_exists += 1; //****If we have time, to make sure that there are no username duplicates!
+			
 			}
+			else
+			{
+				cout << "\n\tYou've entered the wrong password reset code.";
+				cout << "\n\t[Hint: Just enter 12345 for the purposes of this assignment.";
+				goto enter_reset_code;
+			}
+			
+
 		}
 		riderpid_file << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ","
-		<< read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ","
-		<< read_from_file[i].r_pswd << endl;
+			<< read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ","
+			<< read_from_file[i].r_pswd << endl;
+		
 	}
 	if (email_exists == 0)
 	{
