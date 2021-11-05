@@ -3,3 +3,4 @@ C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_
 C:\Users\Chris\Desktop\Yoobee\CS103_Oct21\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
 C:\Users\200856629\OneDrive - UP Education\Desktop\Assignment_CS103\GitCollab\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
 C:\Users\200856629\OneDrive - UP Education\Desktop\Assignment_CS103\GitCollab\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.pdb
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
