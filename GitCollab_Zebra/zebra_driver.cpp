@@ -31,6 +31,7 @@ void driver_main()
 	switch (n)
 	{
 	case 1:
+		//readFromFile();
 		disp_driver_regist();
 		cout << endl;
 		driver_eligibility(driver, driverFromFile);
@@ -82,7 +83,7 @@ void driver_registration(vector<Drivers>& driver, vector<Drivers>& driverFromFil
 	disp_h2_lines("Be Your Own Boss - Sign up to be a Zebra Driver today!");
 	input_drivers(driver);
 	output_drivers(driver);
-
+	input_drivers_account(driver);
 	//**********************
 	//cout << driver[0].fname << endl;//debugging purposes 
 	//**********************
@@ -94,6 +95,7 @@ void driver_registration(vector<Drivers>& driver, vector<Drivers>& driverFromFil
 
 vector <Drivers> input_drivers(vector<Drivers>& driver)
 {
+
 	Drivers d;
 	cout << "\n\tPlease, enter your: ";
 	cout << "\n\tFirst Name: ";
@@ -125,6 +127,42 @@ void output_drivers(vector<Drivers>& driver)
 	}
 }
 
+
+
+vector <Drivers> input_drivers_account(vector<Drivers>& driver)
+{
+	Drivers d;
+	cout << "\n\tPlease, enter your: ";
+	cout << "\n\tGender(male/female): ";
+	cin >> d.gender;
+	cout << "\n\tDate of birth(dd/mm/yyyy): ";
+	cin >> d.birth;
+	cout << "\n\tNationality: ";
+	cin >> d.nationality;
+	cout << "\n\tDrivers' License #	[Format:AB123456]: ";
+	cin >> d.lice_num;
+	cout << "\n\tDate of Expiry Format:DD / MM / YY]: ";
+	cin >> d.doex;
+	cout << "\n\tDriving Experience # of years: ";
+	cin >> d.exp;
+	cout << "\n\tVehicle Registration #: ";
+	cin >> d.veh_regist;
+	cout << "\n\tVehicle Age: ";
+	cin >> d.veh_age;
+	cout << "\n\tVehicle Model: ";
+	cin >> d.veh_model;
+	cout << "\n\tWOF Expiry date: ";
+	cin >> d.wof_exp;
+	cout << "\n\tBank account number: ";
+	cin >> d.bank_acc;
+	cout << "\n\tBank name: ";
+	cin >> d.bank_name;
+	driver.push_back(d);
+	return (driver);
+}
+
+
+
 void writeToFile(vector<Drivers>& driver)
 {
 	//cout << driver[0].fname;//debugging purposes
@@ -134,43 +172,14 @@ void writeToFile(vector<Drivers>& driver)
 	for (int i = 0; i < driver.size(); i++)
 	{
 		//cout << "\nsecond DEBUG";
-		driverFile << driver[i].fname << "," << driver[i].sname << "," << driver[i].pref_name << "," << driver[i].phone_num << "," << driver[i].mail << "," << driver[i].password << endl;
+		driverFile << driver[i].fname << "," << driver[i].sname << "," << driver[i].pref_name << "," << driver[i].phone_num << "," << driver[i].gender << "," << driver[i].birth << "," << driver[i].nationality << "," << driver[i].lice_num << "," << driver[i].doex <<"," << driver[i].exp << "," << driver[i].veh_regist << "," << driver[i].veh_age << "," << driver[i].veh_model << "," << driver[i].wof_exp << "," << driver[i].bank_acc << "," << driver[i].bank_name <<"," << driver[i].mail << "," << driver[i].password << endl;
 	}
 	driverFile.close();
-
+	fstream driverLoginFile("driverLoginFile_pid.csv", ios::app);
+	//cout <<"/nsize of driver"<< driver.size();
 }
 
-//vector <Drivers> readFromFile()
-//{
-//	fstream driverFile("driverFile_pid.csv", ios::in);
-//	vector<Drivers> tempDriver;
-//
-//	Drivers d;
-//	string line;
-//	
-//	while (getline(driverFile, line))
-//	{
-//		cout << line << endl;
-//		istringstream linestream(line);
-//		string user;
-//		getline(linestream, user, ',');
-//		d.fname = user;
-//		getline(linestream, user, ',');
-//		d.sname = user;
-//		getline(linestream, user, ',');
-//		d.pref_name = user;
-//		getline(linestream, user, ',');
-//		d.phone_num = user;
-//		getline(linestream, user, ',');
-//		d.mail = user;
-//		getline(linestream, user, ',');
-//		d.password = user;
-//		tempDriver.push_back(d);
-//	}
-//
-//	driverFile.close();
-//	return(tempDriver);
-//}
+
 
 
 vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
@@ -188,14 +197,73 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
 		{
 			if (driverFromFile[i].mail == login && driverFromFile[i].password == password)
 			{
-				//driver_account();
+				//driver_account_main();
+				false;
 			}
 			else
 			{
 				cout << "\n\tForgot your password?";
+				true;
 			}
 		}
 
 	}
 	return(driverFromFile);
+}
+
+void driver_account_main()
+{
+	int n;
+	cout << "\n\tKia ora, we are all good to go!";
+	cout << "\n\tPlease choose from the following options: ";
+	cout << "\n\t1. Account settings";
+	cout << "\n\t2. Pick a ride";
+	cout << "\n\t3. Reset your password";
+	cin >> n;
+	switch (n)
+	{
+	case 1:
+		//account_settings();
+		break;
+	case 2:
+		//job_screen();
+		break;
+	case 3:
+		//reset_passsword();
+		break;
+
+	}
+}
+
+
+vector <Drivers> readFromFile()
+{
+	fstream driverFile("driverFile_pid.csv", ios::in);
+	vector<Drivers> tempDriver;
+
+	Drivers d;
+	string line;
+	
+	while (getline(driverFile, line))
+	{
+		cout << line << endl;
+		istringstream linestream(line);
+		string user;
+		getline(linestream, user, ',');
+		d.fname = user;
+		getline(linestream, user, ',');
+		d.sname = user;
+		getline(linestream, user, ',');
+		d.pref_name = user;
+		getline(linestream, user, ',');
+		d.phone_num = user;
+		getline(linestream, user, ',');
+		d.mail = user;
+		getline(linestream, user, ',');
+		d.password = user;
+		tempDriver.push_back(d);
+	}
+
+	driverFile.close();
+	return(tempDriver);
 }
