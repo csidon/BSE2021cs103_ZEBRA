@@ -55,10 +55,10 @@ int email_valid(string remail)
 	vector<char> remail_arr; //defining a vector called remail_arr
 	for (int i = 0; i < remail.length(); i++)
 	{
-		cout << remail[0];
-		cout << (!(is_a_digit(remail[0])));
-		cout << (!(is_small_char(remail[0])));
-		cout << !(is_big_char(remail[0]));
+		//cout << remail[0]; //debugging
+		//cout << (!(is_a_digit(remail[0]))); //debugging
+		//cout << (!(is_small_char(remail[0]))); //debugging
+		//cout << !(is_big_char(remail[0])); //debugging
 		if (is_a_digit(remail[0]) || is_small_char(remail[0]) || is_big_char(remail[0]))
 		{
 			remail_arr.push_back(remail[i]);
@@ -76,7 +76,7 @@ int email_valid(string remail)
 		}
 		else
 		{
-			cout << "\nPlease enter a valid email address -- why is this wrong";
+			cout << "\nPlease enter a valid email address\n";
 			return 0;
 		}
 
@@ -88,7 +88,7 @@ int email_valid(string remail)
 	}
 	else
 	{
-		cout << "\nPlease enter a valid email address";
+		cout << "\nPlease enter a valid email address\n";
 		return 0;
 	}
 }
