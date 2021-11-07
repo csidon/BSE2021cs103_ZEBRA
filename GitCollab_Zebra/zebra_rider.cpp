@@ -142,7 +142,7 @@ valid_pass:
 	}
 
 	//This section creates an AlphaID for the registration person upon confirmation of account creation, based on their firstname and last name
-	ri.r_idalpha += ri.r_fname.substr(0, 1);
+	ri.r_idalpha += "R" + ri.r_fname.substr(0, 1);
 	ri.r_idalpha += ri.r_lname.substr(0, 2);
 	ri.r_idnum = 1001 + count_entries();
 	cout << "The autogen ID alpha is" << ri.r_idalpha; //debugging
