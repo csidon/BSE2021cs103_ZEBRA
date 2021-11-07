@@ -21,7 +21,8 @@ using namespace std;
 
 struct Drivers
 {
-	int id;
+	string d_idAlph;
+	int d_idNum;
 	string fname;
 	string sname;
 	string pref_name;
@@ -41,9 +42,11 @@ struct Drivers
 	string wof_exp;
 	string bank_name;
 	string bank_acc;
-	Drivers(int i_d=1001, string fn = "", string sn = "", string pn = "", string phn = "", string ad = "", string m = "", string pw = "", string g = "", string b = "", string n = "", string ln = "", string d = "", string vr = "", string va = "", string vm = "", string we = "", string bn = "", string ba = "", string e ="")
-	{
-		id = i_d;
+	Drivers(string alph="", int num = 0, string fn = "", string sn = "", string pn = "", string phn = "", string ad = "", string m = "", string pw = "", string g = "", string b = "", string n = "", string ln = "", string d = "", string vr = "", string va = "", string vm = "", string we = "", string bn = "", string ba = "", string e = "")
+	
+	{	
+		d_idAlph = alph;
+		d_idNum = num;
 		fname = fn;
 		sname = sn;
 		pref_name = pn;
@@ -76,6 +79,7 @@ void driver_eligibility(vector<Drivers>& driver, vector<Drivers>&driverFromFile)
 vector<Drivers> driver_login(vector<Drivers>& driverFromFile);
 void driver_registration(vector<Drivers>& driver, vector<Drivers>& driverFromFile);
 vector <Drivers> input_drivers(vector<Drivers>& driver);
+int count_entries_drive();
 void writeToFile(vector<Drivers>& driver);//returns nothing
 vector <Drivers> readFromFile();
 //vector<Drivers> searchAndUpdate(vector < Drivers > driverrFromFile);
