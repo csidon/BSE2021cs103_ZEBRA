@@ -82,13 +82,12 @@ void driver_registration(vector<Drivers>& driver, vector<Drivers>& driverFromFil
 	cout << endl;
 	disp_h2_lines("Be Your Own Boss - Sign up to be a Zebra Driver today!");
 	input_drivers(driver);
-	output_drivers(driver);
-	input_drivers_account(driver);
+	//input_drivers_account(driver);
 	//**********************
 	//cout << driver[0].fname << endl;//debugging purposes 
 	//**********************
-
 	writeToFile(driver);
+	driver_login(driverFromFile);
 
 }
 
@@ -113,25 +112,9 @@ vector <Drivers> input_drivers(vector<Drivers>& driver)
 	cout << "\n\tPassword: ";
 	cin >> d.password;
 	pswd_valid(d.password);
-	driver.push_back(d);
-	return (driver);
-}
+	
+	output_drivers(driver);
 
-void output_drivers(vector<Drivers>& driver)
-{
-	for (int i = 0; i < driver.size(); i++)
-	{
-		cout << "\n\tHello, " << driver[i].pref_name << " please, check your information and confirm" << endl;
-		cout << " \n\t " << driver[i].fname << "\t" << driver[i].sname;
-		cout << " \n\t " << driver[i].phone_num << "\t" << driver[i].mail << " will be used as your user name";
-	}
-}
-
-
-
-vector <Drivers> input_drivers_account(vector<Drivers>& driver)
-{
-	Drivers d;
 	cout << "\n\tPlease, enter your: ";
 	cout << "\n\tGender(male/female): ";
 	cin >> d.gender;
@@ -161,6 +144,17 @@ vector <Drivers> input_drivers_account(vector<Drivers>& driver)
 	return (driver);
 }
 
+void output_drivers(vector<Drivers>& driver)
+{
+	for (int i = 0; i < driver.size(); i++)
+	{
+		cout << "\n\tHello, " << driver[i].pref_name << " please, check your information and confirm" << endl;
+		cout << " \n\t " << driver[i].fname << "\t" << driver[i].sname;
+		cout << " \n\t " << driver[i].phone_num << "\t" << driver[i].mail << "      will be used as your user name";
+	}
+}
+
+
 
 
 void writeToFile(vector<Drivers>& driver)
@@ -171,11 +165,11 @@ void writeToFile(vector<Drivers>& driver)
 	//cout <<"/nsize of driver"<< driver.size();
 	for (int i = 0; i < driver.size(); i++)
 	{
-		//cout << "\nsecond DEBUG";
-		driverFile << driver[i].fname << "," << driver[i].sname << "," << driver[i].pref_name << "," << driver[i].phone_num << "," << driver[i].gender << "," << driver[i].birth << "," << driver[i].nationality << "," << driver[i].lice_num << "," << driver[i].doex <<"," << driver[i].exp << "," << driver[i].veh_regist << "," << driver[i].veh_age << "," << driver[i].veh_model << "," << driver[i].wof_exp << "," << driver[i].bank_acc << "," << driver[i].bank_name <<"," << driver[i].mail << "," << driver[i].password << endl;
+		//cout << "\nsecond DEBUG";	
+		driverFile << driver[i].id<<","<<driver[i].fname << "," << driver[i].sname << "," << driver[i].pref_name << "," << driver[i].phone_num << "," << driver[i].mail << "," << driver[i].password << "," << driver[i].gender << "," << driver[i].birth << "," << driver[i].nationality << "," << driver[i].lice_num << "," << driver[i].doex << "," << driver[i].exp << "," << driver[i].veh_regist << "," << driver[i].veh_age << "," << driver[i].veh_model << "," << driver[i].wof_exp << "," << driver[i].bank_acc << "," << driver[i].bank_name << endl;
+		driver[i].id++;
 	}
 	driverFile.close();
-	fstream driverLoginFile("driverLoginFile_pid.csv", ios::app);
 	//cout <<"/nsize of driver"<< driver.size();
 }
 
@@ -197,7 +191,7 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
 		{
 			if (driverFromFile[i].mail == login && driverFromFile[i].password == password)
 			{
-				//driver_account_main();
+				driver_account_main();
 				false;
 			}
 			else
