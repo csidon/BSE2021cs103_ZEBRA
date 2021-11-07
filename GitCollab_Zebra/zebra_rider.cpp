@@ -73,6 +73,76 @@ rider_main_page:
 
 }
 
+//This function searches to find the username in the database, and checks that the password corresponds
+vector <Rider_pid> r_login(vector <Rider_pid> temp_pull_file )
+{
+	fstream temp_rider_file("riderpid.csv", ios::out);
+
+	string r_emailusrname_check, r_pswd_check;
+	int login_success = 0;
+valid_emailusrname:
+	cout << "\n\tUsername:\t";
+	cin >> r_emailusrname_check;
+	cout << "\n\Password:\t";
+	cin >> r_pswd_check;
+	disp_dash_line();
+
+	//searching for the provided email address/username
+	for (int i = 0; i < temp_pull_file.size(); i++)
+	{
+		if (temp_pull_file[i].r_emailusrname == r_emailusrname_check)
+		{
+			cout << "\tEmail exists in database\n"; //debugging purposes
+			//If email exists, check if password matches
+			if (temp_pull_file[i].r_pswd == r_pswd_check)
+			{
+				cout << "Login Successful!";
+				system("pause");
+				login_success += 1;
+			}
+
+			
+		}
+	}
+	for (int i = 0; i < temp_pull_file.size(); i++)
+	{
+		if (temp_pull_file[i].r_pswd == r_pswd_check)
+		{
+			cout << "\tEmail exists in database\n"; //debugging purposes
+			//email_exists += 1; //****If we have time, to make sure that there are no username duplicates!
+		}
+	}
+	////###### CHRIS STOPPED HERE!!!#
+	//if (email_exists == 0)
+	//{
+	//	cout << "\n\tYou don't have a Zebra account with that email address or password.\n\tPlease try again.\n";
+	//	goto valid_emailusrname;
+	//}
+
+	//riderpid_file.close();
+	//read_from_file = rider_retrieve_info();
+	//return (read_from_file);
+
+}
+
+
+//This function displays the homepage for a rider *after* login
+vector<Rider_ridestore> r_li_home(vector <Rider_pid> &userEmail, vector <Rider_ridestore>& rselect)
+{
+	system("cls");
+	disp_rider_logo();
+
+	//Searching for 
+
+	//string welcome_msg = 
+	disp_h2_lines("Kia Ora <<preferredName>>, let's arrange your ride!");
+	
+	disp_h3_lines("Select: ");
+	cout << "\n\t1. Login\n";
+
+}
+
+
 
 //RIDER REGISTRATION FUNCTION: This section takes rider input data from user
 vector <Rider_pid> rider_register(vector <Rider_pid>& rinput)
