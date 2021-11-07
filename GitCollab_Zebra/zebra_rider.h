@@ -18,11 +18,11 @@ using namespace std;
 
 struct Rider_pid
 {
-	string r_fname, r_pname, r_lname, r_address, r_emailusrname, r_pswd;
-	int r_contact;
+	string r_fname, r_pname, r_lname, r_address, r_emailusrname, r_pswd, r_idalpha;
+	int r_contact, r_idnum;
 
 	//constructor
-	Rider_pid(string rfn = "", string rpn = "", string rln = "", string rad = "", string reu = "", string rpw = "", int rcall = 0)
+	Rider_pid(string rfn = "", string rpn = "", string rln = "", string rad = "", string reu = "", string rpw = "", string ida = "", int idn = 0, int rcall = 0)
 	{
 		r_fname = rfn;
 		r_lname = rln;
@@ -30,11 +30,14 @@ struct Rider_pid
 		r_address = rad;
 		r_emailusrname = reu;
 		r_pswd = rpw;
+		r_idalpha = ida;
 		r_contact = rcall;
+		r_idnum = idn;
 	}
 };
 
 //Rider Main function prototypes
+int count_entries();
 vector <Rider_pid> rider_main(vector <Rider_pid>& rinput);
 vector <Rider_pid> rider_register(vector <Rider_pid>& rinput);
 void writeRiderToFile(vector <Rider_pid>& write_r);

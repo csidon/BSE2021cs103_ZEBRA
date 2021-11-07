@@ -3,9 +3,11 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
+#include <string>
 #include "zebra_rider.h"
 #include "makepretty.h"
 #include "pswd_email_validation.h"
+#include "misc_functions.h"
 
 using namespace std;
 
@@ -23,11 +25,13 @@ using namespace std;
 //This function displays the options on the main Rider Page
 vector <Rider_pid> rider_main(vector <Rider_pid>& rinput)
 {
+	
 	vector <Rider_pid> rider_read_file_info;
 
 	int rider_main_input;
 rider_main_page:
 	system("cls");
+	cout << "Number of lines currently in file are " << count_entries(); //debugging
 	disp_rider_logo();
 	disp_h2_lines("Hello");
 	disp_h3_lines("Select: ");
@@ -59,7 +63,7 @@ rider_main_page:
 		rider_read_file_info = rider_retrieve_info();
 
 		rider_read_file_info = pswd_reset(rider_read_file_info);
-		cout << "\nPassword reset successful :)\n";
+		cout << "\n\t Password reset successful :)\n";
 		system("pause");
 		goto rider_main_page;
 	}
@@ -137,6 +141,13 @@ valid_pass:
 		goto change_riderpid;
 	}
 
+	//This section creates an AlphaID for the registration person upon confirmation of account creation, based on their firstname and last name
+	ri.r_idalpha += ri.r_fname.substr(0, 1);
+	ri.r_idalpha += ri.r_lname.substr(0, 2);
+	ri.r_idnum = 1001 + count_entries();
+	cout << "The autogen ID alpha is" << ri.r_idalpha; //debugging
+	cout << "The autogen ID num is" << ri.r_idnum; //debugging
+
 	rinput.push_back(ri);
 
 	return rinput;
@@ -146,15 +157,41 @@ valid_pass:
 void writeRiderToFile(vector <Rider_pid>& write_r)
 {
 	fstream riderpid_file("riderpid.csv", ios::app);
+
 	for (int i = 0; i < write_r.size(); i++)
 	{
 		//cout << "Your code made it here"; //debugging
-		riderpid_file << write_r[i].r_fname << "," << write_r[i].r_lname << "," << write_r[i].r_pname << ",";
+		riderpid_file << write_r[i].r_idalpha << "," << write_r[i].r_idnum << "," << write_r[i].r_fname << "," << write_r[i].r_lname << "," << write_r[i].r_pname << ",";
 		riderpid_file << write_r[i].r_contact << "," << write_r[i].r_address << "," << write_r[i].r_emailusrname << ",";
 		riderpid_file << write_r[i].r_pswd << endl;
 	}
 
 	riderpid_file.close();
+}
+
+//This function counts the number of lines stored in the riderpid.csv file
+int count_entries()
+{
+	int total_entries = 0;
+	string s;
+	fstream riderpid_file("riderpid.csv", ios::in);
+	if (!riderpid_file)
+	{
+		total_entries = 0;
+	}
+	else
+	{
+		while (!riderpid_file.eof())
+		{
+			getline(riderpid_file, s);
+			total_entries++;
+		}
+		total_entries = total_entries - 1;
+		
+	}
+	//cout << "\nNumber of lines in file is " << total_entries; //debugging
+
+	return total_entries;
 }
 
 //This function reads all of the values stored in the riderpid.csv file
@@ -171,6 +208,14 @@ vector <Rider_pid> rider_retrieve_info()
 	{
 		istringstream linestream(line);  //splitting row into cell values
 		string get_val;
+
+		getline(linestream, get_val, ',');
+		read_r.r_idalpha = get_val;
+
+		getline(linestream, get_val, ',');
+		stringstream ssid(get_val);
+		ssid >> read_r.r_idnum;
+
 		getline(linestream, get_val, ',');
 		read_r.r_fname = get_val;
 		getline(linestream, get_val, ',');
@@ -179,8 +224,8 @@ vector <Rider_pid> rider_retrieve_info()
 		read_r.r_pname = get_val;
 
 		getline(linestream, get_val, ',');
-		stringstream ss(get_val);
-		ss >> read_r.r_contact;
+		stringstream sscon(get_val);
+		sscon >> read_r.r_contact;
 
 		getline(linestream, get_val, ',');
 		read_r.r_address = get_val;
@@ -252,9 +297,10 @@ valid_emailusrname:
 			
 
 		}
-		riderpid_file << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ","
+		riderpid_file << read_from_file[i].r_idalpha << "," << read_from_file[i].r_idnum << "," <<  read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ","
 			<< read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ","
 			<< read_from_file[i].r_pswd << endl;
+
 		
 	}
 	if (email_exists == 0)
