@@ -36,6 +36,25 @@ struct Rider_pid
 	}
 };
 
+struct Rider_ridestore
+{
+	string rr_UIDalpha, rr_pname, rr_defaultloc, rr_startloc, rr_endloc;
+	int rr_UIDnum, rr_tripCost, rr_gst, rr_netTripRevenue;
+
+	//Constructor
+	Rider_ridestore(string uida = "", string rpn = "", string rdl = "", string rsl = "", string rel = "", int uidn = 0, int tc = 0, int gst = 0, int ntr = 0)
+	{
+		rr_UIDalpha = uida;
+		rr_pname = rpn; 
+		rr_defaultloc = rdl;
+		rr_endloc = rel;
+		rr_UIDnum = uidn;
+		rr_tripCost = tc;
+		rr_gst = gst;
+		rr_netTripRevenue = ntr;
+	}
+};
+
 //Rider Main function prototypes
 int count_entries();
 vector <Rider_pid> rider_main(vector <Rider_pid>& rinput);
