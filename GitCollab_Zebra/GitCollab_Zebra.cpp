@@ -16,7 +16,7 @@ using namespace std;
 
 int main()
 {
-	disp_main_logo();
+	//disp_main_logo();
 	int main_input;
 
 	//Initialising vector class for structure Rider_pid so that the structure can take unlimited entries

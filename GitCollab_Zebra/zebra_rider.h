@@ -63,7 +63,7 @@ void writeRiderToFile(vector <Rider_pid>& write_r);
 vector <Rider_pid> rider_retrieve_info();
 vector<Rider_pid> pswd_reset(vector <Rider_pid> read_from_file);
 vector<Rider_ridestore> r_li_home(vector <Rider_pid>& userEmail, vector <Rider_ridestore>& rselect);
-vector <Rider_pid> r_login(vector <Rider_pid> temp_pull_file);
+Rider_ridestore r_login(vector <Rider_pid> temp_pull_file);
 
 
 #endif
