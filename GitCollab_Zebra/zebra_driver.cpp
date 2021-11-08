@@ -37,7 +37,7 @@ void driver_main()
 		driver_eligibility(driver, driverFromFile);
 		break;
 	case 2:
-		//driver_login();
+		driver_login(driverFromFile);
 		break;
 	case 3:
 		//main();
@@ -83,7 +83,7 @@ void driver_registration(vector<Drivers>& driver, vector<Drivers>& driverFromFil
 	disp_h2_lines("Be Your Own Boss - Sign up to be a Zebra Driver today!");
 	input_drivers(driver);
 	//**********************
-	//cout << driver[0].fname << endl;//debugging purposes 
+	cout << driver[0].fname << endl;//debugging purposes 
 	//**********************
 	writeToFile(driver);
 	driver_login(driverFromFile);
@@ -169,15 +169,17 @@ int count_entries_drive()
 	}
 	//cout << "\nNumber of lines in file is " << total_entries; //debugging
 
-	return total_entries;
+	return (total_entries);
 }
+
+
 void output_drivers(vector<Drivers>& driver)
 {
 	for (int i = 0; i < driver.size(); i++)
 	{
 		cout << "\n\tHello, " << driver[i].pref_name << " please, check your information and confirm" << endl;
 		cout << " \n\t " << driver[i].fname << "\t" << driver[i].sname;
-		cout << " \n\t " << driver[i].phone_num << "\t" << driver[i].mail << "      will be used as your user name";
+		cout << " \n\t " << driver[i].phone_num << "\t" << driver[i].mail << "      will be used as your username";
 	}
 }
 
@@ -212,23 +214,27 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
 		cin >> login;
 		cout << "\n\tPassword: ";
 		cin >> password;
+		driverFromFile = readFromFile();
+		cout << "\n\tThe size on vector: " << driverFromFile.size();
+		//cout << driverFromFile[0].fname;
 		for (int i = 0; i < driverFromFile.size(); i++)
 		{
-
+			//cout << "\nLooping through";//debug
+			
 			if (driverFromFile[i].mail == login && driverFromFile[i].password == password)
 			{
 				driver_account_main();
-				false;
+				
 			}
 			else
 			{
 				cout << "\n\tForgot your password?";
-				true;
+				
 			}
-
 
 		}
 	driverFile.close();
+	//driverFromFile = readFromFile();
 	return(driverFromFile);
 }
 
@@ -267,11 +273,27 @@ vector <Drivers> readFromFile()
 	
 	while (getline(driverFile, line))
 	{
-		cout << line << endl;
+		//cout << line << endl;
 		istringstream linestream(line);
 		string user;
 		getline(linestream, user, ',');
+		d.d_idAlph = user;
+		getline(linestream, user, ',');
+		d.d_idAlph = user;
+		getline(linestream, user, ',');
 		d.fname = user;
+		getline(linestream, user, ',');
+		d.sname = user;
+		getline(linestream, user, ',');
+		d.pref_name = user;
+		getline(linestream, user, ',');
+		d.phone_num = user;
+		getline(linestream, user, ',');
+		d.mail = user;
+		getline(linestream, user, ',');
+		d.password = user;
+		getline(linestream, user, ',');
+		d.gender = user;
 		getline(linestream, user, ',');
 		d.sname = user;
 		getline(linestream, user, ',');
