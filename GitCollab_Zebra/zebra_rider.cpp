@@ -26,13 +26,13 @@ using namespace std;
 vector <Rider_pid> rider_main(vector <Rider_pid>& rinput)
 {
 	
-	vector <Rider_pid> rider_read_file_info;
-	vector <Rider_ridestore> rider_temp_file_info;
+	vector <Rider_pid> rider_read_file_info, goBack;
+	Rider_ridestore rider_read_rides;
 
 	int rider_main_input;
 rider_main_page:
 	system("cls");
-	cout << "Number of lines currently in file are " << count_entries(); //debugging
+	//cout << "Number of lines currently in file are " << count_entries(); //debugging
 	disp_rider_logo();
 	disp_h2_lines("Hello");
 	disp_h3_lines("Select: ");
@@ -50,9 +50,22 @@ rider_main_page:
 	{
 		system("cls");
 		
-		r_login(rider_read_file_info);
-		system("pause");
-		goto rider_main_page;
+		rider_read_rides = r_login(rider_retrieve_info());
+		//##############################################***************************
+		//CURRENTLY WORKING HERE
+		//###############################################**************************
+
+		//If there are no registrations at all, bring user back to main page to register #############!! Do i need this?? ############
+		if (!"riderrides.csv")
+		{
+			cout << "\n\tPlease register for an account before logging in.\n\t";
+			system("pause");
+			goto rider_main_page;
+		}
+		cout << "Debug: Checking that tempRider has been passed back " << rider_read_rides.rr_UIDalpha << rider_read_rides.rr_UIDnum << "\tPreferred name: " << rider_read_rides.rr_pname;
+		//r_li_home(rider_read_rides);
+
+		//goto rider_main_page;
 	}
 	else if (rider_main_input == 2)
 	{
@@ -60,7 +73,7 @@ rider_main_page:
 		rider_register(rinput);
 		writeRiderToFile(rinput);
 		
-		cout << "Rinput has been written to file! "; //debugging purposes
+		//cout << "Rinput has been written to file! "; //debugging purposes
 		cout << "\nYou are now a Zebra Rider!\n";
 		system("pause");
 		goto rider_main_page;
@@ -82,55 +95,79 @@ rider_main_page:
 }
 
 //This function searches to find the username in the database, and checks that the password corresponds
-vector <Rider_pid> r_login(vector <Rider_pid> read_from_file)
+Rider_ridestore r_login(vector <Rider_pid> read_from_file)
 {
-	fstream riderpid_file("riderpid.csv", ios::out);
+	fstream riderpid_file("riderpid.csv", ios::in);
 	Rider_ridestore tempRider;
 
 	string r_emailusrname_check, r_pswd_check;
 	int login_success = 0, email_exists = 0;
-valid_emailusrname:
+
 	cout << "\n\tUsername:\t";
 	cin >> r_emailusrname_check;
-	cout << "\n\Password:\t";
+valid_emailusrname:
+	cout << "\tPassword:\t";
 	cin >> r_pswd_check;
 	disp_dash_line();
-	read_from_file = rider_retrieve_info();
-	cout << "\nCode made it to receiving user input\ntemp_pull_file.size() is " << read_from_file.size();
+	//read_from_file = rider_retrieve_info(); //see if this is necessary ************#######
+	//cout << "\nCode made it to receiving user input\ntemp_pull_file.size() is " << read_from_file.size(); //debugging
 	//searching for the provided email address/username
 	for (int i = 0; i < read_from_file.size(); i++)
 	{
-		cout << "\nCode made it to forloop\n";
+		//cout << "\nCode made it to forloop\n"; //Debugging
 		
-		cout << "\nDebugging usernames available STAGE 2\t" << read_from_file[i].r_emailusrname;
+		//cout << "\nDebugging usernames available STAGE 2\t" << read_from_file[i].r_emailusrname;
 		if (read_from_file[i].r_emailusrname == r_emailusrname_check)
 		{
-			cout << "\tEmail exists in database\n"; //debugging purposes
-			cout << "\nDebugging usernames available Emails Exist\t" << read_from_file[i].r_emailusrname;
+			//cout << "\tEmail exists in database\n"; //debugging purposes
+			//cout << "\nDebugging usernames available Emails Exist\t" << read_from_file[i].r_emailusrname;
 			email_exists += 1;
 			//If email exists, check if password matches
 			if (read_from_file[i].r_pswd == r_pswd_check)
 			{
-				
 				tempRider.rr_UIDalpha = read_from_file[i].r_idalpha;
 				tempRider.rr_UIDnum = read_from_file[i].r_idnum;
 				tempRider.rr_pname = read_from_file[i].r_pname;
-				cout << "Debugging: Temp Rider's UID is " << tempRider.rr_UIDalpha << " + " << tempRider.rr_UIDnum << ", pname " << tempRider.rr_pname;
-				cout << "Login Successful!";
+				//cout << "Debugging: Temp Rider's UID is " << tempRider.rr_UIDalpha << " + " << tempRider.rr_UIDnum << ", pname " << tempRider.rr_pname;
+				cout << "\n\tLogin Successful!\n\t";
+
+
+				////If login is successful, check if the temp rider's UID already exists in the riderrides.csv file
+				//fstream riderrides_file("riderrides.csv", ios::in);
+				//rider_rides_temp_file = rider_retrieve_pid_info();
+				//for (int i = 0; i < rider_retrieve_pid_info().size(); i++)
+				//{
+
+				//}
+				
+				//
+
+
 				system("pause");
 				login_success += 1;
 			}	
 		}
 	}
-	cout << "\nCode made it to counting exists\n";
+	//cout << "\nCode made it to counting exists\n"; //debugging purposes
 
 	if (email_exists == 0 || login_success == 0)
 	{
-		cout << "\n\tYou don't have a Zebra account with that email address or password.\n\tPlease try again.\n";
-		goto valid_emailusrname;
+		cout << "\n\tYou don't have a Zebra account with that email address or password.\n\tPlease try again, or enter <BACK> to go back to the main Rider page.\n";
+		cout << "\tUsername:\t";
+		cin >> r_emailusrname_check;
+		if (convert_string_to_upper(r_emailusrname_check) == "BACK") 
+		{
+			riderpid_file.close();
+			rider_main(read_from_file);
+		}
+		else
+		{
+			goto valid_emailusrname;
+		}
 	}
 	riderpid_file.close();
-	return (read_from_file);
+	//if login successful, return the data copied over to tempRider struct 
+	return (tempRider); 
 	
 	//read_from_file = rider_retrieve_info();
 	//return (read_from_file);
@@ -285,7 +322,7 @@ vector <Rider_pid> rider_retrieve_info()
 
 	Rider_pid read_r;
 	string line;
-	cout << "Your code made it to the start of rider_retrieve_info()"; //debugging purposes
+	//cout << "Your code made it to the start of rider_retrieve_info()"; //debugging purposes
 
 	while (getline(riderpid_file, line))
 	{
@@ -294,7 +331,7 @@ vector <Rider_pid> rider_retrieve_info()
 
 		getline(linestream, get_val, ',');
 		read_r.r_idalpha = get_val;
-		cout << "\nDebugging: Your rider_retrieve_info()'s idalpha is " << read_r.r_idalpha;
+		//cout << "\nDebugging: Your rider_retrieve_info()'s idalpha is " << read_r.r_idalpha;
 
 		getline(linestream, get_val, ',');
 		stringstream ssid(get_val);
@@ -317,8 +354,8 @@ vector <Rider_pid> rider_retrieve_info()
 		read_r.r_emailusrname = get_val;
 		getline(linestream, get_val, ',');
 		read_r.r_pswd = get_val;
-		cout << "\n" << read_r.r_emailusrname << "\tyour code made it to pulling the username\n"; //debugging purposes
-		cout << read_r.r_pswd << "\tyour code made it to pulling the pswd\n"; //debugging purposes
+		//cout << "\n" << read_r.r_emailusrname << "\tyour code made it to pulling the username\n"; //debugging purposes
+		//cout << read_r.r_pswd << "\tyour code made it to pulling the pswd\n"; //debugging purposes
 
 		tempFile.push_back(read_r);
 
@@ -345,7 +382,7 @@ valid_emailusrname:
 	{
 		if (read_from_file[i].r_emailusrname == search_email)
 		{
-			cout << "\tEmail exists in database\n"; //debugging purposes
+			cout << "\n\tEmail exists in database\n"; //debugging purposes
 			cout << "\tPlease check your email to reset your password and enter your 5-digit password reset code below.\n";
 			cout << "\t[For the purposes of this assignment, please enter 12345]\n";
 		//reset_code added to simulate "email verification"

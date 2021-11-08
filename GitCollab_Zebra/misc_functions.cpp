@@ -18,7 +18,7 @@ using namespace std;
 ////Purpose: This file contains small misc functions that can be used globally in the program
 
 
-string convert_string_to_upper(string& string_entry)
+string convert_string_to_upper(string &string_entry)
 {
 	char c;
 	string converted_string;
@@ -28,8 +28,8 @@ string convert_string_to_upper(string& string_entry)
 		converted_string += c;
 	}
 
-	cout << "\n" << converted_string;
-	return string_entry;
+	cout << "\n This is the converted string " << converted_string;
+	return converted_string;
 }
 
 
