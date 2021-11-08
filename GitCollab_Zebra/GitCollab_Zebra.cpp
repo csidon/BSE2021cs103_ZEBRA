@@ -22,6 +22,8 @@ int main()
 	//Initialising vector class for structure Rider_pid so that the structure can take unlimited entries
 	vector <Rider_pid> rider_input_info;
 	vector <Rider_pid> rider_read_file_info;
+	vector <Rider_ridestore> rider_temp_file_info;
+	
 
 
 	////####### Main Page ########[Chris]
