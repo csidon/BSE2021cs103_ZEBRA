@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-﻿  GitCollab_Zebra.cpp
-  misc_functions.cpp
-C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\misc_functions.cpp(26,20): warning C4018: '<': signed/unsigned mismatch
-  zebra_rider.cpp
-C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_rider.cpp(121,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_rider.cpp(291,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_rider.cpp(391,20): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
-  GitCollab_Zebra.vcxproj -> C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
-=======
-﻿  distance_calc.cpp
+﻿  zebra_driver.cpp
+C:\Users\200856629\OneDrive - UP Education\Desktop\new_CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(178,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\new_CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(195,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\new_CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(220,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\new_CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(211,11): warning C4102: 'login_data': unreferenced label
+C:\Users\200856629\OneDrive - UP Education\Desktop\new_CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(332,20): warning C4018: '<': signed/unsigned mismatch
   GitCollab_Zebra.vcxproj -> C:\Users\200856629\OneDrive - UP Education\Desktop\new_CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
->>>>>>> dd185f8996014f8f3fb6eb4d2be17b3e64d85881
