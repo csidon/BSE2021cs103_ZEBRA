@@ -2,11 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-<<<<<<< HEAD
-      <FullPath>C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe</FullPath>
-=======
       <FullPath>C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe</FullPath>
->>>>>>> 146b66ac095ff7afb34867e1c4444fb726144d5d
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

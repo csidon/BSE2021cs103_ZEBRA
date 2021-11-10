@@ -83,7 +83,7 @@ void driver_registration(vector<Drivers>& driver, vector<Drivers>& driverFromFil
 	disp_h2_lines("Be Your Own Boss - Sign up to be a Zebra Driver today!");
 	input_drivers(driver);
 	//**********************
-	cout << driver[0].fname << endl;//debugging purposes 
+	//cout << driver[0].fname << endl;//debugging purposes 
 	//**********************
 	writeToFile(driver);
 	driver_login(driverFromFile);
@@ -215,7 +215,7 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
 		cout << "\n\tPassword: ";
 		cin >> password;
 		driverFromFile = readFromFile();
-		cout << "\n\tThe size on vector: " << driverFromFile.size();
+		//cout << "\n\tThe size on vector: " << driverFromFile.size();
 		//cout << driverFromFile[0].fname;
 		for (int i = 0; i < driverFromFile.size(); i++)
 		{
@@ -224,11 +224,6 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
 			if (driverFromFile[i].mail == login && driverFromFile[i].password == password)
 			{
 				driver_account_main();
-				
-			}
-			else
-			{
-				cout << "\n\tForgot your password?";
 				
 			}
 
@@ -295,15 +290,28 @@ vector <Drivers> readFromFile()
 		getline(linestream, user, ',');
 		d.gender = user;
 		getline(linestream, user, ',');
-		d.sname = user;
+		d.birth = user;
 		getline(linestream, user, ',');
-		d.pref_name = user;
+		d.nationality = user;
 		getline(linestream, user, ',');
-		d.phone_num = user;
+		d.lice_num = user;
 		getline(linestream, user, ',');
-		d.mail = user;
+		d.doex = user;
 		getline(linestream, user, ',');
-		d.password = user;
+		d.exp = user;
+		getline(linestream, user, ',');
+		d.veh_regist = user;
+		getline(linestream, user, ',');
+		d.veh_age = user;
+		getline(linestream, user, ',');
+		d.veh_model = user;
+		getline(linestream, user, ',');
+		d.wof_exp = user;
+		getline(linestream, user, ',');
+		d.bank_acc = user;
+		getline(linestream, user, ',');
+		d.bank_name = user;
+		getline(linestream, user, ',');
 		tempDriver.push_back(d);
 	}
 
