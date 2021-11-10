@@ -208,7 +208,7 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
 {
 	fstream driverFile("driverFile_pid.csv", ios::in);
 	string login, password;
-
+login_data:
 		cout << "\n\tEnter your: ";
 		cout << "\n\tUsername: ";
 		cin >> login;
@@ -223,7 +223,8 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
 			
 			if (driverFromFile[i].mail == login && driverFromFile[i].password == password)
 			{
-				driver_account_main();
+				
+				driver_account_main(driverFromFile);
 				
 			}
 
@@ -233,7 +234,7 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
 	return(driverFromFile);
 }
 
-void driver_account_main()
+void driver_account_main(vector<Drivers>& driverFromFile)
 {
 	int n;
 	cout << "\n\tKia ora, we are all good to go!";
@@ -245,7 +246,7 @@ void driver_account_main()
 	switch (n)
 	{
 	case 1:
-		//account_settings();
+		account_settings(driverFromFile);
 		break;
 	case 2:
 		//job_screen();
@@ -317,4 +318,30 @@ vector <Drivers> readFromFile()
 
 	driverFile.close();
 	return(tempDriver);
+}
+
+
+void account_settings(vector<Drivers>& driverFromFile)
+{
+	string check_username;
+	fstream driverFile("driverFile_pid.csv", ios::in);
+	driverFromFile = readFromFile();
+	cout << "\n\tYour account details: ";
+	cout << "\n\tPlease enter your username: ";
+	cin >> check_username;
+	for (int i = 0; i < driverFromFile.size(); i++)
+	{
+		if (check_username == driverFromFile[i].mail)
+		{
+			cout << "\n\t" << driverFromFile[i].fname;
+			cout << "\n\t" << driverFromFile[i].sname;
+			cout << "\n\t" << driverFromFile[i].phone_num;
+			cout << "\n\t" << driverFromFile[i].gender;
+			cout << "\n\t" << driverFromFile[i].birth;
+			cout << "\n\t" << driverFromFile[i].nationality;
+			cout << "\n\t" << driverFromFile[i].lice_num;
+			break;
+		}
+	}
+	driverFile.close();
 }
