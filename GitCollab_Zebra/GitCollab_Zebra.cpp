@@ -14,44 +14,44 @@ using namespace std;
 
 
 
-int main()
-{
-	//disp_main_logo();
-	int main_input;
-
-	//Initialising vector class for structure Rider_pid so that the structure can take unlimited entries
-	vector <Rider_pid> rider_input_info;
-	vector <Rider_pid> rider_read_file_info;
-	vector <Rider_ridestore> rider_temp_file_info;
-	
-
-
-	////####### Main Page ########[Chris]
-	system("Color 8");
-	disp_main_logo();
-	disp_h2_lines("The Best NZ Taxi Booking System");
-	disp_h3_lines("Select: ");
-	cout << "\n\t1. Driver\n";
-	cout << "\n\t2. Passenger\n";
-	disp_dash_line();
-	cout << "\n\t3. Admin\n";
-	cout << "\n\t4. Exit\n";
-
-	disp_star_line();
-	cout << "\tSelect [1], [2], [3], or [4]\n\tChoose: \n\t";
-	cin >> main_input;
-	if (main_input == 1)
-	{
-		driver_main();
-	}
-	else if (main_input == 2)
-	{
-		//####### Goes To Main Rider Page #######[Chris]
-		system("Color 9"); //anything rider-related will be displayed in this color
-		//rider_main(rider_input_info);
-		rider_read_file_info = rider_main(rider_input_info); //This function will write the new data into the riderpid.csv file. Full function in zebra_rider.cpp file
-
-	}
+//int main()
+//{
+//	//disp_main_logo();
+//	int main_input;
+//
+//	//Initialising vector class for structure Rider_pid so that the structure can take unlimited entries
+//	vector <Rider_pid> rider_input_info;
+//	vector <Rider_pid> rider_read_file_info;
+//	vector <Rider_ridestore> rider_temp_file_info;
+//	
+//
+//
+//	////####### Main Page ########[Chris]
+//	system("Color 8");
+//	disp_main_logo();
+//	disp_h2_lines("The Best NZ Taxi Booking System");
+//	disp_h3_lines("Select: ");
+//	cout << "\n\t1. Driver\n";
+//	cout << "\n\t2. Passenger\n";
+//	disp_dash_line();
+//	cout << "\n\t3. Admin\n";
+//	cout << "\n\t4. Exit\n";
+//
+//	disp_star_line();
+//	cout << "\tSelect [1], [2], [3], or [4]\n\tChoose: \n\t";
+//	cin >> main_input;
+//	if (main_input == 1)
+//	{
+//		driver_main();
+//	}
+//	else if (main_input == 2)
+//	{
+//		//####### Goes To Main Rider Page #######[Chris]
+//		system("Color 9"); //anything rider-related will be displayed in this color
+//		//rider_main(rider_input_info);
+//		rider_read_file_info = rider_main(rider_input_info); //This function will write the new data into the riderpid.csv file. Full function in zebra_rider.cpp file
+//
+//	}
 
 	//disp_star_line();
 	//cout << "\tSelect [1], [2], [3], or [4]\n\tChoose: \n\t";
@@ -106,5 +106,5 @@ int main()
 //		goto valid_pass;
 //	}
 
-}
+//}
 
