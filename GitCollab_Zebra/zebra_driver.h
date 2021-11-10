@@ -84,7 +84,7 @@ void writeToFile(vector<Drivers>& driver);//returns nothing
 vector <Drivers> readFromFile();
 //vector<Drivers> searchAndUpdate(vector < Drivers > driverrFromFile);
 void output_drivers(vector<Drivers>& driver);
-void driver_account_main();
-
+void driver_account_main(vector<Drivers>& driverFromFile);
+void account_settings(vector<Drivers>& driverFromFile);
 
 #endif
