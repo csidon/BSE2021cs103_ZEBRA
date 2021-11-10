@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> d134a2ef987422811d9cd507a235e34385faadc6
 #include <iostream>
 #include<cmath>
 #include "distance_calc.h"
@@ -20,7 +23,10 @@ double calc(struct Area p, struct Area ptr)
 	return (dist);
 }
 
+<<<<<<< HEAD
+=======
 //struct Area* input_A(struct Area *p)
+>>>>>>> d134a2ef987422811d9cd507a235e34385faadc6
 //{
 //	double dist;
 //	dist = sqrt(pow((p.x - ptr.x), 2) + pow((p.y - ptr.y), 2));
@@ -56,7 +62,10 @@ double calc(struct Area p, struct Area ptr)
 //
 //
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> d134a2ef987422811d9cd507a235e34385faadc6
 
 //*****************
 //MANUALY INPUTING COORDINATES USING POINTER
@@ -147,4 +156,7 @@ double dist_calc_main()
 	cout <<"\n\tThe distance between to points is: "<< dist<<" KM";
 	return (dist);
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> d134a2ef987422811d9cd507a235e34385faadc6
