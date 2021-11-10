@@ -52,9 +52,7 @@ rider_main_page:
 		system("cls");
 		
 		rider_read_rides = r_login(rider_retrieve_info());
-		//##############################################***************************
-		//CURRENTLY WORKING HERE
-		//###############################################**************************
+
 
 		//If there are no registrations at all, bring user back to main page to register #############!! Do i need this?? ############
 		if (!"riderrides.csv")
@@ -68,10 +66,9 @@ rider_main_page:
 		{
 			cout << "Debug: Checking that tempRider has been passed back " << rider_read_rides.rr_UIDalpha << rider_read_rides.rr_UIDnum << "\tPreferred name: " << rider_read_rides.rr_pname;
 			//pass the structure received from r_login to the logged in home page
-			r_loggedIn_home(rider_read_rides);
+			r_loggedIn_home(rider_read_file_info, rider_read_rides);
 		}
 
-		//goto rider_main_page;
 	}
 	else if (rider_main_input == 2)
 	{
@@ -134,6 +131,7 @@ valid_emailusrname:
 				tempRider.rr_UIDalpha = read_from_file[i].r_idalpha;
 				tempRider.rr_UIDnum = read_from_file[i].r_idnum;
 				tempRider.rr_pname = read_from_file[i].r_pname;
+				tempRider.rr_defaultloc = read_from_file[i].r_defaultloc;
 				//cout << "Debugging: Temp Rider's UID is " << tempRider.rr_UIDalpha << " + " << tempRider.rr_UIDnum << ", pname " << tempRider.rr_pname;
 				cout << "\n\tLogin Successful!\n\t";
 
@@ -167,10 +165,11 @@ valid_emailusrname:
 
 
 //This function displays the homepage for a rider *after* login
-void r_loggedIn_home(Rider_ridestore &nopid_details)
+void r_loggedIn_home(vector <Rider_pid> &rinput, Rider_ridestore &nopid_details)
 {
 	Rider_ridestore indiv_temp_details;
 	vector <Rider_ridestore> rider_rides;
+	Rider_pid pid_pushback_details;
 
 	system("cls");
 	disp_rider_logo();
@@ -182,8 +181,6 @@ void r_loggedIn_home(Rider_ridestore &nopid_details)
 	
 	//Checking to see if rider currently exists in riderrides.csv file
 
-
-
 	if (indiv_temp_details.rr_defaultloc == "")
 	{
 		cout << "\n\tPlease select a default pickup location: ";
@@ -193,6 +190,9 @@ void r_loggedIn_home(Rider_ridestore &nopid_details)
 		cout << "\n\t4. Kelburn";
 		cout << "\n\t5. Mount Cook";
 		cin >> indiv_temp_details.rr_defaultloc;
+		searchAndUpdate_defaultloc(indiv_temp_details, rinput);
+
+			   //FUNCTION NOT WORKING AT THE MOMENT. WORKING HERE ##########################################################!!!!
 	}
 	//cout << "\nRides from " << indiv_temp_details.rr_defaultloc << " to Te Aro costs $" << comp_cost << "right now!";
 
@@ -201,6 +201,8 @@ void r_loggedIn_home(Rider_ridestore &nopid_details)
 
 	//return rselect;
 }
+
+
 
 
 
@@ -293,7 +295,7 @@ void writeRiderToFile(vector <Rider_pid>& write_r)
 		//cout << "Your code made it here"; //debugging
 		riderpid_file << write_r[i].r_idalpha << "," << write_r[i].r_idnum << "," << write_r[i].r_fname << "," << write_r[i].r_lname << "," << write_r[i].r_pname << ",";
 		riderpid_file << write_r[i].r_contact << "," << write_r[i].r_address << "," << write_r[i].r_emailusrname << ",";
-		riderpid_file << write_r[i].r_pswd << endl;
+		riderpid_file << write_r[i].r_pswd << write_r[i].r_defaultloc << endl;
 	}
 
 	riderpid_file.close();
@@ -364,6 +366,8 @@ vector <Rider_pid> rider_retrieve_info()
 		read_r.r_emailusrname = get_val;
 		getline(linestream, get_val, ',');
 		read_r.r_pswd = get_val;
+		getline(linestream, get_val, ',');
+		read_r.r_defaultloc = get_val;
 		//cout << "\n" << read_r.r_emailusrname << "\tyour code made it to pulling the username\n"; //debugging purposes
 		//cout << read_r.r_pswd << "\tyour code made it to pulling the pswd\n"; //debugging purposes
 
@@ -374,8 +378,12 @@ vector <Rider_pid> rider_retrieve_info()
 	return(tempFile);
 }
 
+//#####################################################################
+//  SEARCH AND UPDATE FUNCTIONS
+//#####################################################################
 
-//This function searches to find the username in the database, and updates the corresponding password
+
+//USERNAME: This function searches to find the username in the database, and updates the corresponding password
 vector<Rider_pid> pswd_reset(vector <Rider_pid> read_from_file)
 {
 	fstream riderpid_file("riderpid.csv", ios::out);
@@ -430,7 +438,7 @@ valid_emailusrname:
 		}
 		riderpid_file << read_from_file[i].r_idalpha << "," << read_from_file[i].r_idnum << "," <<  read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ","
 			<< read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ","
-			<< read_from_file[i].r_pswd << endl;
+			<< read_from_file[i].r_pswd << read_from_file[i].r_defaultloc << endl;
 
 		
 	}
@@ -440,6 +448,46 @@ valid_emailusrname:
 		goto valid_emailusrname;
 	}
 	
+	riderpid_file.close();
+	read_from_file = rider_retrieve_info();
+	return (read_from_file);
+
+}
+
+
+//DEFAULT LOCATION: This function searches to find the user's default location in the database, and either adds or updates it
+//The noPID details are passed for search 
+vector<Rider_pid> searchAndUpdate_defaultloc(Rider_ridestore& passed_nopid_details, vector <Rider_pid> read_from_file)
+{
+	fstream riderpid_file("riderpid.csv", ios::out);
+
+	string search_uida, search_uidn;
+	int uid_exists = 0;
+
+	//if this function is called, immediately transfer the rider's noPID details to compare with pid csv file
+	disp_dash_line();
+
+	//searching for the provided email address/username
+	for (int i = 0; i < read_from_file.size(); i++)
+	{
+		if (read_from_file[i].r_idalpha == passed_nopid_details.rr_UIDalpha && read_from_file[i].r_idnum == passed_nopid_details.rr_UIDnum)
+		{
+			cout << "\n\tUnique ID exists in database\n"; //debugging purposes
+
+			read_from_file[i].r_defaultloc = passed_nopid_details.rr_defaultloc;
+			uid_exists += 1;
+		}
+		riderpid_file << read_from_file[i].r_idalpha << "," << read_from_file[i].r_idnum << "," << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ","
+			<< read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ","
+			<< read_from_file[i].r_pswd << read_from_file[i].r_defaultloc << endl;
+
+
+	}
+	if (uid_exists == 0)
+	{
+		cout << "\n\t!!!! ERROR - UID DOES NOT EXIST IN SYSTEM. THIS SHOULD NOT HAPPEN --DEBUGGING \n";
+	}
+
 	riderpid_file.close();
 	read_from_file = rider_retrieve_info();
 	return (read_from_file);
