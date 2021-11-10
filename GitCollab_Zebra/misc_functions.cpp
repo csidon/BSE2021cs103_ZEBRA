@@ -8,6 +8,7 @@
 #include "zebra_driver.h"
 #include "makepretty.h"
 #include "pswd_email_validation.h"
+#include "misc_functions.h"
 
 using namespace std;
 

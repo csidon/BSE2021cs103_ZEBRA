@@ -8,6 +8,7 @@
 #include "makepretty.h"
 #include "pswd_email_validation.h"
 #include "misc_functions.h"
+#include <typeinfo>
 
 using namespace std;
 
@@ -62,8 +63,13 @@ rider_main_page:
 			system("pause");
 			goto rider_main_page;
 		}
-		cout << "Debug: Checking that tempRider has been passed back " << rider_read_rides.rr_UIDalpha << rider_read_rides.rr_UIDnum << "\tPreferred name: " << rider_read_rides.rr_pname;
 		//r_li_home(rider_read_rides);
+		else
+		{
+			cout << "Debug: Checking that tempRider has been passed back " << rider_read_rides.rr_UIDalpha << rider_read_rides.rr_UIDnum << "\tPreferred name: " << rider_read_rides.rr_pname;
+			//pass the structure received from r_login to the logged in home page
+			r_loggedIn_home(rider_read_rides);
+		}
 
 		//goto rider_main_page;
 	}
@@ -131,18 +137,6 @@ valid_emailusrname:
 				//cout << "Debugging: Temp Rider's UID is " << tempRider.rr_UIDalpha << " + " << tempRider.rr_UIDnum << ", pname " << tempRider.rr_pname;
 				cout << "\n\tLogin Successful!\n\t";
 
-
-				////If login is successful, check if the temp rider's UID already exists in the riderrides.csv file
-				//fstream riderrides_file("riderrides.csv", ios::in);
-				//rider_rides_temp_file = rider_retrieve_pid_info();
-				//for (int i = 0; i < rider_retrieve_pid_info().size(); i++)
-				//{
-
-				//}
-				
-				//
-
-
 				system("pause");
 				login_success += 1;
 			}	
@@ -168,28 +162,44 @@ valid_emailusrname:
 	riderpid_file.close();
 	//if login successful, return the data copied over to tempRider struct 
 	return (tempRider); 
-	
-	//read_from_file = rider_retrieve_info();
-	//return (read_from_file);
 
 }
 
 
 //This function displays the homepage for a rider *after* login
-vector<Rider_ridestore> r_li_home(vector <Rider_pid> &userEmail, vector <Rider_ridestore>& rselect)
+void r_loggedIn_home(Rider_ridestore &nopid_details)
 {
+	Rider_ridestore indiv_temp_details;
+	vector <Rider_ridestore> rider_rides;
+
 	system("cls");
 	disp_rider_logo();
-
-	//Searching for 
-
-	//string welcome_msg = 
-	disp_h2_lines("Kia Ora <<preferredName>>, let's arrange your ride!");
+	string hello = "Kia Ora ";
+	string name = nopid_details.rr_pname;
+	string action = ", let's arrange your ride!";
+	string title = hello + name + action;
+	disp_h2_lines(title);
 	
+	//Checking to see if rider currently exists in riderrides.csv file
+
+
+
+	if (indiv_temp_details.rr_defaultloc == "")
+	{
+		cout << "\n\tPlease select a default pickup location: ";
+		cout << "\n\t1. Brooklyn";
+		cout << "\n\t2. Haitaitai";
+		cout << "\n\t3. Aro Valley";
+		cout << "\n\t4. Kelburn";
+		cout << "\n\t5. Mount Cook";
+		cin >> indiv_temp_details.rr_defaultloc;
+	}
+	//cout << "\nRides from " << indiv_temp_details.rr_defaultloc << " to Te Aro costs $" << comp_cost << "right now!";
+
 	disp_h3_lines("Select: ");
 	cout << "\n\t1. Login\n";
 
-	return rselect;
+	//return rselect;
 }
 
 
