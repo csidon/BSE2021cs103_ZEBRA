@@ -148,6 +148,7 @@
     <ClCompile Include="zebra_rider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="distance_calc.h" />
     <ClInclude Include="misc_functions.h" />
     <ClInclude Include="zebra_driver.h" />
     <ClInclude Include="makepretty.h" />
