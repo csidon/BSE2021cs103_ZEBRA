@@ -82,7 +82,7 @@ vector <Drivers> input_drivers(vector<Drivers>& driver);
 int count_entries_drive();
 void writeToFile(vector<Drivers>& driver);//returns nothing
 vector <Drivers> readFromFile();
-//vector<Drivers> searchAndUpdate(vector < Drivers > driverrFromFile);
+vector<Drivers> update_acc_details(vector < Drivers > driverFromFile);
 void output_drivers(vector<Drivers>& driver);
 void driver_account_main(vector<Drivers>& driverFromFile);
 void account_settings(vector<Drivers>& driverFromFile);

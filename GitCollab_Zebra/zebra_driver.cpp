@@ -103,6 +103,12 @@ vector <Drivers> input_drivers(vector<Drivers>& driver)
 	cin >> d.pref_name;
 	cout << "\n\tContact number: ";
 	cin >> d.phone_num;
+	cout << "\n\tGender(male/female): ";
+	cin >> d.gender;
+	cout << "\n\tDate of birth(dd/mm/yyyy): ";
+	cin >> d.birth;
+	cout << "\n\tNationality: ";
+	cin >> d.nationality;
 	cout << "\n\tE-mail adress";
 	cout << "\n\t[Note: This will also be  Your username]: ";
 	cin >> d.mail;
@@ -114,12 +120,7 @@ vector <Drivers> input_drivers(vector<Drivers>& driver)
 	output_drivers(driver);
 
 	cout << "\n\tPlease, enter your: ";
-	cout << "\n\tGender(male/female): ";
-	cin >> d.gender;
-	cout << "\n\tDate of birth(dd/mm/yyyy): ";
-	cin >> d.birth;
-	cout << "\n\tNationality: ";
-	cin >> d.nationality;
+
 	cout << "\n\tDrivers' License #	[Format:AB123456]: ";
 	cin >> d.lice_num;
 	cout << "\n\tDate of Expiry Format:DD / MM / YY]: ";
@@ -324,6 +325,7 @@ vector <Drivers> readFromFile()
 void account_settings(vector<Drivers>& driverFromFile)
 {
 	string check_username;
+	int n;
 	fstream driverFile("driverFile_pid.csv", ios::in);
 	driverFromFile = readFromFile();
 	cout << "\n\tYour account details: ";
@@ -333,15 +335,59 @@ void account_settings(vector<Drivers>& driverFromFile)
 	{
 		if (check_username == driverFromFile[i].mail)
 		{
-			cout << "\n\t" << driverFromFile[i].fname;
-			cout << "\n\t" << driverFromFile[i].sname;
-			cout << "\n\t" << driverFromFile[i].phone_num;
-			cout << "\n\t" << driverFromFile[i].gender;
-			cout << "\n\t" << driverFromFile[i].birth;
-			cout << "\n\t" << driverFromFile[i].nationality;
-			cout << "\n\t" << driverFromFile[i].lice_num;
+			cout << "\n\tHello, " << driverFromFile[i].pref_name<<endl;
+			/*cout <<"\n\t" <<"First name:			"<<driverFromFile[i].fname;
+			cout << "\n\t" << "Second name:			" << driverFromFile[i].sname;
+			cout << "\n\t" << "Phone number:			" << driverFromFile[i].phone_num;
+			cout << "\n\t" << "Gender:				" << driverFromFile[i].gender;
+			cout << "\n\t" << "Date of birth:			" << driverFromFile[i].birth;
+			cout << "\n\t" << "Nationality:			" << driverFromFile[i].nationality;*/
+			cout << "\n\t" << "Driver's License #:		" << driverFromFile[i].lice_num;
+			cout << "\n\t" << "Date of Expiry:			" << driverFromFile[i].doex;
+			cout << "\n\t" << "Driving experience:		" << driverFromFile[i].exp;
+			cout << "\n\t" << "Vehical Registration Number:	" << driverFromFile[i].veh_regist;
+			cout << "\n\t" << "Vehical Age:			" << driverFromFile[i].veh_age;
+			cout << "\n\t" << "Vehical Model:			" << driverFromFile[i].veh_model;
+			cout << "\n\t" << "WOF Expiry date:		" << driverFromFile[i].wof_exp;
+			cout << "\n\t" << "Bank Account Number:		" << driverFromFile[i].bank_acc;
+			cout << "\n\t" << "Bank Name:			" << driverFromFile[i].bank_name;
+
 			break;
 		}
 	}
 	driverFile.close();
+	cout << "\n\tSelect [1] to edit your deatils.";
+	cout << "\n\tSelect [2] to go back";
+	cout << "\n\tChoose: ";
+	cin >> n;
+	if (n == 1)
+	{
+		update_acc_details(driverFromFile);
+	}
 }
+
+
+vector<Drivers> update_acc_details(vector < Drivers > driverFromFile)
+{
+	//fstream driverFile("driverFile_pid.csv", ios::out);
+	//cout << "\n\tDrivers' License #	[Format:AB123456]: ";
+	//cin >> d.lice_num;
+	//cout << "\n\tDate of Expiry Format:DD / MM / YY]: ";
+	//cin >> d.doex;
+	//cout << "\n\tDriving Experience # of years: ";
+	//cin >> d.exp;
+	//cout << "\n\tVehicle Registration #: ";
+	//cin >> d.veh_regist;
+	//cout << "\n\tVehicle Age: ";
+	//cin >> d.veh_age;
+	//cout << "\n\tVehicle Model: ";
+	//cin >> d.veh_model;
+	//cout << "\n\tWOF Expiry date: ";
+	//cin >> d.wof_exp;
+	//cout << "\n\tBank account number: ";
+	//cin >> d.bank_acc;
+	//cout << "\n\tBank name: ";
+	//cin >> d.bank_name;
+	
+}
+
