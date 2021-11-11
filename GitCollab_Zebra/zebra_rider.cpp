@@ -64,6 +64,7 @@ rider_main_page:
 		//r_li_home(rider_read_rides);
 		else
 		{
+			rider_read_file_info = rider_retrieve_info();
 			cout << "Debug: Checking that tempRider has been passed back " << rider_read_rides.rr_UIDalpha << rider_read_rides.rr_UIDnum << "\tPreferred name: " << rider_read_rides.rr_pname;
 			//pass the structure received from r_login to the logged in home page
 			r_loggedIn_home(rider_read_file_info, rider_read_rides);
@@ -77,7 +78,7 @@ rider_main_page:
 		writeRiderToFile(rinput);
 		
 		//cout << "Rinput has been written to file! "; //debugging purposes
-		cout << "\nYou are now a Zebra Rider!\n";
+		cout << "\t\nYou are now a Zebra Rider!\n";
 		system("pause");
 		goto rider_main_page;
 		
@@ -132,6 +133,7 @@ valid_emailusrname:
 				tempRider.rr_UIDnum = read_from_file[i].r_idnum;
 				tempRider.rr_pname = read_from_file[i].r_pname;
 				tempRider.rr_defaultloc = read_from_file[i].r_defaultloc;
+				cout << "\nDebugging: checking what the default location is that I'm passing upon successful login\t" << tempRider.rr_defaultloc << endl;
 				//cout << "Debugging: Temp Rider's UID is " << tempRider.rr_UIDalpha << " + " << tempRider.rr_UIDnum << ", pname " << tempRider.rr_pname;
 				cout << "\n\tLogin Successful!\n\t";
 
@@ -180,26 +182,73 @@ void r_loggedIn_home(vector <Rider_pid> &rinput, Rider_ridestore &nopid_details)
 	disp_h2_lines(title);
 	
 	//Checking to see if rider currently exists in riderrides.csv file
+	cout << "\n\Check what temp details are already stored:\t" << nopid_details.rr_defaultloc << "\n"; //debugging purposes
 
-	if (indiv_temp_details.rr_defaultloc == "")
+	if (nopid_details.rr_defaultloc == "")
 	{
+		int locInput;
 		cout << "\n\tPlease select a default pickup location: ";
 		cout << "\n\t1. Brooklyn";
 		cout << "\n\t2. Haitaitai";
 		cout << "\n\t3. Aro Valley";
 		cout << "\n\t4. Kelburn";
 		cout << "\n\t5. Mount Cook";
-		cin >> indiv_temp_details.rr_defaultloc;
-		searchAndUpdate_defaultloc(indiv_temp_details, rinput);
+		cin >> locInput;
 
-			   //FUNCTION NOT WORKING AT THE MOMENT. WORKING HERE ##########################################################!!!!
+		nopid_details.rr_defaultloc = location_translate(locInput);
+		cout << "\n\Temp details registered for new default loc is:\t" << nopid_details.rr_defaultloc << "\n"; //debugging purposes
+		
+		searchAndUpdate_defaultloc(nopid_details, rinput);
 	}
-	//cout << "\nRides from " << indiv_temp_details.rr_defaultloc << " to Te Aro costs $" << comp_cost << "right now!";
 
+	
+	int booking_select;
+	cout << "\n\tRides from " << nopid_details.rr_defaultloc << " to Te Aro costs $" << "TBC" << " right now!\n";
 	disp_h3_lines("Select: ");
-	cout << "\n\t1. Login\n";
+	cout << "\n\n\t1. Express booking to Te Aro\n";
+	cout << "\n\t2. Book a trip from your default location, " << nopid_details.rr_defaultloc << "\n";
+	cout << "\n\t3. Book a trip from a different starting location\n";
+	disp_star_line();
+	cout << "\n\t4. View your past rides\n";
+	cout << "\n\t5. View your account settings\n";
+	cout << "\n\t6. Understand Zebra Fares and Charges\n\n\t";
+	cin >> booking_select;
 
 	//return rselect;
+}
+
+string location_translate(int user_input)
+{
+	string trans_loc;
+	switch (user_input)
+	{
+	case 1: 
+		trans_loc = "BROOKLYN";
+		break;
+	case 2: 
+		trans_loc = "HAITAITAI";
+		break;
+	case 3: 
+		trans_loc = "AROVALLEY";
+		break;
+	case 4:
+		trans_loc = "KELBURN";
+		break;
+	case 5:
+		trans_loc = "MOUNTCOOK";
+		break;
+
+	}
+	return trans_loc;
+	//{
+	//default:
+	//	break;
+	//}
+
+	//if (user_input == 1)
+	//{
+	//	
+	//}
 }
 
 
@@ -263,7 +312,7 @@ valid_pass:
 	cout << "\t" << ri.r_fname << " " << ri.r_lname << "\n\t";
 	cout << ri.r_contact << "\n\t";
 	cout << ri.r_address << "\t[Note: This will be your default pickup address]\n\t";
-	cout << ri.r_emailusrname << "\t\t[Reminder: This will be your username]\n\t";
+	cout << ri.r_emailusrname << "\t[Reminder: This will be your username]\n\t";
 	disp_star_line();
 	cout << "\n\tIs your information correct?\t:  ";
 	cout << "\n\tSelect [1] to confirm and [2] to edit:\n\t";
@@ -272,6 +321,11 @@ valid_pass:
 	{
 		goto change_riderpid;
 	}
+	if (ri.r_idalpha == "")
+	{
+		ri.r_defaultloc == "";
+	}
+
 
 	//This section creates an AlphaID for the registration person upon confirmation of account creation, based on their firstname and last name
 	ri.r_idalpha += "R" + ri.r_fname.substr(0, 1);
@@ -279,6 +333,7 @@ valid_pass:
 	ri.r_idnum = 1001 + count_entries();
 	cout << "The autogen ID alpha is" << ri.r_idalpha; //debugging
 	cout << "The autogen ID num is" << ri.r_idnum; //debugging
+
 
 	rinput.push_back(ri);
 
@@ -366,8 +421,13 @@ vector <Rider_pid> rider_retrieve_info()
 		read_r.r_emailusrname = get_val;
 		getline(linestream, get_val, ',');
 		read_r.r_pswd = get_val;
+		read_r.r_defaultloc = "";
+		cout << "\nQuick check - What does r_defaultloc register BEFORE getline in rider_retrieve_info?\t" << read_r.r_defaultloc;
+
 		getline(linestream, get_val, ',');
 		read_r.r_defaultloc = get_val;
+
+		cout << "\nQuick check - What does r_defaultloc register after getline in rider_retrieve_info?\t" << read_r.r_defaultloc;
 		//cout << "\n" << read_r.r_emailusrname << "\tyour code made it to pulling the username\n"; //debugging purposes
 		//cout << read_r.r_pswd << "\tyour code made it to pulling the pswd\n"; //debugging purposes
 
@@ -466,20 +526,30 @@ vector<Rider_pid> searchAndUpdate_defaultloc(Rider_ridestore& passed_nopid_detai
 
 	//if this function is called, immediately transfer the rider's noPID details to compare with pid csv file
 	disp_dash_line();
+	cout << "\n\tUnique ID that i'm looking to pass to database is:\t" << passed_nopid_details.rr_UIDalpha << " and " << passed_nopid_details.rr_UIDnum << "\n"; //debugging purposes
 
 	//searching for the provided email address/username
 	for (int i = 0; i < read_from_file.size(); i++)
 	{
+		cout << "What is the searched r_idalpha? " << read_from_file[i].r_idalpha << " and " << read_from_file[i].r_idnum;
 		if (read_from_file[i].r_idalpha == passed_nopid_details.rr_UIDalpha && read_from_file[i].r_idnum == passed_nopid_details.rr_UIDnum)
 		{
-			cout << "\n\tUnique ID exists in database\n"; //debugging purposes
-
+			cout << "\n\tUnique ID exists in database as:\t"<< read_from_file[i].r_idalpha << "and" << read_from_file[i].r_idnum << "\n"; //debugging purposes
+			cout << "\nWe are now supposed to equate read_from_file default loc info " << read_from_file[i].r_defaultloc << " to " << passed_nopid_details.rr_defaultloc << endl;
 			read_from_file[i].r_defaultloc = passed_nopid_details.rr_defaultloc;
 			uid_exists += 1;
 		}
+		else if (read_from_file[i].r_defaultloc == "")
+		{
+			read_from_file[i].r_defaultloc = "";
+		}
+		else
+		{
+			read_from_file[i].r_defaultloc = read_from_file[i].r_defaultloc;
+		}
 		riderpid_file << read_from_file[i].r_idalpha << "," << read_from_file[i].r_idnum << "," << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ","
 			<< read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ","
-			<< read_from_file[i].r_pswd << read_from_file[i].r_defaultloc << endl;
+			<< read_from_file[i].r_pswd << "," << read_from_file[i].r_defaultloc << endl;
 
 
 	}
