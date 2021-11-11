@@ -24,15 +24,6 @@ int main()
 	vector <Rider_pid> rider_input_info;
 	vector <Rider_pid> rider_read_file_info;
 	vector <Rider_ridestore> rider_temp_file_info;
-<<<<<<< HEAD
-=======
-//<<<<<<< HEAD
-
-//=======
-	
-//>>>>>>> dd185f8996014f8f3fb6eb4d2be17b3e64d85881
->>>>>>> d134a2ef987422811d9cd507a235e34385faadc6
-
 
 	////####### Main Page ########[Chris]
 	system("Color 8");
@@ -60,14 +51,8 @@ int main()
 		rider_read_file_info = rider_main(rider_input_info); //This function will write the new data into the riderpid.csv file. Full function in zebra_rider.cpp file
 
 	}
-<<<<<<< HEAD
 
-=======
-//<<<<<<< HEAD
 }
-//=======
-//>>>>>>> dd185f8996014f8f3fb6eb4d2be17b3e64d85881
->>>>>>> d134a2ef987422811d9cd507a235e34385faadc6
 
 	//disp_star_line();
 	//cout << "\tSelect [1], [2], [3], or [4]\n\tChoose: \n\t";

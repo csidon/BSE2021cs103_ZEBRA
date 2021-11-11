@@ -66,5 +66,6 @@ vector<Rider_pid> pswd_reset(vector <Rider_pid> read_from_file);
 void r_loggedIn_home(vector <Rider_pid>& rinput, Rider_ridestore& nopid_details);
 Rider_ridestore r_login(vector <Rider_pid> temp_pull_file);
 vector<Rider_pid> searchAndUpdate_defaultloc(Rider_ridestore& nopid_details, vector <Rider_pid> read_from_file);
+string location_translate(int user_input);
 
 #endif
