@@ -8,7 +8,7 @@
 
 using namespace std;
 
-struct Area {
+struct Location {
 	double x;
 	double y;
 	string id;
@@ -22,7 +22,7 @@ struct Area {
 	//*****************
 	//CONSTRUCTURE
 	//*****************
-	Area()//default structure
+	Location()//default structure
 	{
 		x = 0.0;
 		y = 0.0;
@@ -30,9 +30,11 @@ struct Area {
 	}
 };
 
-double calc(struct Area p, struct Area ptr);
-struct Area* input(struct Area* ptr);
-bool set_coordinates(struct Area data_array[], struct Area* coordinates, string input);
-double dist_calc_main();
+//function prototype
+struct Location* stored_locations(struct Location* ptr);
+double main_dist_calc(string startAdd, string endAdd);
+double get_coordinates(struct Location* stored, string startLoc, string endLoc);
+double calc(struct Location start, struct Location end);
+
 
 #endif

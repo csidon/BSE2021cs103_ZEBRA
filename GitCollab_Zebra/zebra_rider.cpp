@@ -8,6 +8,7 @@
 #include "makepretty.h"
 #include "pswd_email_validation.h"
 #include "misc_functions.h"
+#include "distance_calc.h"
 #include <typeinfo>
 
 using namespace std;
@@ -15,8 +16,6 @@ using namespace std;
 //Coder: Chris C
 //File: zebra_rider.cpp
 //Purpose: This file contains the main functions for Zebra Rider
-
-
 
 
 ////###############################################
@@ -201,20 +200,57 @@ void r_loggedIn_home(vector <Rider_pid> &rinput, Rider_ridestore &nopid_details)
 		searchAndUpdate_defaultloc(nopid_details, rinput);
 	}
 
-	
-	int booking_select;
-	cout << "\n\tRides from " << nopid_details.rr_defaultloc << " to Te Aro costs $" << "TBC" << " right now!\n";
-	disp_h3_lines("Select: ");
-	cout << "\n\n\t1. Express booking to Te Aro\n";
-	cout << "\n\t2. Book a trip from your default location, " << nopid_details.rr_defaultloc << "\n";
-	cout << "\n\t3. Book a trip from a different starting location\n";
-	disp_star_line();
-	cout << "\n\t4. View your past rides\n";
-	cout << "\n\t5. View your account settings\n";
-	cout << "\n\t6. Understand Zebra Fares and Charges\n\n\t";
-	cin >> booking_select;
+	string stay_loggedIn = "y";
 
+	while (stay_loggedIn == "y")
+	{
+		int booking_select;
+		double dist, cost;
+		dist = main_dist_calc(nopid_details.rr_defaultloc, "TE_ARO");
+		cost = dist * 0.6;
+		cout << "\n\nDebugging: Distance from default loc to Te Aro is " << dist;
+
+		cout << "\n\tRides from " << nopid_details.rr_defaultloc << " to Te Aro costs $" << cost << " right now!\n";
+		disp_h3_lines("Select: ");
+		cout << "\n\n\t1. Express booking to Te Aro\n";
+		cout << "\n\t2. Book a trip from your default location, " << nopid_details.rr_defaultloc << "\n";
+		cout << "\n\t3. Book a trip from a different starting location\n";
+		disp_star_line();
+		cout << "\n\t4. View your past rides\n";
+		cout << "\n\t5. View your account settings\n";
+		cout << "\n\t6. Understand Zebra Fares and Charges\n\n\t";
+		cin >> booking_select;
+
+		switch (booking_select)
+		{
+		case 1:
+			
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			disp_fares_charges();
+			stay_loggedIn = "y";
+			break;
+		}
+	}
+	
 	//return rselect;
+}
+
+void disp_fares_charges()
+{
+	disp_star_line();
+	cout << "\n\tZebra charges a flat rate of $0.60 per km.";
+	cout << "\n\t[More to be added if there's time]\n\t";
+	system("pause");
+	disp_star_line();
 }
 
 string location_translate(int user_input)

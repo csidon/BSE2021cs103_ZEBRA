@@ -362,13 +362,13 @@ void account_settings(vector<Drivers>& driverFromFile)
 	cin >> n;
 	if (n == 1)
 	{
-		update_acc_details(driverFromFile);
+		//update_acc_details(driverFromFile);
 	}
 }
 
 
-vector<Drivers> update_acc_details(vector < Drivers > driverFromFile)
-{
+//vector<Drivers> update_acc_details(vector < Drivers > driverFromFile)
+//{
 	//fstream driverFile("driverFile_pid.csv", ios::out);
 	//cout << "\n\tDrivers' License #	[Format:AB123456]: ";
 	//cin >> d.lice_num;
@@ -389,5 +389,5 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile)
 	//cout << "\n\tBank name: ";
 	//cin >> d.bank_name;
 	
-}
+//}
 
