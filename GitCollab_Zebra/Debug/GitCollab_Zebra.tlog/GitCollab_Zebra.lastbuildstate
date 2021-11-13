@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.29.30037:VCServicingVersionATL=14.29.30038:VCServicingVersionCrtHeaders=14.29.30040:VCServicingVersionCompilers=14.29.30040:TargetPlatformVersion=10.0.19041.0:
 Debug|Win32|C:\Users\Chris\Desktop\Yoobee\CS103_Oct21\BSE2021cs103_ZEBRA\GitCollab_Zebra\|
+=======
+PlatformToolSet=v142:VCToolArchitecture=Native32Bit:VCToolsVersion=14.29.30133:TargetPlatformVersion=10.0.19041.0:
+Debug|Win32|C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\|
+>>>>>>> 04a972bc9d43924917c9f1c3d5b95be9490afcda

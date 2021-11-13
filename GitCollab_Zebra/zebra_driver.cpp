@@ -209,7 +209,6 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
 {
 	fstream driverFile("driverFile_pid.csv", ios::in);
 	string login, password;
-login_data:
 		cout << "\n\tEnter your: ";
 		cout << "\n\tUsername: ";
 		cin >> login;
@@ -225,7 +224,7 @@ login_data:
 			if (driverFromFile[i].mail == login && driverFromFile[i].password == password)
 			{
 				
-				driver_account_main(driverFromFile);
+				driver_account_main(driverFromFile, login);
 				
 			}
 
@@ -235,7 +234,7 @@ login_data:
 	return(driverFromFile);
 }
 
-void driver_account_main(vector<Drivers>& driverFromFile)
+void driver_account_main(vector<Drivers>& driverFromFile, string check_username)
 {
 	int n;
 	cout << "\n\tKia ora, we are all good to go!";
@@ -247,7 +246,7 @@ void driver_account_main(vector<Drivers>& driverFromFile)
 	switch (n)
 	{
 	case 1:
-		account_settings(driverFromFile);
+		account_settings(driverFromFile, check_username);
 		break;
 	case 2:
 		//job_screen();
@@ -322,10 +321,10 @@ vector <Drivers> readFromFile()
 }
 
 
-void account_settings(vector<Drivers>& driverFromFile)
+void account_settings(vector<Drivers>& driverFromFile, string check_username)
 {
-	string check_username;
-	int n;
+	
+	char n;
 	fstream driverFile("driverFile_pid.csv", ios::in);
 	driverFromFile = readFromFile();
 	cout << "\n\tYour account details: ";
@@ -342,31 +341,36 @@ void account_settings(vector<Drivers>& driverFromFile)
 			cout << "\n\t" << "Gender:				" << driverFromFile[i].gender;
 			cout << "\n\t" << "Date of birth:			" << driverFromFile[i].birth;
 			cout << "\n\t" << "Nationality:			" << driverFromFile[i].nationality;*/
-			cout << "\n\t" << "Driver's License #:		" << driverFromFile[i].lice_num;
-			cout << "\n\t" << "Date of Expiry:			" << driverFromFile[i].doex;
-			cout << "\n\t" << "Driving experience:		" << driverFromFile[i].exp;
-			cout << "\n\t" << "Vehical Registration Number:	" << driverFromFile[i].veh_regist;
-			cout << "\n\t" << "Vehical Age:			" << driverFromFile[i].veh_age;
-			cout << "\n\t" << "Vehical Model:			" << driverFromFile[i].veh_model;
-			cout << "\n\t" << "WOF Expiry date:		" << driverFromFile[i].wof_exp;
-			cout << "\n\t" << "Bank Account Number:		" << driverFromFile[i].bank_acc;
-			cout << "\n\t" << "Bank Name:			" << driverFromFile[i].bank_name;
+			cout << "\n\t" << "1. Driver's License #:		" << driverFromFile[i].lice_num;
+			cout << "\n\t" << "2. Date of Expiry:			" << driverFromFile[i].doex;
+			cout << "\n\t" << "3. Driving experience:		" << driverFromFile[i].exp;
+			cout << "\n\t" << "4. Vehical Registration Number:	" << driverFromFile[i].veh_regist;
+			cout << "\n\t" << "5. Vehical Age:			" << driverFromFile[i].veh_age;
+			cout << "\n\t" << "6. Vehical Model:			" << driverFromFile[i].veh_model;
+			cout << "\n\t" << "7. WOF Expiry date:		" << driverFromFile[i].wof_exp;
+			cout << "\n\t" << "8. Bank Account Number:		" << driverFromFile[i].bank_acc;
+			cout << "\n\t" << "9. Bank Name:			" << driverFromFile[i].bank_name;
 
 			break;
 		}
 	}
 	driverFile.close();
-	cout << "\n\tSelect [1] to edit your deatils.";
-	cout << "\n\tSelect [2] to go back";
+	cout << "\n\tSelect [e] to edit your deatils.";
+	cout << "\n\tSelect [b] to go back";
 	cout << "\n\tChoose: ";
 	cin >> n;
-	if (n == 1)
+	if (n == 'e')
 	{
+<<<<<<< HEAD
 		//update_acc_details(driverFromFile);
+=======
+		update_acc_details(driverFromFile, check_username);
+>>>>>>> 04a972bc9d43924917c9f1c3d5b95be9490afcda
 	}
 }
 
 
+<<<<<<< HEAD
 //vector<Drivers> update_acc_details(vector < Drivers > driverFromFile)
 //{
 	//fstream driverFile("driverFile_pid.csv", ios::out);
@@ -388,6 +392,149 @@ void account_settings(vector<Drivers>& driverFromFile)
 	//cin >> d.bank_acc;
 	//cout << "\n\tBank name: ";
 	//cin >> d.bank_name;
+=======
+vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string check_username)
+{
+	string new_lice_num;
+	string new_doex;
+	string new_exp;
+	string new_veh_regist;
+	string new_veh_age;
+	string new_veh_model;
+	string new_wof_exp;
+	string new_bank_acc;
+	string new_bank_name;
+	int choice;
+	cout << "\n\tPlease, choose what would you like to change: ";
+	cin >> choice;
+	fstream driverFile("driverFile_pid.csv", ios::out);
+	switch (choice)
+	{
+	case 1:
+		cin.ignore();
+		cout << "\nEnter the new Drivers' License #	[Format:AB123456]: ";
+		getline(cin, new_lice_num);
+		
+		for (int i = 0; i < driverFromFile.size(); i++)
+		{
+			if (check_username == driverFromFile[i].mail)
+			{
+				driverFromFile[i].lice_num = new_lice_num;
+				driverFile << driverFromFile[i].d_idAlph << "," << driverFromFile[i].d_idNum << "," << driverFromFile[i].fname << "," << driverFromFile[i].sname << "," << driverFromFile[i].pref_name << "," << driverFromFile[i].phone_num << "," << driverFromFile[i].mail << "," << driverFromFile[i].password << "," << driverFromFile[i].gender << "," << driverFromFile[i].birth << "," << driverFromFile[i].nationality << "," << driverFromFile[i].lice_num << "," << driverFromFile[i].doex << "," << driverFromFile[i].exp << "," << driverFromFile[i].veh_regist << "," << driverFromFile[i].veh_age << "," << driverFromFile[i].veh_model << "," << driverFromFile[i].wof_exp << "," << driverFromFile[i].bank_acc << "," << driverFromFile[i].bank_name << endl;
+			}
+		}
+
+		driverFile.close();
+		break;
+	case 2:
+		cin.ignore();
+		cout << "\nEnter the new date of expiry: ";
+		getline(cin, new_doex);
+		for (int i = 0; i < driverFromFile.size(); i++)
+		{
+			if (check_username == driverFromFile[i].mail)
+			{
+				driverFromFile[i].doex = new_doex;
+				driverFile << driverFromFile[i].d_idAlph << "," << driverFromFile[i].d_idNum << "," << driverFromFile[i].fname << "," << driverFromFile[i].sname << "," << driverFromFile[i].pref_name << "," << driverFromFile[i].phone_num << "," << driverFromFile[i].mail << "," << driverFromFile[i].password << "," << driverFromFile[i].gender << "," << driverFromFile[i].birth << "," << driverFromFile[i].nationality << "," << driverFromFile[i].lice_num << "," << driverFromFile[i].doex << "," << driverFromFile[i].exp << "," << driverFromFile[i].veh_regist << "," << driverFromFile[i].veh_age << "," << driverFromFile[i].veh_model << "," << driverFromFile[i].wof_exp << "," << driverFromFile[i].bank_acc << "," << driverFromFile[i].bank_name << endl;
+			}
+		}
+		break;
+	case 3:
+		cin.ignore();
+		cout << "\nEnter driving experience: ";
+		getline(cin, new_exp);
+		for (int i = 0; i < driverFromFile.size(); i++)
+		{
+			if (check_username == driverFromFile[i].mail)
+			{
+				driverFromFile[i].exp = new_exp;
+				driverFile << driverFromFile[i].d_idAlph << "," << driverFromFile[i].d_idNum << "," << driverFromFile[i].fname << "," << driverFromFile[i].sname << "," << driverFromFile[i].pref_name << "," << driverFromFile[i].phone_num << "," << driverFromFile[i].mail << "," << driverFromFile[i].password << "," << driverFromFile[i].gender << "," << driverFromFile[i].birth << "," << driverFromFile[i].nationality << "," << driverFromFile[i].lice_num << "," << driverFromFile[i].doex << "," << driverFromFile[i].exp << "," << driverFromFile[i].veh_regist << "," << driverFromFile[i].veh_age << "," << driverFromFile[i].veh_model << "," << driverFromFile[i].wof_exp << "," << driverFromFile[i].bank_acc << "," << driverFromFile[i].bank_name << endl;
+			}
+		}
+		break;
+	case 4:
+		cin.ignore();
+		cout << "\nEnter the new vehical registration number: ";
+		getline(cin, new_veh_regist);
+		for (int i = 0; i < driverFromFile.size(); i++)
+		{
+			if (check_username == driverFromFile[i].mail)
+			{
+				driverFromFile[i].veh_regist = new_veh_regist;
+				driverFile << driverFromFile[i].d_idAlph << "," << driverFromFile[i].d_idNum << "," << driverFromFile[i].fname << "," << driverFromFile[i].sname << "," << driverFromFile[i].pref_name << "," << driverFromFile[i].phone_num << "," << driverFromFile[i].mail << "," << driverFromFile[i].password << "," << driverFromFile[i].gender << "," << driverFromFile[i].birth << "," << driverFromFile[i].nationality << "," << driverFromFile[i].lice_num << "," << driverFromFile[i].doex << "," << driverFromFile[i].exp << "," << driverFromFile[i].veh_regist << "," << driverFromFile[i].veh_age << "," << driverFromFile[i].veh_model << "," << driverFromFile[i].wof_exp << "," << driverFromFile[i].bank_acc << "," << driverFromFile[i].bank_name << endl;
+			}
+		}
+		break;
+	case 5:
+		
+		cout << "\nEnter the new vehical age: ";
+		getline(cin, new_veh_age);
+		for (int i = 0; i < driverFromFile.size(); i++)
+		{
+			if (check_username == driverFromFile[i].mail)
+			{
+				driverFromFile[i].veh_age = new_veh_age;
+				driverFile << driverFromFile[i].d_idAlph << "," << driverFromFile[i].d_idNum << "," << driverFromFile[i].fname << "," << driverFromFile[i].sname << "," << driverFromFile[i].pref_name << "," << driverFromFile[i].phone_num << "," << driverFromFile[i].mail << "," << driverFromFile[i].password << "," << driverFromFile[i].gender << "," << driverFromFile[i].birth << "," << driverFromFile[i].nationality << "," << driverFromFile[i].lice_num << "," << driverFromFile[i].doex << "," << driverFromFile[i].exp << "," << driverFromFile[i].veh_regist << "," << driverFromFile[i].veh_age << "," << driverFromFile[i].veh_model << "," << driverFromFile[i].wof_exp << "," << driverFromFile[i].bank_acc << "," << driverFromFile[i].bank_name << endl;
+			}
+		}
+		break;
+	case 6:
+		cin.ignore();
+		cout << "\nEnter the new vehical model: ";
+		getline(cin, new_veh_model);
+		for (int i = 0; i < driverFromFile.size(); i++)
+		{
+			if (check_username == driverFromFile[i].mail)
+			{
+				driverFromFile[i].veh_model = new_veh_model;
+				driverFile << driverFromFile[i].d_idAlph << "," << driverFromFile[i].d_idNum << "," << driverFromFile[i].fname << "," << driverFromFile[i].sname << "," << driverFromFile[i].pref_name << "," << driverFromFile[i].phone_num << "," << driverFromFile[i].mail << "," << driverFromFile[i].password << "," << driverFromFile[i].gender << "," << driverFromFile[i].birth << "," << driverFromFile[i].nationality << "," << driverFromFile[i].lice_num << "," << driverFromFile[i].doex << "," << driverFromFile[i].exp << "," << driverFromFile[i].veh_regist << "," << driverFromFile[i].veh_age << "," << driverFromFile[i].veh_model << "," << driverFromFile[i].wof_exp << "," << driverFromFile[i].bank_acc << "," << driverFromFile[i].bank_name << endl;
+			}
+		}
+		break;
+	case 7:
+		cin.ignore();
+		cout << "\nEnter new WOF Expiry date: ";
+		getline(cin, new_wof_exp);
+		for (int i = 0; i < driverFromFile.size(); i++)
+		{
+			if (check_username == driverFromFile[i].mail)
+			{
+				driverFromFile[i].wof_exp = new_wof_exp;
+				driverFile << driverFromFile[i].d_idAlph << "," << driverFromFile[i].d_idNum << "," << driverFromFile[i].fname << "," << driverFromFile[i].sname << "," << driverFromFile[i].pref_name << "," << driverFromFile[i].phone_num << "," << driverFromFile[i].mail << "," << driverFromFile[i].password << "," << driverFromFile[i].gender << "," << driverFromFile[i].birth << "," << driverFromFile[i].nationality << "," << driverFromFile[i].lice_num << "," << driverFromFile[i].doex << "," << driverFromFile[i].exp << "," << driverFromFile[i].veh_regist << "," << driverFromFile[i].veh_age << "," << driverFromFile[i].veh_model << "," << driverFromFile[i].wof_exp << "," << driverFromFile[i].bank_acc << "," << driverFromFile[i].bank_name << endl;
+			}
+		}
+	case 8:
+		cin.ignore();
+		cout << "\nEnter the new bank account: ";
+		getline(cin, new_bank_acc);
+		for (int i = 0; i < driverFromFile.size(); i++)
+		{
+			if (check_username == driverFromFile[i].mail)
+			{
+				driverFromFile[i].bank_acc = new_bank_acc;
+				driverFile << driverFromFile[i].d_idAlph << "," << driverFromFile[i].d_idNum << "," << driverFromFile[i].fname << "," << driverFromFile[i].sname << "," << driverFromFile[i].pref_name << "," << driverFromFile[i].phone_num << "," << driverFromFile[i].mail << "," << driverFromFile[i].password << "," << driverFromFile[i].gender << "," << driverFromFile[i].birth << "," << driverFromFile[i].nationality << "," << driverFromFile[i].lice_num << "," << driverFromFile[i].doex << "," << driverFromFile[i].exp << "," << driverFromFile[i].veh_regist << "," << driverFromFile[i].veh_age << "," << driverFromFile[i].veh_model << "," << driverFromFile[i].wof_exp << "," << driverFromFile[i].bank_acc << "," << driverFromFile[i].bank_name << endl;
+			}
+		}
+		break;
+	case 9:
+		cin.ignore();
+		cout << "\nEnter the new bank name: ";
+		getline(cin, new_bank_name);
+		for (int i = 0; i < driverFromFile.size(); i++)
+		{
+			if (check_username == driverFromFile[i].mail)
+			{
+				driverFromFile[i].bank_name = new_bank_name;
+				driverFile << driverFromFile[i].d_idAlph << "," << driverFromFile[i].d_idNum << "," << driverFromFile[i].fname << "," << driverFromFile[i].sname << "," << driverFromFile[i].pref_name << "," << driverFromFile[i].phone_num << "," << driverFromFile[i].mail << "," << driverFromFile[i].password << "," << driverFromFile[i].gender << "," << driverFromFile[i].birth << "," << driverFromFile[i].nationality << "," << driverFromFile[i].lice_num << "," << driverFromFile[i].doex << "," << driverFromFile[i].exp << "," << driverFromFile[i].veh_regist << "," << driverFromFile[i].veh_age << "," << driverFromFile[i].veh_model << "," << driverFromFile[i].wof_exp << "," << driverFromFile[i].bank_acc << "," << driverFromFile[i].bank_name << endl;
+			}
+		}
+		break;
+	}
+	driverFile.close();
+	
+	driverFromFile = readFromFile();
+	return (driverFromFile);
+>>>>>>> 04a972bc9d43924917c9f1c3d5b95be9490afcda
 	
 //}
 
