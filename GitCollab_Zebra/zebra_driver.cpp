@@ -361,16 +361,13 @@ void account_settings(vector<Drivers>& driverFromFile, string check_username)
 	cin >> n;
 	if (n == 'e')
 	{
-<<<<<<< HEAD
+
 		//update_acc_details(driverFromFile);
-=======
-		update_acc_details(driverFromFile, check_username);
->>>>>>> 04a972bc9d43924917c9f1c3d5b95be9490afcda
+
 	}
 }
 
 
-<<<<<<< HEAD
 //vector<Drivers> update_acc_details(vector < Drivers > driverFromFile)
 //{
 	//fstream driverFile("driverFile_pid.csv", ios::out);
@@ -392,7 +389,7 @@ void account_settings(vector<Drivers>& driverFromFile, string check_username)
 	//cin >> d.bank_acc;
 	//cout << "\n\tBank name: ";
 	//cin >> d.bank_name;
-=======
+
 vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string check_username)
 {
 	string new_lice_num;
@@ -414,7 +411,7 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 		cin.ignore();
 		cout << "\nEnter the new Drivers' License #	[Format:AB123456]: ";
 		getline(cin, new_lice_num);
-		
+
 		for (int i = 0; i < driverFromFile.size(); i++)
 		{
 			if (check_username == driverFromFile[i].mail)
@@ -466,7 +463,7 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 		}
 		break;
 	case 5:
-		
+
 		cout << "\nEnter the new vehical age: ";
 		getline(cin, new_veh_age);
 		for (int i = 0; i < driverFromFile.size(); i++)
@@ -531,10 +528,10 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 		break;
 	}
 	driverFile.close();
-	
+
 	driverFromFile = readFromFile();
 	return (driverFromFile);
->>>>>>> 04a972bc9d43924917c9f1c3d5b95be9490afcda
+}
 	
 //}
 
