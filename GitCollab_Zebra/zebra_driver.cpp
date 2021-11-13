@@ -361,11 +361,38 @@ void account_settings(vector<Drivers>& driverFromFile, string check_username)
 	cin >> n;
 	if (n == 'e')
 	{
+<<<<<<< HEAD
+		//update_acc_details(driverFromFile);
+=======
 		update_acc_details(driverFromFile, check_username);
+>>>>>>> 04a972bc9d43924917c9f1c3d5b95be9490afcda
 	}
 }
 
 
+<<<<<<< HEAD
+//vector<Drivers> update_acc_details(vector < Drivers > driverFromFile)
+//{
+	//fstream driverFile("driverFile_pid.csv", ios::out);
+	//cout << "\n\tDrivers' License #	[Format:AB123456]: ";
+	//cin >> d.lice_num;
+	//cout << "\n\tDate of Expiry Format:DD / MM / YY]: ";
+	//cin >> d.doex;
+	//cout << "\n\tDriving Experience # of years: ";
+	//cin >> d.exp;
+	//cout << "\n\tVehicle Registration #: ";
+	//cin >> d.veh_regist;
+	//cout << "\n\tVehicle Age: ";
+	//cin >> d.veh_age;
+	//cout << "\n\tVehicle Model: ";
+	//cin >> d.veh_model;
+	//cout << "\n\tWOF Expiry date: ";
+	//cin >> d.wof_exp;
+	//cout << "\n\tBank account number: ";
+	//cin >> d.bank_acc;
+	//cout << "\n\tBank name: ";
+	//cin >> d.bank_name;
+=======
 vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string check_username)
 {
 	string new_lice_num;
@@ -507,6 +534,7 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 	
 	driverFromFile = readFromFile();
 	return (driverFromFile);
+>>>>>>> 04a972bc9d43924917c9f1c3d5b95be9490afcda
 	
-}
+//}
 

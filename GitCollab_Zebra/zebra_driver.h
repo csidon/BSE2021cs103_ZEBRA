@@ -82,7 +82,11 @@ vector <Drivers> input_drivers(vector<Drivers>& driver);
 int count_entries_drive();
 void writeToFile(vector<Drivers>& driver);//returns nothing
 vector <Drivers> readFromFile();
+<<<<<<< HEAD
+//vector<Drivers> update_acc_details(vector < Drivers > driverFromFile);
+=======
 vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string check_username);
+>>>>>>> 04a972bc9d43924917c9f1c3d5b95be9490afcda
 void output_drivers(vector<Drivers>& driver);
 void driver_account_main(vector<Drivers>& driverFromFile, string check_username);
 void account_settings(vector<Drivers>& driverFromFile, string check_username);

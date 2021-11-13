@@ -24,6 +24,9 @@ int main()
 	vector <Rider_pid> rider_input_info;
 	vector <Rider_pid> rider_read_file_info;
 	vector <Rider_ridestore> rider_temp_file_info;
+<<<<<<< HEAD
+
+=======
 
 
 //<<<<<<< HEAD
@@ -33,6 +36,7 @@ int main()
 
 
 
+>>>>>>> 04a972bc9d43924917c9f1c3d5b95be9490afcda
 
 	////####### Main Page ########[Chris]
 	system("Color 8");
@@ -63,6 +67,11 @@ int main()
 
 
 }
+<<<<<<< HEAD
+
+
+
+=======
 
 //<<<<<<< HEAD
 
@@ -70,6 +79,7 @@ int main()
 //>>>>>>> dd185f8996014f8f3fb6eb4d2be17b3e64d85881
 
 
+>>>>>>> 04a972bc9d43924917c9f1c3d5b95be9490afcda
 
 	//disp_star_line();
 	//cout << "\tSelect [1], [2], [3], or [4]\n\tChoose: \n\t";
