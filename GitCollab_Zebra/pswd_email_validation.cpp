@@ -44,7 +44,73 @@ bool has_dot(char dot)
 	return (dot == '.');
 }
 
-// 
+bool has_space(char space)
+{
+	return (space == ' ');
+}
+
+// This function validates that the card number is in number format #### #### #### ####
+int creditcard_num_valid(string credit)
+{
+	int num = 0, space = 0;
+	if (credit.length() == 19)
+	{
+		if ((!has_space(credit[4])) || (!has_space(credit[9])) || (!has_space(credit[14])))
+		{
+			cout << "\n\tPlease enter a valid credit card number in the format #### #### #### ####\n";
+			return 0;
+		}
+
+		//DO/WHILE STATEMENT HERE
+
+		string temppull = (credit.substr(0, 4));
+		cout << "\ndebugging temppull 1  " << temppull;
+		for (int i = 0; i < 4; i++)
+		{
+			if (!is_a_digit(temppull[i]))
+			{
+				cout << "\n\tPlease enter a valid credit card number in the format #### #### #### ####\n";
+				return 0;
+			}
+		}
+
+		string temppull2 = (credit.substr(5, 4));
+		cout << "\ndebugging temppull 2  " << temppull2;
+		for (int i = 0; i < 4; i++)
+		{
+			if (!is_a_digit(temppull2[i]))
+			{
+				cout << "\n\tPlease enter a valid credit card number in the format #### #### #### ####\n";
+				return 0;
+			}
+		}
+		string temppull3 = (credit.substr(10, 4));
+		cout << "\ndebugging temppull 3  " << temppull3;
+		for (int i = 0; i < 4; i++)
+		{
+			if (!is_a_digit(temppull3[i]))
+			{
+				cout << "\n\tPlease enter a valid credit card number in the format #### #### #### ####\n";
+				return 0;
+			}
+		}
+		string temppull4 = (credit.substr(15, 4));
+		cout << "\ndebugging temppull 4  " << temppull4;
+		for (int i = 0; i < 4; i++)
+		{
+			if (!is_a_digit(temppull4[i]))
+			{
+				cout << "\n\tPlease enter a valid credit card number in the format #### #### #### ####\n";
+				return 0;
+			}
+		}
+		return 42;
+	}
+	
+	
+}
+
+
 //This function validates that the user's input includes an @ and at least one "." -- EMAIL VALIDATION
 //int email_valid(vector <Rider_pid>& rinput )
 int email_valid(string remail)

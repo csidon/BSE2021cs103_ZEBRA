@@ -128,10 +128,19 @@ valid_emailusrname:
 			//If email exists, check if password matches
 			if (read_from_file[i].r_pswd == r_pswd_check)
 			{
+				cout << "\nThe default location stored in the file at this time is: \t" << read_from_file[i].r_defaultloc;
 				tempRider.rr_UIDalpha = read_from_file[i].r_idalpha;
 				tempRider.rr_UIDnum = read_from_file[i].r_idnum;
 				tempRider.rr_pname = read_from_file[i].r_pname;
-				tempRider.rr_defaultloc = read_from_file[i].r_defaultloc;
+				if (read_from_file[i].r_defaultloc == "")
+				{
+					tempRider.rr_defaultloc = "";
+				}
+				else
+				{
+					tempRider.rr_defaultloc = read_from_file[i].r_defaultloc;
+				}
+				
 				cout << "\nDebugging: checking what the default location is that I'm passing upon successful login\t" << tempRider.rr_defaultloc << endl;
 				//cout << "Debugging: Temp Rider's UID is " << tempRider.rr_UIDalpha << " + " << tempRider.rr_UIDnum << ", pname " << tempRider.rr_pname;
 				cout << "\n\tLogin Successful!\n\t";
@@ -164,6 +173,9 @@ valid_emailusrname:
 
 }
 
+//#######################################################################
+//  LOGIN: FUNCTIONS AVAILABLE AFTER RIDER LOGS IN SUCCESSFULLY
+//#######################################################################
 
 //This function displays the homepage for a rider *after* login
 void r_loggedIn_home(vector <Rider_pid> &rinput, Rider_ridestore &nopid_details)
@@ -191,7 +203,7 @@ void r_loggedIn_home(vector <Rider_pid> &rinput, Rider_ridestore &nopid_details)
 		cout << "\n\t2. Haitaitai";
 		cout << "\n\t3. Aro Valley";
 		cout << "\n\t4. Kelburn";
-		cout << "\n\t5. Mount Cook";
+		cout << "\n\t5. Mount Cook\n\n\t";
 		cin >> locInput;
 
 		nopid_details.rr_defaultloc = location_translate(locInput);
@@ -208,11 +220,11 @@ void r_loggedIn_home(vector <Rider_pid> &rinput, Rider_ridestore &nopid_details)
 		double dist, cost;
 		dist = main_dist_calc(nopid_details.rr_defaultloc, "TE_ARO");
 		cost = dist * 0.6;
-		cout << "\n\nDebugging: Distance from default loc to Te Aro is " << dist;
+		//cout << "\n\nDebugging: Distance from default loc to Te Aro is " << dist;
 
 		cout << "\n\tRides from " << nopid_details.rr_defaultloc << " to Te Aro costs $" << cost << " right now!\n";
 		disp_h3_lines("Select: ");
-		cout << "\n\n\t1. Express booking to Te Aro\n";
+		cout << "\n\n\t1. Express booking from " << nopid_details.rr_defaultloc <<  " to Te Aro\n";
 		cout << "\n\t2. Book a trip from your default location, " << nopid_details.rr_defaultloc << "\n";
 		cout << "\n\t3. Book a trip from a different starting location\n";
 		disp_star_line();
@@ -221,10 +233,21 @@ void r_loggedIn_home(vector <Rider_pid> &rinput, Rider_ridestore &nopid_details)
 		cout << "\n\t6. Understand Zebra Fares and Charges\n\n\t";
 		cin >> booking_select;
 
+		string creditcard;
 		switch (booking_select)
 		{
 		case 1:
 			
+			nopid_details.rr_startloc = nopid_details.rr_defaultloc;
+			nopid_details.rr_endloc = "TE_ARO";
+			cout << "\nPlease enter your credit card number: \t";
+			cin >> creditcard;
+			if (creditcard_num_valid(creditcard) != 42)
+			{
+				cin >> creditcard;
+			}
+			
+			cout << "credicard success!";
 			break;
 		case 2:
 			break;

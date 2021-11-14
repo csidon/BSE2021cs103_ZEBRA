@@ -18,7 +18,7 @@ using namespace std;
 
 struct Rider_pid
 {
-	string r_fname, r_pname, r_lname, r_address, r_emailusrname, r_pswd, r_idalpha, r_defaultloc;
+	string r_fname, r_pname, r_lname, r_address, r_emailusrname, r_pswd, r_idalpha, r_defaultloc, r_card_type, r_cardholder_name;
 	int r_contact, r_idnum;
 
 	//constructor
@@ -34,6 +34,14 @@ struct Rider_pid
 		r_idalpha = ida;
 		r_contact = rcall;
 		r_idnum = idn;
+		//payment specific vars
+		//r_card_type;
+		//r_cardholder_name = ;
+		//r_card_num;
+		//r_expiry; 
+		//r_cvv;
+
+		
 	}
 };
 
