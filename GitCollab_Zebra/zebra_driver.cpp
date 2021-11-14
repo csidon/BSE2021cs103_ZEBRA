@@ -14,13 +14,14 @@ using namespace std;
 //Coder: Anastasiia Karpova
 //File: zebra_driver.cpp
 //Edited on: 4 Nov 2021
-//Last Edited Date:  4 Nov 2021
+//Last Edited Date:  15 Nov 2021
 //Purpose: This file contains the functions for the Zebra Driver
 
 void driver_main()
 {
 	vector <Drivers> driver;
 	vector <Drivers> driverFromFile;
+	vector <Driver_rides> driver_rides;
 	int n;
 	cout << "\n\t1. Register";
 	cout << "\n\t2. Login";
@@ -249,7 +250,7 @@ void driver_account_main(vector<Drivers>& driverFromFile, string check_username)
 		account_settings(driverFromFile, check_username);
 		break;
 	case 2:
-		//job_screen();
+		//job_screen(driver_rides);
 		break;
 	case 3:
 		//reset_passsword();
@@ -362,33 +363,12 @@ void account_settings(vector<Drivers>& driverFromFile, string check_username)
 	if (n == 'e')
 	{
 
-		//update_acc_details(driverFromFile);
+		update_acc_details(driverFromFile, check_username);
 
 	}
 }
 
 
-//vector<Drivers> update_acc_details(vector < Drivers > driverFromFile)
-//{
-	//fstream driverFile("driverFile_pid.csv", ios::out);
-	//cout << "\n\tDrivers' License #	[Format:AB123456]: ";
-	//cin >> d.lice_num;
-	//cout << "\n\tDate of Expiry Format:DD / MM / YY]: ";
-	//cin >> d.doex;
-	//cout << "\n\tDriving Experience # of years: ";
-	//cin >> d.exp;
-	//cout << "\n\tVehicle Registration #: ";
-	//cin >> d.veh_regist;
-	//cout << "\n\tVehicle Age: ";
-	//cin >> d.veh_age;
-	//cout << "\n\tVehicle Model: ";
-	//cin >> d.veh_model;
-	//cout << "\n\tWOF Expiry date: ";
-	//cin >> d.wof_exp;
-	//cout << "\n\tBank account number: ";
-	//cin >> d.bank_acc;
-	//cout << "\n\tBank name: ";
-	//cin >> d.bank_name;
 
 vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string check_username)
 {
@@ -528,10 +508,94 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 		break;
 	}
 	driverFile.close();
-
 	driverFromFile = readFromFile();
+
+	char a='q';
+	cout << "\n\tThe information updated! Would you like to update anything else?";
+	cout << "\n\tChoose[select Y for ryes, N for no]: ";
+	/*while (a!='Y'||a!='N')
+	{
+		cin >> a;
+		if (a == 'Y')
+		{
+			update_acc_details(driverFromFile, check_username);
+		}
+		else if (a == 'N')
+		{
+			driver_account_main(driverFromFile, check_username);
+		}
+		else
+		{
+			cout << "\n\tPlease enter only 'Y' or 'N': ";
+		}
+	}*/
+
 	return (driverFromFile);
 }
 	
+
+
+//vector <Driver_rides> job_screen(vector <Driver_rides> driver_rides)
+//{
+//	driver_rides = read_from_driverRides();
+//	cout << "\n\tKia ora, let's get driving"<<endl;
+//	cout << "\n\t";
 //}
 
+
+//vector <Driver_rides> read_from_driverRides()
+//{
+//	fstream riderFile_rides("driver_rides.csv", ios::in);
+//	vector<Driver_rides> tempDriver;
+//
+//	Driver_rides d;
+//	string line;
+//
+//	while (getline(riderFile_rides, line))
+//	{
+//		//cout << line << endl;
+//		istringstream linestream(line);
+//		string user;
+//		getline(linestream, user, ',');
+//		d.r_uidalpha = user;
+//		getline(linestream, user, ',');
+//		stringstream ss(user);
+//		ss >> d.rider_uidnum;
+//		getline(linestream, user, ',');
+//		d.r_pname = user;
+//		getline(linestream, user, ',');
+//		d.r_has_pay_details = user;
+//		getline(linestream, user, ',');
+//		d.r_phone_num = user;
+//		getline(linestream, user, ',');
+//		d.r_defaultloc = user;
+//		getline(linestream, user, ',');
+//		d.r_startloc = user;
+//		getline(linestream, user, ',');
+//		d.r_endloc = user;
+//		getline(linestream, user, ',');
+//		stringstream ss(user);
+//		ss >> d.trip_cost;
+//		getline(linestream, user, ',');
+//		stringstream ss(user);
+//		ss >> d.gst;
+//		getline(linestream, user, ',');
+//		stringstream ss(user);
+//		ss >> d.net_trip_revenue;
+//		getline(linestream, user, ',');
+//		d.d_pref_name = user;
+//		getline(linestream, user, ',');
+//		d.d_veh_model = user;
+//		getline(linestream, user, ',');
+//		d.d_veh_regist = user;
+//		getline(linestream, user, ',');
+//		d.d_phone_num = user;
+//		getline(linestream, user, ',');
+//
+//		tempDriver.push_back(d);
+//		riderFile_rides.close();
+//		
+//	}
+//
+//	return(tempDriver);
+//}
