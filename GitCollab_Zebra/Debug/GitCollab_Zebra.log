@@ -1,2 +1,10 @@
+<<<<<<< HEAD
 ﻿  GitCollab_Zebra.cpp
   GitCollab_Zebra.vcxproj -> C:\Users\200856629\OneDrive - UP Education\Desktop\new_CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
+=======
+﻿  pswd_email_validation.cpp
+C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\pswd_email_validation.cpp(120,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\pswd_email_validation.cpp(174,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\pswd_email_validation.cpp(109): warning C4715: 'creditcard_num_valid': not all control paths return a value
+  GitCollab_Zebra.vcxproj -> C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
+>>>>>>> 2ad045bab78573215921f3618b2abfe9de8755f0
