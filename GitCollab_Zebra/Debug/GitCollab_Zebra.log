@@ -1,3 +1,20 @@
+<<<<<<< HEAD
+﻿  zebra_driver.cpp
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(179,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(196,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(220,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(337,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(398,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(413,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(426,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(439,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(452,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(465,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(478,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(490,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(503,21): warning C4018: '<': signed/unsigned mismatch
+  GitCollab_Zebra.vcxproj -> C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
+=======
 ﻿  zebra_rider.cpp
 C:\Users\270158235\OneDrive - UP Education\import Zebra\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_rider.cpp(118,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\270158235\OneDrive - UP Education\import Zebra\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_rider.cpp(198,10): warning C4129: 'C': unrecognized character escape sequence
@@ -7,3 +24,4 @@ C:\Users\270158235\OneDrive - UP Education\import Zebra\BSE2021cs103_ZEBRA\GitCo
 C:\Users\270158235\OneDrive - UP Education\import Zebra\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_rider.cpp(619,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\270158235\OneDrive - UP Education\import Zebra\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_rider.cpp(692,20): warning C4018: '<': signed/unsigned mismatch
   GitCollab_Zebra.vcxproj -> C:\Users\270158235\OneDrive - UP Education\import Zebra\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
+>>>>>>> 35cb861d8a1ba375671f39bc4b3eaaafb8f65349

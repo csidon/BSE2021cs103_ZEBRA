@@ -22,20 +22,6 @@ int main()
 	vector <Rider_pid> rider_read_file_info;
 	vector <Rider_ridestore> rider_temp_file_info;
 	
-	cout << endl;
-
-	main_dist_calc("BROOKLYN", "HATAITAI");
-	cout << endl;
-	main_dist_calc("KELBURN", "ARO_VALLEY");
-	cout << endl;
-	main_dist_calc("ARO_VALLEY", "MT_COOK");
-	cout << endl;
-	main_dist_calc("ARO_VALLEY", "TE_ARO");
-	cout << endl;
-	main_dist_calc("BROOKLYN", "ARO_VALLEY");
-	cout << endl;
-	main_dist_calc("MT_COOK", "TE_ARO");
-	cout << endl;
 
 
 	////####### Main Page ########[Chris]
