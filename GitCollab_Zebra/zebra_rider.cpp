@@ -45,31 +45,34 @@ rider_main_page:
 	cout << "\tSelect [1], [2], [3], or [4]\n\tChoose: \n\t";
 	cin >> rider_main_input;
 
-	//This section calls the Rider Registration function 
+	//Login
 	if (rider_main_input == 1)
 	{
 		system("cls");
 		
 		rider_read_rides = r_login(rider_retrieve_info());
+		cout << "\n\tdebug: Checking to make sure if r_login has passed the needed UIDs " << rider_read_rides.rr_UIDalpha << " and " << rider_read_rides.rr_UIDnum;
+		//Once login is successful, pass the temp rider struct info to the r_loggedIn function
+		r_loggedIn_home(rider_read_rides);
 
-
-		//If there are no registrations at all, bring user back to main page to register #############!! Do i need this?? ############
-		if (!"riderrides.csv")
-		{
-			cout << "\n\tPlease register for an account before logging in.\n\t";
-			system("pause");
-			goto rider_main_page;
-		}
-		//r_li_home(rider_read_rides);
-		else
-		{
-			rider_read_file_info = rider_retrieve_info();
-			cout << "Debug: Checking that tempRider has been passed back " << rider_read_rides.rr_UIDalpha << rider_read_rides.rr_UIDnum << "\tPreferred name: " << rider_read_rides.rr_pname;
-			//pass the structure received from r_login to the logged in home page
-			r_loggedIn_home(rider_read_file_info, rider_read_rides);
-		}
+		////If there are no registrations at all, bring user back to main page to register #############!! Do i need this?? ############
+		//if (!"riderrides.csv")
+		//{
+		//	cout << "\n\tPlease register for an account before logging in.\n\t";
+		//	system("pause");
+		//	goto rider_main_page;
+		//}
+		////r_li_home(rider_read_rides);
+		//else
+		//{
+		//	rider_read_file_info = rider_retrieve_info();
+		//	cout << "Debug: Checking that tempRider has been passed back " << rider_read_rides.rr_UIDalpha << rider_read_rides.rr_UIDnum << "\tPreferred name: " << rider_read_rides.rr_pname;
+		//	//pass the structure received from r_login to the logged in home page
+		//	r_loggedIn_home(rider_read_file_info, rider_read_rides);
+		//}
 
 	}
+	//This section calls the Rider Registration function 
 	else if (rider_main_input == 2)
 	{
 		system("cls");
@@ -129,27 +132,26 @@ valid_emailusrname:
 			//If email exists, check if password matches
 			if (read_from_file[i].r_pswd == r_pswd_check)
 			{
-				cout << "\nThe default location stored in the file at this time is: \t" << read_from_file[i].r_defaultloc;
+				//cout << "\nThe default location stored in the file at this time is: \t" << read_from_file[i].r_defaultloc;
 				tempRider.rr_UIDalpha = read_from_file[i].r_idalpha;
 				tempRider.rr_UIDnum = read_from_file[i].r_idnum;
-				tempRider.rr_pname = read_from_file[i].r_pname;
-				tempRider.rr_defaultloc = read_from_file[i].r_defaultloc;
-				if (read_from_file[i].r_card_type == 0)				//###############################WORKING ON  CARD
-				{
-					tempRider.rr_pay_avail = "No";
-				}
-				else
-				{
-					tempRider.rr_pay_avail = "Yes";
-				}
-			}
-			cout << "\nDebugging: checking what the default location is that I'm passing upon successful login\t" << tempRider.rr_defaultloc << endl;
-			//cout << "Debugging: Temp Rider's UID is " << tempRider.rr_UIDalpha << " + " << tempRider.rr_UIDnum << ", pname " << tempRider.rr_pname;
+				//tempRider.rr_pname = read_from_file[i].r_pname;
+				//tempRider.rr_defaultloc = read_from_file[i].r_defaultloc;
+				//if (read_from_file[i].r_card_type == 0)				//###############################WORKING ON  CARD
+				//{
+				//	tempRider.rr_pay_avail = "No";
+				//}
+				//else
+				//{
+				//	tempRider.rr_pay_avail = "Yes";
+				//}
+			
+			//cout << "\nDebugging: checking what the default location is that I'm passing upon successful login\t" << tempRider.rr_defaultloc << endl;
+			////cout << "Debugging: Temp Rider's UID is " << tempRider.rr_UIDalpha << " + " << tempRider.rr_UIDnum << ", pname " << tempRider.rr_pname;
 			cout << "\n\tLogin Successful!\n\t";
-
 			system("pause");
 			login_success += 1;
-			
+			}
 		}
 	}
 	//cout << "\nCode made it to counting exists\n"; //debugging purposes
@@ -180,24 +182,53 @@ valid_emailusrname:
 //#######################################################################
 
 //This function displays the homepage for a rider *after* login
-void r_loggedIn_home(vector <Rider_pid> &rinput, Rider_ridestore &nopid_details)
+void r_loggedIn_home(Rider_ridestore &uid)
 {
-	Rider_ridestore indiv_temp_details;
+	Rider_ridestore temp_nopid;
 	vector <Rider_ridestore> rider_rides;
 	Rider_pid pid_pushback_details;
+	vector <Rider_pid> temp_retrieve_info;
 
 	system("cls");
+	//Pulling in all important rinput details for the logged in rider
+	temp_retrieve_info = rider_retrieve_info();
+	cout << "\nDebugging: Checking that temp_retrieve_info is passed " << temp_retrieve_info[1].r_pname;
+	cout << "\nDebugging: Checking what the temp_retrieve_info file size is " << temp_retrieve_info.size();
+	cout << "\nDebugging: Is the rider_ridestore UID passed?  " << uid.rr_UIDalpha << " and " << uid.rr_UIDnum;
+	for (int i = 0; i < temp_retrieve_info.size(); i++)
+	{
+		if (temp_retrieve_info[i].r_idalpha == uid.rr_UIDalpha && temp_retrieve_info[i].r_idnum == uid.rr_UIDnum)
+		{
+			cout << "\nThe default location stored in the file at this time is: \t" << temp_retrieve_info[i].r_defaultloc;
+			temp_nopid.rr_UIDalpha = temp_retrieve_info[i].r_idalpha;
+			temp_nopid.rr_UIDnum = temp_retrieve_info[i].r_idnum;
+			temp_nopid.rr_pname = temp_retrieve_info[i].r_pname;
+			temp_nopid.rr_defaultloc = temp_retrieve_info[i].r_defaultloc;
+			cout << "\nPreferred name and transferred temp_nopid default loc are " << temp_nopid.rr_pname << " and " << temp_nopid.rr_defaultloc;
+			if (temp_retrieve_info[i].r_card_num == "nil")			
+			{
+				temp_nopid.rr_pay_avail = "No";
+			}
+			else
+			{
+				temp_nopid.rr_pay_avail = "Yes";
+			}
+			
+			//NEED TO WRITE TEMP_NOPID TO NEW RIDERRIDESFILE HERE!!!!######################################################### WORKING HERE
+		}
+	}
+	
 	disp_rider_logo();
 	string hello = "Kia Ora ";
-	string name = nopid_details.rr_pname;
+	string name = temp_nopid.rr_pname;
 	string action = ", let's arrange your ride!";
 	string title = hello + name + action;
 	disp_h2_lines(title);
 	
 	//Checking to see if rider currently exists in riderrides.csv file
-	cout << "\n\Check what temp details are already stored:\t" << nopid_details.rr_defaultloc << "\n"; //debugging purposes
+	cout << "\n\Check what temp details are already stored:\t" << temp_nopid.rr_defaultloc << "\n"; //debugging purposes
 
-	if (nopid_details.rr_defaultloc == "-")
+	if (temp_nopid.rr_defaultloc == "nil")
 	{
 		int locInput;
 		cout << "\n\tPlease select a default pickup location: ";
@@ -208,26 +239,27 @@ void r_loggedIn_home(vector <Rider_pid> &rinput, Rider_ridestore &nopid_details)
 		cout << "\n\t5. Mount Cook\n\n\t";
 		cin >> locInput;
 
-		nopid_details.rr_defaultloc = location_translate(locInput);
-		cout << "\n\Temp details registered for new default loc is:\t" << nopid_details.rr_defaultloc << "\n"; //debugging purposes
+		temp_nopid.rr_defaultloc = location_translate(locInput);
+		cout << "\n\Temp details registered for new default loc is:\t" << temp_nopid.rr_defaultloc << "\n"; //debugging purposes
 		
-		searchAndUpdate_defaultloc(nopid_details, rinput);
+		//Lessons learnt - I don't actually need to pass temp_retrieve_info - I can retrieve the info on the other end
+		searchAndUpdate_defaultloc(temp_nopid, temp_retrieve_info);
 	}
 
 	string stay_loggedIn = "y";
-
 	while (stay_loggedIn == "y")
 	{
 		int booking_select;
 		double dist, cost;
-		dist = main_dist_calc(nopid_details.rr_defaultloc, "TE_ARO");
+		dist = main_dist_calc(temp_nopid.rr_defaultloc, "TE_ARO");
 		cost = dist * 0.6;
 		//cout << "\n\nDebugging: Distance from default loc to Te Aro is " << dist;
 
-		cout << "\n\tRides from " << nopid_details.rr_defaultloc << " to Te Aro costs $" << cost << " right now!\n";
 		disp_h3_lines("Select: ");
-		cout << "\n\n\t1. Express booking from " << nopid_details.rr_defaultloc <<  " to Te Aro\n";
-		cout << "\n\t2. Book a trip from your default location, " << nopid_details.rr_defaultloc << "\n";
+		cout << "\n\n\tRides from " << temp_nopid.rr_defaultloc << " to Te Aro costs $" << cost << " right now!";
+		disp_dash_line;
+		cout << "\n\n\t1. Express booking from " << temp_nopid.rr_defaultloc <<  " to Te Aro\n";
+		cout << "\n\t2. Book a trip from your default location, " << temp_nopid.rr_defaultloc << "\n";
 		cout << "\n\t3. Book a trip from a different starting location\n";
 		disp_star_line();
 		cout << "\n\t4. View your past rides\n";
@@ -242,30 +274,24 @@ void r_loggedIn_home(vector <Rider_pid> &rinput, Rider_ridestore &nopid_details)
 		{
 			string creditcard;
 			int flag = 0;
-			nopid_details.rr_startloc = nopid_details.rr_defaultloc;
-			nopid_details.rr_endloc = "TE_ARO";
-			if (nopid_details.rr_pay_avail == "No")
+			cout << "debug: checking if user reached case 1";
+			temp_nopid.rr_startloc = temp_nopid.rr_defaultloc;
+			temp_nopid.rr_endloc = "TE_ARO";
+			if (temp_nopid.rr_pay_avail == "No")
 			{
-				pay_details(nopid_details, rinput);
-
-				
-				//while (flag == 0)
-				//{
-				//	cin.ignore();
-				//	cout << "\nPlease enter your credit card number: \t";
-				//	getline(cin, creditcard);
-				//	flag = creditcard_num_valid(creditcard);
-				//	if (flag == 1)
-				//	{
-				//		cout << "credicard success!";
-				//		system("pause");
-				//		break;
-				//	}
-				//}
+				pay_details(temp_nopid);
 			}
-			
+			cout << "\n\tYour booking has been confirmed.";
+			cout << "\n\n\tTrip details:";
+			cout << "\n\tPickup point\t\t" << temp_nopid.rr_startloc;
+			cout << "\n\tDropoff point\t\t" << temp_nopid.rr_endloc;
+			cout << "\n\tDropoff point\t\t: 3";
+			main_dist_calc(temp_nopid.rr_defaultloc, "TE_ARO");
+			cost = main_dist_calc(temp_nopid.rr_startloc, temp_nopid.rr_endloc) * 0.6;
+			cout << "\n\tYour trip cost is " << cost;
+			disp_dash_line;
+			break;
 		}
-		break;
 
 		case 2:
 			break;
@@ -334,31 +360,46 @@ string location_translate(int user_input)
 //  DATA INPUT FUNCTIONS
 //  rider_register(), pay_details()
 //#######################################################
- vector <Rider_pid> pay_details(Rider_ridestore& passed_nopid_details, vector <Rider_pid> read_from_file)
+ vector <Rider_pid> pay_details(Rider_ridestore& passed_nopid_details)
 {
 	//vector <Rider_pid> temp_creditcard;
 	Rider_pid temp_creditcard;
+	vector <Rider_pid> read_from_file;
 
 	fstream riderpid_file("riderpid.csv", ios::out);
+	read_from_file = rider_retrieve_info();
 	int uid_exists = 0;
-
+	int confirm;
+	cout << "\n\tDebugging - Checking if read_from_file is successfully passed with " << read_from_file[1].r_idalpha << " and " << read_from_file[1].r_idnum << " with filesize " << read_from_file.size();
 	//if this function is called, immediately transfer the rider's noPID details to compare with pid csv file
 	disp_dash_line();
 	cout << "\n\tUnique ID that i'm looking to pass to database is:\t" << passed_nopid_details.rr_UIDalpha << " and " << passed_nopid_details.rr_UIDnum << "\n"; //debugging purposes
 
-	//searching for the provided email address/username
+	//searching for the provided ID so that we can eventually write to file
 	for (int i = 0; i < read_from_file.size(); i++)
 	{
 		cout << "What is the searched r_idalpha? " << read_from_file[i].r_idalpha << " and " << read_from_file[i].r_idnum;
 		if (read_from_file[i].r_idalpha == passed_nopid_details.rr_UIDalpha && read_from_file[i].r_idnum == passed_nopid_details.rr_UIDnum)
 		{
+			cout << "\n\tWe need your payment details to proceed";
+			disp_dash_line;
+			cout << "\n\tPayments are secured by WINDCAVE Security";
+			disp_dash_line;
+			cout << "\n\tCredit card Type. Select:";
+			cout << "\n\t[1] for VISA";
+			cout << "\n\t[2] for MASTERCARD";
+			cout << "\n\t[3] for AMEX";
+			cin >> read_from_file[i].r_card_type;
+
+			cout << "\n\n\tCardholder Name\t:";
 
 			//Credit card # validation
 			int flag = 0;
 			while (flag == 0)
 			{
 				cin.ignore();
-				cout << "\n\tPlease enter your credit card number: \t";
+				cout << "\n\tCard number";
+				cout << "\n\t[#### #### #### ####]\t:";
 				getline(cin, temp_creditcard.r_card_num);
 				flag = creditcard_num_valid(temp_creditcard.r_card_num);
 				if (flag == 1)
@@ -372,18 +413,31 @@ string location_translate(int user_input)
 					cout << "\n\tYour card number format must be [XXXX XXXX XXXX XXXX].\n";
 					cout << "\n\tHit Enter to try again.\n";
 				}
-					
+			}
+			cout << "\n\tExpiry date\t";
+			cout << "[MMYY]\t\t:";
+			cin >> read_from_file[i].r_expiry;
 
+			cout << "\n\tCVV\t";
+			cout << "[3 digits on the back of your card\t:";
+			cin >> read_from_file[i].r_cvv;
+
+			cout << "\n\tEnter:\n\t[1] Confirm your credit card details";
+			cout << "\n\t[2]Cancel your booking and return to homepage";
+			cin >> confirm;
+			if (confirm == 2)
+			{
+				r_loggedIn_home(passed_nopid_details);
 			}
 			read_from_file[i].r_card_num = temp_creditcard.r_card_num;
 			cout << "Card number to be input into system is \t:" << read_from_file[i].r_card_num; //debugging purposes
 			uid_exists += 1;
 			riderpid_file << read_from_file[i].r_idalpha << "," << read_from_file[i].r_idnum << "," << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ",";
 			riderpid_file << read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ",";
-			riderpid_file << read_from_file[i].r_pswd << "," << read_from_file[i].r_defaultloc << "," << read_from_file[i].r_card_num << endl;
-
+			riderpid_file << read_from_file[i].r_pswd << "," << read_from_file[i].r_defaultloc << "," << read_from_file[i].r_card_type << "," << read_from_file[i].r_cardholder_name << ",";
+			riderpid_file << read_from_file[i].r_card_num << "," << read_from_file[i].r_expiry << "," << read_from_file[i].r_cvv <<  endl;
+			cout << "\n\tPayment details registered. \n\tPress Enter to confirm your booking";
 		}
-
 	}
 	if (uid_exists == 0)
 	{
@@ -477,13 +531,14 @@ valid_pass:
 	{
 		goto change_riderpid;
 	}
-	ri.r_defaultloc = "-";
-	ri.r_card_num = "-";
+	ri.r_defaultloc = "nil";
+	ri.r_card_type = 0;
+	ri.r_card_num = "nil";
+	ri.r_expiry = 0;
+	ri.r_cvv = 0;
+
 	cout << "\nThe r_idalpha at registration before creation is " << ri.r_idalpha;
 	cout << "\nThe default location upon registration before creation is " << ri.r_defaultloc;
-
-
-
 
 	//This section creates an AlphaID for the registration person upon confirmation of account creation, based on their firstname and last name
 	ri.r_idalpha += "R" + ri.r_fname.substr(0, 1);
@@ -508,10 +563,22 @@ void writeRiderToFile(vector <Rider_pid>& write_r)
 		//cout << "Your code made it here"; //debugging
 		riderpid_file << write_r[i].r_idalpha << "," << write_r[i].r_idnum << "," << write_r[i].r_fname << "," << write_r[i].r_lname << "," << write_r[i].r_pname << ",";
 		riderpid_file << write_r[i].r_contact << "," << write_r[i].r_address << "," << write_r[i].r_emailusrname << ",";
-		riderpid_file << write_r[i].r_pswd << "," << write_r[i].r_defaultloc << "," << write_r[i].r_card_num << endl;
+		riderpid_file << write_r[i].r_pswd << "," << write_r[i].r_defaultloc << "," << write_r[i].r_card_type << "," << write_r[i].r_cardholder_name << ",";
+		riderpid_file << write_r[i].r_card_num << "," << write_r[i].r_expiry << "," << write_r[i].r_cvv << endl;
 	}
 
 	riderpid_file.close();
+}
+
+void writeRiderPubFile(vector <Rider_ridestore>& write_r)
+{
+	fstream riderpub_file("riderrides.csv", ios::app);
+	for (int i = 0; i < write_r.size(); i++)
+	{
+		riderpub_file << write_r[i].rr_UIDalpha << "," << write_r[i].rr_UIDnum << "," << write_r[i].rr_pname << "," << write_r[i].rr_defaultloc << "," << write_r[i].rr_startloc << "," << write_r[i].rr_endloc << ",";
+		riderpub_file << write_r[i].rr_pay_avail << "," << write_r[i].rr_tripCost << "," << write_r[i].rr_gst << "," << write_r[i].rr_netTripRevenue << endl ;
+	}
+	riderpub_file.close();
 }
 
 //This function counts the number of lines stored in the riderpid.csv file
@@ -657,9 +724,11 @@ valid_emailusrname:
 			
 
 		}
-		riderpid_file << read_from_file[i].r_idalpha << "," << read_from_file[i].r_idnum << "," << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ","
-			<< read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ","
-			<< read_from_file[i].r_pswd << "," << read_from_file[i].r_defaultloc << endl;
+		riderpid_file << read_from_file[i].r_idalpha << "," << read_from_file[i].r_idnum << "," << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ",";
+		riderpid_file << read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ",";
+		riderpid_file << read_from_file[i].r_pswd << "," << read_from_file[i].r_defaultloc << "," << read_from_file[i].r_card_type << "," << read_from_file[i].r_cardholder_name << ",";
+		riderpid_file << read_from_file[i].r_card_num << "," << read_from_file[i].r_expiry << "," << read_from_file[i].r_cvv << endl;
+
 
 		
 	}
@@ -708,9 +777,10 @@ vector<Rider_pid> searchAndUpdate_defaultloc(Rider_ridestore& passed_nopid_detai
 		{
 			read_from_file[i].r_defaultloc = read_from_file[i].r_defaultloc;
 		}
-		riderpid_file << read_from_file[i].r_idalpha << "," << read_from_file[i].r_idnum << "," << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ","
-			<< read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ","
-			<< read_from_file[i].r_pswd << "," << read_from_file[i].r_defaultloc << endl;
+		riderpid_file << read_from_file[i].r_idalpha << "," << read_from_file[i].r_idnum << "," << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ",";
+		riderpid_file << read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ",";
+		riderpid_file << read_from_file[i].r_pswd << "," << read_from_file[i].r_defaultloc << "," << read_from_file[i].r_card_type << "," << read_from_file[i].r_cardholder_name << ",";
+		riderpid_file << read_from_file[i].r_card_num << "," << read_from_file[i].r_expiry << "," << read_from_file[i].r_cvv << endl;
 
 
 	}

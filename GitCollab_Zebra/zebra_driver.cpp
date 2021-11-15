@@ -540,54 +540,54 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 }
 	
 
-vector <Drivers> job_screen(vector <Drivers> driver_rides)
-{
+//vector <Drivers> job_screen(vector <Drivers> driver_rides)
+//{
+//
+//	cout << "\n\tKia Ora! Ready to pick up?";
+//	cout << "\n\tere's the available jobs waiting for you to pick up:  ";
+//	cout << "\n\t1. Anakin Skywalker ";
+//	cout << "\n\tDistance from you	:  2.2 kms";
+//	cout << endl;
+//	cout << "\n\t2. Luke Skywalker";
+//	cout << "\n\tDistance from you	:  3.1 kms";
+//	cout << endl;
+//	cout << "\n\t3. Yoda";
+//	cout << "\n\tDistance from you	:  5.2 kms";
+//	cout << endl;
+//	cout << "\n\t4. Baby Yoda";
+//	cout << "\n\tDistance from you	:  5.2 kms";
+//
+//}
 
-	cout << "\n\tKia Ora! Ready to pick up?";
-	cout << "\n\tere's the available jobs waiting for you to pick up:  ";
-	cout << "\n\t1. Anakin Skywalker ";
-	cout << "\n\tDistance from you	:  2.2 kms";
-	cout << endl;
-	cout << "\n\t2. Luke Skywalker";
-	cout << "\n\tDistance from you	:  3.1 kms";
-	cout << endl;
-	cout << "\n\t3. Yoda";
-	cout << "\n\tDistance from you	:  5.2 kms";
-	cout << endl;
-	cout << "\n\t4. Baby Yoda";
-	cout << "\n\tDistance from you	:  5.2 kms";
-
-}
 
 
-
-vector <Drivers> create_driver_trips(vector <Drivers> driverFromFile)
-{
-	int total_entries = 0;
-	string s;
-	fstream driverFileRides("driver_rides.csv", ios::in);
-	if (!driverFileRides)
-	{
-		total_entries = 0;
-	}
-	else
-	{
-		while (!driverFileRides.eof())
-		{
-			getline(driverFileRides, s);
-			total_entries++;
-		}
-		total_entries = total_entries - 1;
-
-	}
-	driverFileRides.close();
-
-	fstream driverFileRides("driver_rides.csv", ios::app);
-	for (int i = 0; i < driverFromFile.size(); i++)
-	{
-		driverFromFile[i].trip_id = 10001 + total_entries;
-		driverFileRides << driverFromFile[i].trip_id << "," << driverFromFile[i].d_idAlph << "," << driverFromFile[i].d_idNum << endl;
-	}
-	driverFileRides.close();
-	return driverFromFile;
-}
+//vector <Drivers> create_driver_trips(vector <Drivers> driverFromFile)
+//{
+//	int total_entries = 0;
+//	string s;
+//	fstream driverFileRides("driver_rides.csv", ios::in);
+//	if (!driverFileRides)
+//	{
+//		total_entries = 0;
+//	}
+//	else
+//	{
+//		while (!driverFileRides.eof())
+//		{
+//			getline(driverFileRides, s);
+//			total_entries++;
+//		}
+//		total_entries = total_entries - 1;
+//
+//	}
+//	driverFileRides.close();
+//
+//	fstream driverFileRides("driver_rides.csv", ios::app);
+//	for (int i = 0; i < driverFromFile.size(); i++)
+//	{
+//		driverFromFile[i].trip_id = 10001 + total_entries;
+//		driverFileRides << driverFromFile[i].trip_id << "," << driverFromFile[i].d_idAlph << "," << driverFromFile[i].d_idNum << endl;
+//	}
+//	driverFileRides.close();
+//	return driverFromFile;
+//}
