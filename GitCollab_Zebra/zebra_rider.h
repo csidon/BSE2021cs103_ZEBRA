@@ -18,11 +18,11 @@ using namespace std;
 
 struct Rider_pid
 {
-	string r_fname, r_pname, r_lname, r_address, r_emailusrname, r_pswd, r_idalpha, r_defaultloc, r_card_type, r_cardholder_name;
-	int r_contact, r_idnum;
+	string r_fname, r_pname, r_lname, r_address, r_emailusrname, r_pswd, r_idalpha, r_defaultloc, r_cardholder_name, r_card_num;
+	int r_contact, r_idnum, r_card_type, r_expiry, r_cvv;
 
 	//constructor
-	Rider_pid(string rdl = "", string rfn = "", string rpn = "", string rln = "", string rad = "", string reu = "", string rpw = "", string ida = "", int idn = 0, int rcall = 0)
+	Rider_pid(string rdl = "", string rfn = "", string rpn = "", string rln = "", string rad = "", string reu = "", string rpw = "", string ida = "", string rccn = "", string rccnum = "", int ct=0, int cex = 0, int cvv = 0, int idn = 0, int rcall = 0)
 	{
 		r_defaultloc = rdl;
 		r_fname = rfn;
@@ -35,11 +35,11 @@ struct Rider_pid
 		r_contact = rcall;
 		r_idnum = idn;
 		//payment specific vars
-		//r_card_type;
-		//r_cardholder_name = ;
-		//r_card_num;
-		//r_expiry; 
-		//r_cvv;
+		r_card_type = ct;
+		r_cardholder_name = rccn;
+		r_card_num = rccnum;
+		r_expiry = cex; 
+		r_cvv = cvv;
 
 		
 	}
@@ -47,11 +47,11 @@ struct Rider_pid
 
 struct Rider_ridestore
 {
-	string rr_UIDalpha, rr_pname, rr_defaultloc, rr_startloc, rr_endloc;
+	string rr_UIDalpha, rr_pname, rr_defaultloc, rr_startloc, rr_endloc, rr_pay_avail;
 	int rr_UIDnum, rr_tripCost, rr_gst, rr_netTripRevenue;
 
 	//Constructor
-	Rider_ridestore(string uida = "", string rpn = "", string rdl = "", string rsl = "", string rel = "", int uidn = 0, int tc = 0, int gst = 0, int ntr = 0)
+	Rider_ridestore(string uida = "", string rpn = "", string rdl = "", string rsl = "", string rel = "", string pay = "", int uidn = 0, int tc = 0, int gst = 0, int ntr = 0)
 	{
 		rr_UIDalpha = uida;
 		rr_pname = rpn; 
@@ -61,6 +61,7 @@ struct Rider_ridestore
 		rr_tripCost = tc;
 		rr_gst = gst;
 		rr_netTripRevenue = ntr;
+		rr_pay_avail = pay;
 	}
 };
 
@@ -76,5 +77,6 @@ Rider_ridestore r_login(vector <Rider_pid> temp_pull_file);
 vector<Rider_pid> searchAndUpdate_defaultloc(Rider_ridestore& nopid_details, vector <Rider_pid> read_from_file);
 string location_translate(int user_input);
 void disp_fares_charges();
+vector <Rider_pid> pay_details(Rider_ridestore& passed_nopid_details, vector <Rider_pid> read_from_file);
 
 #endif
