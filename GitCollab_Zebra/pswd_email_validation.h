@@ -31,6 +31,7 @@ int email_valid(string remail);
 int pswd_valid(string rpswd);
 bool has_space(char space);
 int creditcard_num_valid(string credit);
+int check_dup(string input, string from_file);
 
 
 #endif

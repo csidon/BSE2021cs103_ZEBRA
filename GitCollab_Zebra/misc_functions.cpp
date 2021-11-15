@@ -29,7 +29,7 @@ string convert_string_to_upper(string &string_entry)
 		converted_string += c;
 	}
 
-	cout << "\n This is the converted string " << converted_string;
+	//cout << "\n This is the converted string " << converted_string;  //for debugging purposes
 	return converted_string;
 }
 

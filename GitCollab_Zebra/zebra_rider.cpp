@@ -120,7 +120,8 @@ valid_emailusrname:
 		//cout << "\nCode made it to forloop\n"; //Debugging
 		
 		//cout << "\nDebugging usernames available STAGE 2\t" << read_from_file[i].r_emailusrname;
-		if (read_from_file[i].r_emailusrname == r_emailusrname_check)
+		if (check_dup(r_emailusrname_check,read_from_file[i].r_emailusrname) == 1)
+		//if (read_from_file[i].r_emailusrname == r_emailusrname_check)
 		{
 			//cout << "\tEmail exists in database\n"; //debugging purposes
 			//cout << "\nDebugging usernames available Emails Exist\t" << read_from_file[i].r_emailusrname;
@@ -132,22 +133,23 @@ valid_emailusrname:
 				tempRider.rr_UIDalpha = read_from_file[i].r_idalpha;
 				tempRider.rr_UIDnum = read_from_file[i].r_idnum;
 				tempRider.rr_pname = read_from_file[i].r_pname;
-				if (read_from_file[i].r_defaultloc == "")
+				tempRider.rr_defaultloc = read_from_file[i].r_defaultloc;
+				if (read_from_file[i].r_card_type == 0)				//###############################WORKING ON  CARD
 				{
-					tempRider.rr_defaultloc = "";
+					tempRider.rr_pay_avail = "No";
 				}
 				else
 				{
-					tempRider.rr_defaultloc = read_from_file[i].r_defaultloc;
+					tempRider.rr_pay_avail = "Yes";
 				}
-				
-				cout << "\nDebugging: checking what the default location is that I'm passing upon successful login\t" << tempRider.rr_defaultloc << endl;
-				//cout << "Debugging: Temp Rider's UID is " << tempRider.rr_UIDalpha << " + " << tempRider.rr_UIDnum << ", pname " << tempRider.rr_pname;
-				cout << "\n\tLogin Successful!\n\t";
+			}
+			cout << "\nDebugging: checking what the default location is that I'm passing upon successful login\t" << tempRider.rr_defaultloc << endl;
+			//cout << "Debugging: Temp Rider's UID is " << tempRider.rr_UIDalpha << " + " << tempRider.rr_UIDnum << ", pname " << tempRider.rr_pname;
+			cout << "\n\tLogin Successful!\n\t";
 
-				system("pause");
-				login_success += 1;
-			}	
+			system("pause");
+			login_success += 1;
+			
 		}
 	}
 	//cout << "\nCode made it to counting exists\n"; //debugging purposes
@@ -195,7 +197,7 @@ void r_loggedIn_home(vector <Rider_pid> &rinput, Rider_ridestore &nopid_details)
 	//Checking to see if rider currently exists in riderrides.csv file
 	cout << "\n\Check what temp details are already stored:\t" << nopid_details.rr_defaultloc << "\n"; //debugging purposes
 
-	if (nopid_details.rr_defaultloc == "")
+	if (nopid_details.rr_defaultloc == "-")
 	{
 		int locInput;
 		cout << "\n\tPlease select a default pickup location: ";
@@ -233,22 +235,38 @@ void r_loggedIn_home(vector <Rider_pid> &rinput, Rider_ridestore &nopid_details)
 		cout << "\n\t6. Understand Zebra Fares and Charges\n\n\t";
 		cin >> booking_select;
 
-		string creditcard;
+		
 		switch (booking_select)
 		{
 		case 1:
-			
+		{
+			string creditcard;
+			int flag = 0;
 			nopid_details.rr_startloc = nopid_details.rr_defaultloc;
 			nopid_details.rr_endloc = "TE_ARO";
-			cout << "\nPlease enter your credit card number: \t";
-			cin >> creditcard;
-			if (creditcard_num_valid(creditcard) != 42)
+			if (nopid_details.rr_pay_avail == "No")
 			{
-				cin >> creditcard;
+				pay_details(nopid_details, rinput);
+
+				
+				//while (flag == 0)
+				//{
+				//	cin.ignore();
+				//	cout << "\nPlease enter your credit card number: \t";
+				//	getline(cin, creditcard);
+				//	flag = creditcard_num_valid(creditcard);
+				//	if (flag == 1)
+				//	{
+				//		cout << "credicard success!";
+				//		system("pause");
+				//		break;
+				//	}
+				//}
 			}
 			
-			cout << "credicard success!";
-			break;
+		}
+		break;
+
 		case 2:
 			break;
 		case 3:
@@ -312,12 +330,79 @@ string location_translate(int user_input)
 
 
 
+//#######################################################
+//  DATA INPUT FUNCTIONS
+//  rider_register(), pay_details()
+//#######################################################
+ vector <Rider_pid> pay_details(Rider_ridestore& passed_nopid_details, vector <Rider_pid> read_from_file)
+{
+	//vector <Rider_pid> temp_creditcard;
+	Rider_pid temp_creditcard;
 
+	fstream riderpid_file("riderpid.csv", ios::out);
+	int uid_exists = 0;
+
+	//if this function is called, immediately transfer the rider's noPID details to compare with pid csv file
+	disp_dash_line();
+	cout << "\n\tUnique ID that i'm looking to pass to database is:\t" << passed_nopid_details.rr_UIDalpha << " and " << passed_nopid_details.rr_UIDnum << "\n"; //debugging purposes
+
+	//searching for the provided email address/username
+	for (int i = 0; i < read_from_file.size(); i++)
+	{
+		cout << "What is the searched r_idalpha? " << read_from_file[i].r_idalpha << " and " << read_from_file[i].r_idnum;
+		if (read_from_file[i].r_idalpha == passed_nopid_details.rr_UIDalpha && read_from_file[i].r_idnum == passed_nopid_details.rr_UIDnum)
+		{
+
+			//Credit card # validation
+			int flag = 0;
+			while (flag == 0)
+			{
+				cin.ignore();
+				cout << "\n\tPlease enter your credit card number: \t";
+				getline(cin, temp_creditcard.r_card_num);
+				flag = creditcard_num_valid(temp_creditcard.r_card_num);
+				if (flag == 1)
+				{
+					cout << "creditcard success!";
+					system("pause");
+					break;
+				}
+				else
+				{
+					cout << "\n\tYour card number format must be [XXXX XXXX XXXX XXXX].\n";
+					cout << "\n\tHit Enter to try again.\n";
+				}
+					
+
+			}
+			read_from_file[i].r_card_num = temp_creditcard.r_card_num;
+			cout << "Card number to be input into system is \t:" << read_from_file[i].r_card_num; //debugging purposes
+			uid_exists += 1;
+			riderpid_file << read_from_file[i].r_idalpha << "," << read_from_file[i].r_idnum << "," << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ",";
+			riderpid_file << read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ",";
+			riderpid_file << read_from_file[i].r_pswd << "," << read_from_file[i].r_defaultloc << "," << read_from_file[i].r_card_num << endl;
+
+		}
+
+	}
+	if (uid_exists == 0)
+	{
+		cout << "\n\t!!!! ERROR - UID DOES NOT EXIST IN SYSTEM. THIS SHOULD NOT HAPPEN --DEBUGGING \n";
+	}
+	
+	riderpid_file.close();
+	read_from_file = rider_retrieve_info();
+	return (read_from_file);
+
+}
 
 //RIDER REGISTRATION FUNCTION: This section takes rider input data from user
 vector <Rider_pid> rider_register(vector <Rider_pid>& rinput)
 {
+	vector <Rider_pid> temp_read_riderpid;
 	int rreg_confirmation;
+	//pulling current registered data into a temp file for later comparison
+	temp_read_riderpid = rider_retrieve_info();
 
 	system("cls");
 	disp_rider_logo();
@@ -346,11 +431,23 @@ valid_email:
 	cout << "\n\tbe your username]\t:  ";
 	getline(cin, ri.r_emailusrname);
 
+	int dup_flag_triggered = 0;
+	for (int i = 0; i < count_entries(); i++)
+	{
+		dup_flag_triggered = check_dup(ri.r_emailusrname, temp_read_riderpid[i].r_emailusrname);
+		if (dup_flag_triggered == 1)
+		{
+			cout << "\n\tThis username is already in use";
+			goto valid_email;
+		}
+	}
+
 	if (email_valid(ri.r_emailusrname) == 0)
 	{
 		cout << "\n\t!!Please enter a valid email address!!";
 		goto valid_email;
 	}
+
 valid_pass:
 	cout << "\n\tPassword";
 	cout << "\n\t[Passwords must be";
@@ -380,10 +477,12 @@ valid_pass:
 	{
 		goto change_riderpid;
 	}
-	if (ri.r_idalpha == "")
-	{
-		ri.r_defaultloc == "";
-	}
+	ri.r_defaultloc = "-";
+	ri.r_card_num = "-";
+	cout << "\nThe r_idalpha at registration before creation is " << ri.r_idalpha;
+	cout << "\nThe default location upon registration before creation is " << ri.r_defaultloc;
+
+
 
 
 	//This section creates an AlphaID for the registration person upon confirmation of account creation, based on their firstname and last name
@@ -409,7 +508,7 @@ void writeRiderToFile(vector <Rider_pid>& write_r)
 		//cout << "Your code made it here"; //debugging
 		riderpid_file << write_r[i].r_idalpha << "," << write_r[i].r_idnum << "," << write_r[i].r_fname << "," << write_r[i].r_lname << "," << write_r[i].r_pname << ",";
 		riderpid_file << write_r[i].r_contact << "," << write_r[i].r_address << "," << write_r[i].r_emailusrname << ",";
-		riderpid_file << write_r[i].r_pswd << write_r[i].r_defaultloc << endl;
+		riderpid_file << write_r[i].r_pswd << "," << write_r[i].r_defaultloc << "," << write_r[i].r_card_num << endl;
 	}
 
 	riderpid_file.close();
@@ -446,7 +545,7 @@ vector <Rider_pid> rider_retrieve_info()
 	fstream riderpid_file("riderpid.csv", ios::in);
 	vector <Rider_pid> tempFile;
 
-	Rider_pid read_r;
+	Rider_pid read_r, check_r;
 	string line;
 	//cout << "Your code made it to the start of rider_retrieve_info()"; //debugging purposes
 
@@ -480,11 +579,14 @@ vector <Rider_pid> rider_retrieve_info()
 		read_r.r_emailusrname = get_val;
 		getline(linestream, get_val, ',');
 		read_r.r_pswd = get_val;
-		read_r.r_defaultloc = "";
+		
 		cout << "\nQuick check - What does r_defaultloc register BEFORE getline in rider_retrieve_info?\t" << read_r.r_defaultloc;
-
 		getline(linestream, get_val, ',');
 		read_r.r_defaultloc = get_val;
+		getline(linestream, get_val, ',');
+		read_r.r_card_num = get_val;
+		
+
 
 		cout << "\nQuick check - What does r_defaultloc register after getline in rider_retrieve_info?\t" << read_r.r_defaultloc;
 		//cout << "\n" << read_r.r_emailusrname << "\tyour code made it to pulling the username\n"; //debugging purposes
@@ -555,9 +657,9 @@ valid_emailusrname:
 			
 
 		}
-		riderpid_file << read_from_file[i].r_idalpha << "," << read_from_file[i].r_idnum << "," <<  read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ","
+		riderpid_file << read_from_file[i].r_idalpha << "," << read_from_file[i].r_idnum << "," << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ","
 			<< read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ","
-			<< read_from_file[i].r_pswd << read_from_file[i].r_defaultloc << endl;
+			<< read_from_file[i].r_pswd << "," << read_from_file[i].r_defaultloc << endl;
 
 		
 	}

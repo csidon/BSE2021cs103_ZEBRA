@@ -5,6 +5,7 @@
 #include <sstream>
 #include <fstream>
 #include "pswd_email_validation.h"
+#include "misc_functions.h"
 
 using namespace std;
 
@@ -52,63 +53,75 @@ bool has_space(char space)
 // This function validates that the card number is in number format #### #### #### ####
 int creditcard_num_valid(string credit)
 {
-	int num = 0, space = 0;
+	int flag = 0;
+	cout << "\nChecking card length " << credit.length() << endl;
+	//If the input has correct length
 	if (credit.length() == 19)
+
 	{
-		if ((!has_space(credit[4])) || (!has_space(credit[9])) || (!has_space(credit[14])))
+		cout << "\n length ok";
+		//if input at positions 4, 9, 14, are spaces
+		if ((has_space(credit[4])) || (has_space(credit[9])) || (has_space(credit[14])))
 		{
-			cout << "\n\tPlease enter a valid credit card number in the format #### #### #### ####\n";
-			return 0;
+			cout << "\nSpace ok";
+			int chunk = 0;
+			for (int i = 0; i < 4; i++)
+			{
+				cout << "\n chunked value " << chunk;
+				string temppull = (credit.substr(chunk, 4));
+				cout << "\ndebugging temppull 1  " << temppull;
+				for (int i = 0; i < 4; i++)
+				{
+					if (is_a_digit(temppull[i]))
+						flag = 1;
+					else
+						flag = 0;
+
+				}
+				cout << "\nflag value after isdigit loop is " << flag;
+				chunk += 5;
+				cout << "\n chunked value after loop " << chunk;
+			}
 		}
 
-		//DO/WHILE STATEMENT HERE
-
-		string temppull = (credit.substr(0, 4));
-		cout << "\ndebugging temppull 1  " << temppull;
-		for (int i = 0; i < 4; i++)
-		{
-			if (!is_a_digit(temppull[i]))
-			{
-				cout << "\n\tPlease enter a valid credit card number in the format #### #### #### ####\n";
-				return 0;
-			}
-		}
-
-		string temppull2 = (credit.substr(5, 4));
-		cout << "\ndebugging temppull 2  " << temppull2;
-		for (int i = 0; i < 4; i++)
-		{
-			if (!is_a_digit(temppull2[i]))
-			{
-				cout << "\n\tPlease enter a valid credit card number in the format #### #### #### ####\n";
-				return 0;
-			}
-		}
-		string temppull3 = (credit.substr(10, 4));
-		cout << "\ndebugging temppull 3  " << temppull3;
-		for (int i = 0; i < 4; i++)
-		{
-			if (!is_a_digit(temppull3[i]))
-			{
-				cout << "\n\tPlease enter a valid credit card number in the format #### #### #### ####\n";
-				return 0;
-			}
-		}
-		string temppull4 = (credit.substr(15, 4));
-		cout << "\ndebugging temppull 4  " << temppull4;
-		for (int i = 0; i < 4; i++)
-		{
-			if (!is_a_digit(temppull4[i]))
-			{
-				cout << "\n\tPlease enter a valid credit card number in the format #### #### #### ####\n";
-				return 0;
-			}
-		}
-		return 42;
 	}
-	
-	
+	cout << flag << "<--This is the flag value\n";
+	return flag;
 }
+
+			
+//			//If the first 4 chunks of input are integers
+//			string temppull = (credit.substr(0, 4));
+//			cout << "\ndebugging temppull 1  " << temppull;
+//			for (int i = 0; i < 4; i++)
+//			{
+//				if (is_a_digit(temppull[i]))
+//				{
+//					//If the second 4 chunks of input are integers
+//					string temppull2 = (credit.substr(5, 4));
+//					cout << "\ndebugging temppull 2  " << temppull2;
+//					for (int i = 0; i < 4; i++)
+//					{
+//						if (is_a_digit(temppull2[i]))
+//						{
+//							//If the third "4 char" chunks of input are integers
+//							string temppull3 = (credit.substr(10, 4));
+//							cout << "\ndebugging temppull 3  " << temppull3;
+//							for (int i = 0; i < 4; i++)
+//							{
+//								if (is_a_digit(temppull3[i]))
+//								{
+//									//If the fourth "4 char" chunks of input are integers
+//									string temppull4 = (credit.substr(15, 4));
+//									cout << "\ndebugging temppull 4  " << temppull4;
+//									for (int i = 0; i < 4; i++)
+//									{
+//										if (is_a_digit(temppull4[i]))
+//										{
+//											flag = 1;
+//	return 42;
+//	
+//}
 
 
 //This function validates that the user's input includes an @ and at least one "." -- EMAIL VALIDATION
@@ -209,4 +222,24 @@ int pswd_valid(string rpswd)
 	{
 		return 1;
 	}
+}
+
+
+//###########################################################
+//  CHECKING DUPLICATES
+//###########################################################
+int check_dup(string input, string from_file)
+{
+	int has_dup_flag = 0;
+	string converted_input = convert_string_to_upper(input);
+	string converted_filevalue = convert_string_to_upper(from_file);
+	//cout << "\nDebugging checkdup converted input \t:" << converted_input;
+	//cout << "\nDebugging checkdup converted filevalue? \t:" << converted_filevalue;
+	
+	if (converted_input == converted_filevalue)
+	{
+		has_dup_flag = 1;
+	}
+	//cout << "\nDebugging checkdup has_flag? \t:" << has_dup_flag;
+	return has_dup_flag;
 }
