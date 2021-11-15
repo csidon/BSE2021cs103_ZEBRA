@@ -39,14 +39,14 @@ double get_coordinates(struct Location* stored, string startLoc, string endLoc)
 {
 	Location start_coord, end_coord;
 
-	/*cout << "The size of stored location arrays is " << sizeof(stored);
+	cout << "The size of stored location arrays is " << sizeof(stored);
 	cout << "The startlocation passed is " << startLoc;
-	cout << "The endlocation passed is " << endLoc;*/
+	cout << "The endlocation passed is " << endLoc;
 
 	for (int i = 0; i < 6; i++)
 	{
 		//cout << i << endl;//DEBUG
-		/*cout << "the stored location for " << i << " is " << stored[i].id;*/
+		cout << "the stored location for " << i << " is " << stored[i].id;
 		if (startLoc == stored[i].id)
 		{
 			//cout << "\nDEBUG";
