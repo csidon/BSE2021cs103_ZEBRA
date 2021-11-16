@@ -23,7 +23,6 @@ struct Drivers
 {
 	string d_idAlph;
 	int d_idNum;
-	string trip_id_d;
 	string fname;
 	string sname;
 	string pref_name;
@@ -42,12 +41,11 @@ struct Drivers
 	string wof_exp;
 	string bank_name;
 	string bank_acc;
-	Drivers(string alph="", int num = 0, string tid = "", string fn = "", string sn = "", string pn = "", string phn = "", string m = "", string pw = "", string g = "", string b = "", string n = "", string ln = "", string d = "", string vr = "", string va = "", string vm = "", string we = "", string bn = "", string ba = "", string e = "")
+	Drivers(string alph="", int num = 0, string fn = "", string sn = "", string pn = "", string phn = "", string m = "", string pw = "", string g = "", string b = "", string n = "", string ln = "", string d = "", string vr = "", string va = "", string vm = "", string we = "", string bn = "", string ba = "", string e = "")
 	
 	{	
 		d_idAlph = alph;
 		d_idNum = num;
-		trip_id_d = tid;
 		fname = fn;
 		sname = sn;
 		pref_name = pn;
@@ -73,21 +71,23 @@ struct Trips
 {
 
 	string trip_id;
+	string driver_id;
 	string start_loc;
 	string end_loc;
 	double trip_cost;
-	double gst;
-	double net_cost;
+	//double gst;
+	//double net_cost;
 	string trip_date;
 	string trip_time;
-	Trips(string trip = "", string sl = "", string el = "",  double tc = 0, double gstt = 0, double nc = 0, string td = "", string tt = "")
+	Trips(string trip = "", string di ="", string sl = "", string el = "", double tc = 0, string td = "", string tt = "")
 	{
 		trip_id = trip;
+		driver_id = di;
 		start_loc = sl;
 		end_loc = el;
 		trip_cost = tc;
-		gst = gstt;
-		net_cost = nc;
+		//gst = gstt;
+		//net_cost = nc;
 		trip_date = td;
 		trip_time = tt;
 	}
