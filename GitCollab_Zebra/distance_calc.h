@@ -36,7 +36,7 @@ struct Location* stored_locations(struct Location* ptr);
 double main_dist_calc(string startLoc, string endLoc);
 //double get_coordinates(struct Location* stored, string startLoc, string endLoc);
 double calc(struct Location start, struct Location end);
-//string random_locations(struct Location* stored ,int n);
+string random_locations(int n);
 
 
 #endif
