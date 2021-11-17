@@ -7,6 +7,7 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
+#include <ctime>
 
 using namespace std;
 
@@ -79,7 +80,7 @@ struct Trips
 	//double net_cost;
 	string trip_date;
 	string trip_time;
-	Trips(string trip = "", string di ="", string sl = "", string el = "", double tc = 0, string td = "", string tt = "")
+	Trips(string trip = "", string di ="", string sl = "", string el = "", double tc = 0, string td = "")
 	{
 		trip_id = trip;
 		driver_id = di;
@@ -89,7 +90,6 @@ struct Trips
 		//gst = gstt;
 		//net_cost = nc;
 		trip_date = td;
-		trip_time = tt;
 	}
 };
 
@@ -100,23 +100,25 @@ struct Trips
 //###############################################
 
 void driver_main();
-void driver_eligibility(vector<Drivers>& driver, vector<Drivers>&driverFromFile, vector <Trips> trip);
-vector<Drivers> driver_login(vector<Drivers>& driverFromFile, vector <Trips> trip);
-void driver_registration(vector<Drivers>& driver, vector<Drivers>& driverFromFile, vector <Trips> trip);
+void driver_eligibility(vector<Drivers>& driver, vector<Drivers>&driverFromFile, vector <Trips> trip, struct Location* stored);
+vector<Drivers> driver_login(vector<Drivers>& driverFromFile, vector <Trips> trip, struct Location* stored);
+void driver_registration(vector<Drivers>& driver, vector<Drivers>& driverFromFile, vector <Trips> trip, struct Location* stored);
 vector <Drivers> input_drivers(vector<Drivers>& driver);
 int count_entries_drive();
 void writeToFile(vector<Drivers>& driver);//returns nothing
 vector <Drivers> readFromFile();
 
 
-vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string check_username, vector <Trips> trip);
+vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string check_username, vector <Trips> trip, struct Location* stored);
 
 
 void output_drivers(vector<Drivers>& driver);
-void driver_account_main(vector<Drivers>& driverFromFile, string check_username, vector <Trips> trip);
-void account_settings(vector<Drivers>& driverFromFile, string check_username, vector <Trips> trip);
+void driver_account_main(vector<Drivers>& driverFromFile, string check_username, vector <Trips> trip, struct Location* stored);
+void account_settings(vector<Drivers>& driverFromFile, string check_username, vector <Trips> trip, struct Location* stored);
 void job_screen(vector <Drivers> driver_rides, vector <Trips> trip);
 
+vector<Trips> input_trip_data(vector<Trips> trip, vector<Drivers> driverFromFile, struct Location* stored);
+void write_to_trip_transactions(vector<Trips> trip);
 vector <Trips> read_trips();
 vector <Trips> confirm_job_screen(vector<Trips> trip, string check_trip_id);
 
