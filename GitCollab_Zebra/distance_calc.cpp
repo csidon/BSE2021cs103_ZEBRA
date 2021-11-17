@@ -101,8 +101,21 @@ bool set_coordinates(struct Location data_array[], struct Location* coordinates,
 	}
 	return (false);
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 19a638811b3bfcc51e90179f3448b7e548905d80
 
+//****************************************************************************************************
+//  MAIN FUNCTION FOR DISTANCE CALCULATOR: 
+//Takes input for start and end location (preset strings) and calculates the distance between the two
+//****************************************************************************************************
+
+<<<<<<< HEAD
+double main_dist_calc(string startLoc, string endLoc)
+{
+
+=======
 //****************************************************************************************************
 //  MAIN FUNCTION FOR DISTANCE CALCULATOR: 
 //Takes input for start and end location (preset strings) and calculates the distance between the two
@@ -110,7 +123,8 @@ bool set_coordinates(struct Location data_array[], struct Location* coordinates,
 
 double main_dist_calc(string startLoc, string endLoc)
 {
-
+	
+>>>>>>> 19a638811b3bfcc51e90179f3448b7e548905d80
 	double dist;
 	Location coordinates_A, coordinates_B;
 	Location* p;
@@ -127,6 +141,7 @@ double main_dist_calc(string startLoc, string endLoc)
 	//cin >> endLoc;
 	set_coordinates(arr, &coordinates_A, startLoc);
 	set_coordinates(arr, &coordinates_B, endLoc);
+<<<<<<< HEAD
 	dist = calc(coordinates_A, coordinates_B) / 2;
 	cout << "The calculated distance between " << startLoc << " and " << endLoc << " is " << dist;
 	return (dist);
@@ -181,3 +196,9 @@ double main_dist_calc(string startLoc, string endLoc)
 //	}
 //	return calc(start_coord, end_coord);
 //}
+=======
+	dist = calc(coordinates_A, coordinates_B)/2;
+	cout << "The calculated distance between " << startLoc << " and " << endLoc << " is " << dist;
+	return (dist);
+}
+>>>>>>> 19a638811b3bfcc51e90179f3448b7e548905d80
