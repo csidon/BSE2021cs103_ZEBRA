@@ -554,7 +554,7 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 	
 
 
-<<<<<<< HEAD
+
 //vector <Drivers> job_screen(vector <Drivers> driver_rides)
 //{
 //
@@ -574,8 +574,7 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 //
 //}
 
-=======
->>>>>>> 19a638811b3bfcc51e90179f3448b7e548905d80
+
 void job_screen(vector <Drivers> driver_rides, vector <Trips> trip)
 {
 	//create_driver_trips(driver_rides);
@@ -651,7 +650,7 @@ void write_to_trip_transactions(vector<Trips> trip)
 //
 //	while (getline(driverRidesFile, line))
 //	{
-<<<<<<< HEAD
+
 
 //		driverFromFile[i].trip_id = 10001 + total_entries;
 //		driverFileRides << driverFromFile[i].trip_id << "," << driverFromFile[i].d_idAlph << "," << driverFromFile[i].d_idNum << endl;
@@ -659,7 +658,6 @@ void write_to_trip_transactions(vector<Trips> trip)
 //		driverFromFile[i].trip_id_d = "TR" + (10001 + total_entries);
 //		driverFileRides << driverFromFile[i].trip_id_d << "," << driverFromFile[i].d_idAlph << "," << driverFromFile[i].d_idNum << endl;
 
-=======
 //		//cout << line << endl;
 //		istringstream linestream(line);
 //		string user;
@@ -671,13 +669,13 @@ void write_to_trip_transactions(vector<Trips> trip)
 //		getline(linestream, user, ',');
 //		d.trip_id_d = user;
 //		tempRides.push_back(d);
->>>>>>> 19a638811b3bfcc51e90179f3448b7e548905d80
+
 //	}
 //
 //	driverRidesFile.close();
 //	return(tempRides);
 //}
-<<<<<<< HEAD
+
 
 
 
@@ -701,15 +699,14 @@ vector <Drivers> read_driver_trips()
 		stringstream ss(user);
 		ss >> d.d_idNum;
 		getline(linestream, user, ',');
-		d.trip_id_d = user;
+		//d.trip_id_d = user;
 		tempRides.push_back(d);
 	}
 
 	driverRidesFile.close();
 	return(tempRides);
 }
-=======
->>>>>>> 19a638811b3bfcc51e90179f3448b7e548905d80
+
 
 
 vector <Trips> read_trips()
@@ -810,7 +807,3 @@ vector <Trips> confirm_job_screen(vector<Trips> trip, string check_trip_id)
 	tripFiles.close();
 	return (trip);
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 19a638811b3bfcc51e90179f3448b7e548905d80

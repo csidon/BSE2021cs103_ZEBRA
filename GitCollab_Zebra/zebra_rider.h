@@ -18,11 +18,11 @@ using namespace std;
 
 struct Rider_pid
 {
-	string r_fname, r_pname, r_lname, r_address, r_emailusrname, r_pswd, r_idalpha, r_defaultloc, r_cardholder_name, r_card_num;
-	int r_contact, r_idnum, r_card_type, r_expiry, r_cvv;
+	string r_fname, r_pname, r_lname, r_address, r_emailusrname, r_pswd, r_idalpha, r_defaultloc, r_cardholder_name, r_card_num, r_card_type, r_header_contact, r_headeridnum, r_headerexpiry, r_headercvv;
+	int r_contact, r_idnum, r_expiry, r_cvv;
 
 	//constructor
-	Rider_pid(string rdl = "", string rfn = "", string rpn = "", string rln = "", string rad = "", string reu = "", string rpw = "", string ida = "", string rccn = "", string rccnum = "", int ct=0, int cex = 0, int cvv = 0, int idn = 0, int rcall = 0)
+	Rider_pid(string rdl = "", string rfn = "", string rpn = "", string rln = "", string rad = "", string reu = "", string rpw = "", string ida = "", string rccn = "", string rccnum = "", string ct= "", string rhc = "", string rhi = "", string rhe = "", string rhcvv = "", int cex = 0, int cvv = 0, int idn = 0, int rcall = 0)
 	{
 		r_defaultloc = rdl;
 		r_fname = rfn;
@@ -40,7 +40,11 @@ struct Rider_pid
 		r_card_num = rccnum;
 		r_expiry = cex; 
 		r_cvv = cvv;
-
+		//header specific vars
+		r_header_contact = rhc;
+		r_headeridnum = rhi;
+		r_headerexpiry = rhe;
+		r_headercvv = rhcvv;
 		
 	}
 };
@@ -78,5 +82,5 @@ vector<Rider_pid> searchAndUpdate_defaultloc(Rider_ridestore& passed_pid_details
 string location_translate(int user_input);
 void disp_fares_charges();
 vector <Rider_pid> pay_details(Rider_ridestore& passed_nopid_details, vector <Rider_pid> read_from_file);
-
+void add_header_riderpid(fstream& addheader);
 #endif
