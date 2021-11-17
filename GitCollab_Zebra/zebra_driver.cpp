@@ -23,18 +23,9 @@ void driver_main()
 	vector <Drivers> driver;
 	vector <Drivers> driverFromFile;
 	vector <Trips> trip;
-	Location data_store[6];
-	Location* stored;
-	stored = data_store;
-	main_dist_calc("HATAITAI", "TE ARO");
-	srand(time(NULL)); //initialize the random seed
-//Location data_store[6];
-//Location* storePlacePtr;
-//storePlacePtr = data_store;
+	vector <Rider_pid> rider;
 
-	int randloc = rand() % 6 + 1;
-	//random_locations(data_store, randloc);
-
+	
 	int n;
 	cout << "\n\t1. Register";
 	cout << "\n\t2. Login";
@@ -48,10 +39,10 @@ void driver_main()
 		//readFromFile();
 		disp_driver_regist();
 		cout << endl;
-		driver_eligibility(driver, driverFromFile, trip, data_store);
+		driver_eligibility(driver, driverFromFile, trip, rider);
 		break;
 	case 2:
-		driver_login(driverFromFile, trip, data_store);
+		driver_login(driverFromFile, trip, rider);
 		break;
 	case 3:
 		//main();
@@ -60,7 +51,7 @@ void driver_main()
 }
 
 
-void driver_eligibility(vector<Drivers>& driver, vector<Drivers>& driverFromFile, vector <Trips> trip, struct Location* stored)
+void driver_eligibility(vector<Drivers>& driver, vector<Drivers>& driverFromFile, vector <Trips> trip, vector <Rider_pid> rider)
 {
 	disp_h3_lines("Eligibility Check");
 	char full, n;
@@ -80,7 +71,7 @@ void driver_eligibility(vector<Drivers>& driver, vector<Drivers>& driverFromFile
 
 	if (full == 'Y' && n == 'Y' && car_age <= 10 && driver_age >= 21)
 	{
-		driver_registration(driver, driverFromFile, trip, stored);
+		driver_registration(driver, driverFromFile, trip, rider);
 	}
 	else
 	{
@@ -90,7 +81,7 @@ void driver_eligibility(vector<Drivers>& driver, vector<Drivers>& driverFromFile
 	}
 }
 
-void driver_registration(vector<Drivers>& driver, vector<Drivers>& driverFromFile, vector <Trips> trip, struct Location* stored)
+void driver_registration(vector<Drivers>& driver, vector<Drivers>& driverFromFile, vector <Trips> trip, vector <Rider_pid> rider)
 {
 	disp_driver_regist();
 	cout << endl;
@@ -100,7 +91,7 @@ void driver_registration(vector<Drivers>& driver, vector<Drivers>& driverFromFil
 	//cout << driver[0].fname << endl;//debugging purposes 
 	//**********************
 	writeToFile(driver);
-	driver_login(driverFromFile, trip, stored);
+	driver_login(driverFromFile, trip, rider);
 
 }
 
@@ -131,7 +122,7 @@ vector <Drivers> input_drivers(vector<Drivers>& driver)
 	cin >> d.password;
 	pswd_valid(d.password);
 	
-	output_drivers(driver);
+	//output_drivers(driver);
 
 	cout << "\n\tPlease, enter your: ";
 
@@ -219,7 +210,7 @@ void writeToFile(vector<Drivers>& driver)
 
 
 
-vector<Drivers> driver_login(vector<Drivers>& driverFromFile, vector <Trips> trip, struct Location* stored)
+vector<Drivers> driver_login(vector<Drivers>& driverFromFile, vector <Trips> trip, vector <Rider_pid> rider)
 {
 	fstream driverFile("driverFile_pid.csv", ios::in);
 	string login, password;
@@ -238,7 +229,7 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile, vector <Trips> tri
 			if (driverFromFile[i].mail == login && driverFromFile[i].password == password)
 			{
 				
-				driver_account_main(driverFromFile, login, trip, stored);
+				driver_account_main(driverFromFile, login, trip, rider);
 				
 			}
 
@@ -248,7 +239,7 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile, vector <Trips> tri
 	return(driverFromFile);
 }
 
-void driver_account_main(vector<Drivers>& driverFromFile, string check_username, vector <Trips> trip, struct Location* stored)
+void driver_account_main(vector<Drivers>& driverFromFile, string check_username, vector <Trips> trip, vector <Rider_pid> rider)
 {
 	int n;
 	cout << "\n\tKia ora, we are all good to go!";
@@ -260,11 +251,12 @@ void driver_account_main(vector<Drivers>& driverFromFile, string check_username,
 	switch (n)
 	{
 	case 1:
-		account_settings(driverFromFile, check_username, trip, stored);
+		account_settings(driverFromFile, check_username, trip, rider);
 		break;
 	case 2:
-		input_trip_data(trip, driverFromFile, stored);
-		write_to_trip_transactions(trip);
+		job_screen(driverFromFile, trip, rider);
+		//input_trip_data(trip, driverFromFile, rider);
+		//write_to_trip_transactions();
 
 		break;
 	case 3:
@@ -338,7 +330,7 @@ vector <Drivers> readFromFile()
 }
 
 
-void account_settings(vector<Drivers>& driverFromFile, string check_username, vector <Trips> trip, struct Location* stored)
+void account_settings(vector<Drivers>& driverFromFile, string check_username, vector <Trips> trip, vector <Rider_pid> rider)
 {
 	
 	char n;
@@ -379,14 +371,14 @@ void account_settings(vector<Drivers>& driverFromFile, string check_username, ve
 	if (n == 'e')
 	{
 
-		update_acc_details(driverFromFile, check_username, trip, stored);
+		update_acc_details(driverFromFile, check_username, trip, rider);
 
 	}
 }
 
 
 
-vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string check_username, vector <Trips> trip, struct Location* stored)
+vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string check_username, vector <Trips> trip, vector <Rider_pid> rider)
 {
 	string new_lice_num;
 	string new_doex;
@@ -534,12 +526,12 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 		cin >> a;
 		if (a == 'Y')
 		{
-			update_acc_details(driverFromFile, check_username, trip, stored);
+			update_acc_details(driverFromFile, check_username, trip, rider);
 			break;
 		}
 		else if (a == 'N')
 		{
-			driver_account_main(driverFromFile, check_username, trip, stored);
+			driver_account_main(driverFromFile, check_username, trip, rider);
 			break;
 		}
 		else
@@ -547,7 +539,7 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 			cout << "\n\tPlease enter only 'Y' or 'N': ";
 		}
 	}
-	driver_account_main(driverFromFile, check_username, trip, stored);
+	driver_account_main(driverFromFile, check_username, trip, rider);
 
 	return (driverFromFile);
 }
@@ -555,6 +547,7 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 
 
 
+<<<<<<< HEAD
 //vector <Drivers> job_screen(vector <Drivers> driver_rides)
 //{
 //
@@ -576,69 +569,100 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 
 
 void job_screen(vector <Drivers> driver_rides, vector <Trips> trip)
+=======
+
+void job_screen(vector <Drivers> driver_rides, vector <Trips> trip, vector <Rider_pid> rider)
+>>>>>>> 8b472b4600674848816c8372e83cfdd80ab5fc47
 {
 	//create_driver_trips(driver_rides);
-	string check_id;
+	fstream riderFile("riderpid - Copy.csv", ios::in);
+	driver_rides = readFromFile();
+	rider = rider_retrieve_info();
+	string check_name;
+	srand(time(NULL)); //initialize the random seed
+	int rand_rider1 = rand() % 6;
+	int rand_rider2 = rand() % 6;
+	int rand_rider3 = rand() % 6;
+	int rand_rider4 = rand() % 6;
 	cout << "\n\tKia Ora! Ready to work?";
 	cout << "\n\tThere's the available jobs waiting for you to pick up:  ";
 	cout << endl;
-	cout << "\n\tAnakin Skywalker  Trip ID: TR1001";
+	cout << "\n\t" << rider[rand_rider1].r_pname;
 	cout << "\n\tDistance from you	:  2.2 kms";
 	cout << endl;
-	cout << "\n\tLuke Skywalker  Trip ID: TR1002";
+	cout << "\n\t" << rider[rand_rider2].r_pname;
 	cout << "\n\tDistance from you	:  3.1 kms";
 	cout << endl;
-	cout << "\n\tYoda  Trip ID: TR1003";
+	cout << "\n\t" << rider[rand_rider3].r_pname;
 	cout << "\n\tDistance from you	:  5.2 kms";
 	cout << endl;
-	cout << "\n\tBaby Yoda  Trip ID: TR1004";
+	cout << "\n\t" << rider[rand_rider3].r_pname;
 	cout << "\n\tDistance from you	:  3.2 kms";
-	cout << endl;
-	cout << "\n\tTom Kruz  Trip ID:  TR1005";
-	cout << "\n\tDistance from you	:  4.7 kms";
-	cout << endl;
-	cout << "\n\tJhonny Depp  Trip ID: TR1006";
-	cout << "\n\tDistance from you	:  5.3 kms";
-	cout << "\n\tEnter trip ID to pick up a job: ";
-	cin >> check_id;
-	confirm_job_screen(trip, check_id);
+
+	riderFile.close();
+
+	cout << "\n\tEnter the name of the rider to pick up a job: ";
+
+	
+	cin >> check_name;
+	input_trip_data(trip, driver_rides, rider, check_name);
 
 }
 
-vector<Trips> input_trip_data(vector<Trips> trip, vector<Drivers> driverFromFile, struct Location* stored)
+vector<Trips> input_trip_data(vector<Trips> trip, vector<Drivers> driverFromFile, vector <Rider_pid> rider, string check_name)
 {
 	Trips t;
-	Drivers d;
-	driverFromFile = readFromFile();
 	time_t now = time(0);// current date/time based on current system
 	char* dt = ctime(&now); //convert now to string form
-	cout << dt;//DEBUG PURPOSE
-	t.trip_id = "TR" + 1001;// revise
-	t.driver_id = d.d_idNum;
-	//t.start_loc = random_locations(stored);
-	cout << t.start_loc;
-	//t.end_loc = random_locations(stored);
-	//t.trip_cost = main_dist_calc(t.start_loc, t.end_loc);
-	t.trip_date = dt;
+
+	srand(time(NULL)); //initialize the random seed
+	int randloc1 = rand() % 6;
+	int randloc2 = rand() % 6;
+	cout << randloc2 << randloc1;
+	fstream riderFile("riderpid - Copy.csv", ios::in);
+	fstream driverFile("driverFile_pid.csv", ios::in);
+	driverFromFile = readFromFile();
+	rider = rider_retrieve_info();
+
+	
+	
+	//cout << dt;//DEBUG PURPOSE
+	for (int i = 0; i < driverFromFile.size(); i++)
+	{
+		if (check_name == rider[i].r_pname)
+		{
+			t.trip_id = "TR";// revise
+			t.driver_id = driverFromFile[i].mail;
+			t.rider_id = rider[i].r_emailusrname;
+			t.start_loc = random_locations(randloc1);
+			t.end_loc = random_locations(randloc2);
+			t.trip_cost = main_dist_calc(t.start_loc, t.end_loc);
+			t.trip_date = dt;
+
+			break;
+		}
+	}
 
 	trip.push_back(t);
+	riderFile.close();
+	driverFile.close();
+
 	return trip;
 }
 
 
-void write_to_trip_transactions(vector<Trips> trip)
+void write_to_trip_transactions(struct Trips trip)
 {
-	cout << trip.size();
+	
 	fstream trip_file("trip_transactions.csv", ios::app);
-	for (int i = 0; i < trip.size(); i++)
-	{
-		cout << "debug";
-		trip_file << 1 << "," << 2 << "," <<3 << "," << trip[i].end_loc << "," << trip[i].trip_cost << "," << trip[i].trip_date << endl;
-	}
+	cout << "debug";
+	trip_file << trip.trip_id << "," << trip.driver_id << "," << trip.start_loc << "," << trip.end_loc << "," << trip.trip_cost << "," << trip.trip_date << endl;
+
 	trip_file.close();
 }
 
 
+<<<<<<< HEAD
 //vector <Drivers> read_driver_trips()
 //{
 //
@@ -707,6 +731,8 @@ vector <Drivers> read_driver_trips()
 	return(tempRides);
 }
 
+=======
+>>>>>>> 8b472b4600674848816c8372e83cfdd80ab5fc47
 
 
 vector <Trips> read_trips()
@@ -731,8 +757,7 @@ vector <Trips> read_trips()
 		getline(linestream, trip, ',');
 		t.trip_date = trip;
 		getline(linestream, trip, ',');
-		t.trip_time = trip;
-		tempTrips.push_back(t);
+
 	}
 
 	tripsFile.close();
@@ -774,7 +799,7 @@ vector <Trips> confirm_job_screen(vector<Trips> trip, string check_trip_id)
 		if (check_trip_id == trip[i].trip_id)
 		{
 			cout << "\n\tTrip Number is: " << trip[i].trip_id;
-			cout << "\t" << trip[i].trip_date << ", " << trip[i].trip_time << endl;
+			//cout << "\t" << trip[i].trip_date << ", " << trip[i].trip_time << endl;
 			if (trip[i].trip_id == "TR1001")
 			{
 				cout << "\n\tYou are picking up Anakin Skywalker";
@@ -807,3 +832,7 @@ vector <Trips> confirm_job_screen(vector<Trips> trip, string check_trip_id)
 	tripFiles.close();
 	return (trip);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8b472b4600674848816c8372e83cfdd80ab5fc47

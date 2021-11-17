@@ -12,22 +12,6 @@ using namespace std;
 ////Purpose: This file contains the distance CALCULATION for the Zebra program
 
 
-
-//string random_locations(struct Location* stored, int n)
-//{
-//	//srand(time(NULL)); //initialize the random seed 
-//	Location temp_loc;
-//	//int randloc = rand() % 6; //generates a random number between  1 and 6
-//	cout << stored[0].id;
-//	temp_loc.id = stored[n].id;
-//	string random_location = temp_loc.id;
-//	//cout << randloc;
-//	cout << n;
-//	cout << "\n" << random_location;
-//	return random_location;
-//}
-
-
 //*****************
 //FOLMULA FOR CALCULATION ON A COORDINATE PLANE
 //*****************
@@ -128,57 +112,23 @@ double main_dist_calc(string startLoc, string endLoc)
 	set_coordinates(arr, &coordinates_B, endLoc);
 
 	dist = calc(coordinates_A, coordinates_B) / 2;
-	cout << "The calculated distance between " << startLoc << " and " << endLoc << " is " << dist;
+	//cout << "The calculated distance between " << startLoc << " and " << endLoc << " is " << dist;
 	return (dist);
 }
-//double main_dist_calc(string startAdd, string endAdd)
-//{
-//	Location data_store[6];
-//	Location* storePlacePtr;
-//	storePlacePtr = data_store;
-//
-//	stored_locations(storePlacePtr);
-//	//this returns the calculated distance between the start and end address, taking the coordinates from the data_store array
-//	double calculated_distance = get_coordinates(storePlacePtr, startAdd, endAdd);  
-//	cout << "The calculated distance between " << startAdd << " and " << endAdd << " is " << calculated_distance;
-//
-//	return calculated_distance;
-//
-//}
 
-//*************************************************************************************************************************
-//  FUNCTION RETRIEVES COORDINATES FROM STORED LIST 
-//  Gets coordinates based on entered string "location", and calls the calc function to calculate the dist between the two
-//*************************************************************************************************************************
-//double get_coordinates(struct Location* stored, string startLoc, string endLoc)
-//{
-//	Location start_coord, end_coord;
-//
-//	/*cout << "The size of stored location arrays is " << sizeof(stored);
-//	cout << "The startlocation passed is " << startLoc;
-//	cout << "The endlocation passed is " << endLoc;*/
-//
-//	for (int i = 0; i < 6; i++)
-//	{
-//		//cout << i << endl;//DEBUG
-//		/*cout << "the stored location for " << i << " is " << stored[i].id;*/
-//		if (startLoc == stored[i].id)
-//		{
-//			//cout << "\nDEBUG";
-//			start_coord.x = stored[i].x;
-//			start_coord.y = stored[i].y;
-//			start_coord.id = stored[i].id;
-//		}
-//
-//		if (endLoc == stored[i].id)
-//		{
-//			//cout << "\nDEBUG";
-//			end_coord.x = stored[i].x;
-//			end_coord.y = stored[i].y;
-//			end_coord.id = stored[i].id;
-//
-//		}
-//	}
-//	return calc(start_coord, end_coord);
-//}
+
+
+
+string random_locations(int n)
+{
+	Location* ptr_location_stored;
+	Location arr_of_loc[6];
+	ptr_location_stored = arr_of_loc;
+
+	stored_locations(ptr_location_stored);
+
+	string random_location = arr_of_loc[n].id;
+	//cout << "\n" << random_location;
+	return random_location;
+}
 
