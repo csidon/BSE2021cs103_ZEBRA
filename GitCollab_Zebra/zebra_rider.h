@@ -74,9 +74,9 @@ vector <Rider_pid> rider_retrieve_info();
 vector<Rider_pid> pswd_reset(vector <Rider_pid> read_from_file);
 void r_loggedIn_home(Rider_ridestore& uid);
 Rider_ridestore r_login(vector <Rider_pid> temp_pull_file);
-vector<Rider_pid> searchAndUpdate_defaultloc(Rider_ridestore& nopid_details, vector <Rider_pid> read_from_file);
+vector<Rider_pid> searchAndUpdate_defaultloc(Rider_ridestore& passed_pid_details, vector <Rider_pid> read_from_file);
 string location_translate(int user_input);
 void disp_fares_charges();
-vector <Rider_pid> pay_details(Rider_ridestore& passed_nopid_details);
+vector <Rider_pid> pay_details(Rider_ridestore& passed_nopid_details, vector <Rider_pid> read_from_file);
 
 #endif

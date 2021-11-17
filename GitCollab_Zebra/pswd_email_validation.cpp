@@ -85,43 +85,11 @@ int creditcard_num_valid(string credit)
 		}
 
 	}
-	cout << flag << "<--This is the flag value\n";
+	cout << "\n" << flag << "  <--This is the flag value\n";
 	return flag;
 }
 
-			
-//			//If the first 4 chunks of input are integers
-//			string temppull = (credit.substr(0, 4));
-//			cout << "\ndebugging temppull 1  " << temppull;
-//			for (int i = 0; i < 4; i++)
-//			{
-//				if (is_a_digit(temppull[i]))
-//				{
-//					//If the second 4 chunks of input are integers
-//					string temppull2 = (credit.substr(5, 4));
-//					cout << "\ndebugging temppull 2  " << temppull2;
-//					for (int i = 0; i < 4; i++)
-//					{
-//						if (is_a_digit(temppull2[i]))
-//						{
-//							//If the third "4 char" chunks of input are integers
-//							string temppull3 = (credit.substr(10, 4));
-//							cout << "\ndebugging temppull 3  " << temppull3;
-//							for (int i = 0; i < 4; i++)
-//							{
-//								if (is_a_digit(temppull3[i]))
-//								{
-//									//If the fourth "4 char" chunks of input are integers
-//									string temppull4 = (credit.substr(15, 4));
-//									cout << "\ndebugging temppull 4  " << temppull4;
-//									for (int i = 0; i < 4; i++)
-//									{
-//										if (is_a_digit(temppull4[i]))
-//										{
-//											flag = 1;
-//	return 42;
-//	
-//}
+
 
 
 //This function validates that the user's input includes an @ and at least one "." -- EMAIL VALIDATION
