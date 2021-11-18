@@ -545,7 +545,7 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 	
 
 
-<<<<<<< HEAD
+
 //vector <Drivers> job_screen(vector <Drivers> driver_rides)
 //{
 //
@@ -568,11 +568,9 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 
 //void job_screen(vector <Drivers> driver_rides, vector <Trips> trip)
 
-void job_screen(vector <Drivers> driver_rides, vector <Trips> trip, vector <Rider_pid> rider)
-=======
 
 void job_screen(vector <Rider_pid> rider)
->>>>>>> 2fb12bebe9078e4c38b9116898241fb4037e225a
+
 
 {
 	vector<Drivers> driverFromFile;
@@ -609,7 +607,7 @@ void job_screen(vector <Rider_pid> rider)
 	cout << "\n\tEnter the name of the rider to pick up a job: ";
 
 	input_trip_data(rider, driverFromFile, trip, check_name);
-	write_to_trip_transactions(trip);
+	//write_to_trip_transactions(trip);
 }
 
 vector<Trips> input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driverFromFile, vector <Trips>&trip, string check_name)
@@ -650,15 +648,15 @@ vector<Trips> input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driver
 }
 
 
-void write_to_trip_transactions(vector <Trips>& trip)
-{
-	fstream trip_file("trip_transactions.csv", ios::app);
-<<<<<<< HEAD
-	cout << "debug";
-	trip_file << trip.trip_id << "," << trip.driver_id << "," << trip.start_loc << "," << trip.end_loc << "," << trip.trip_cost << "," << trip.trip_date << endl;
-
-	trip_file.close();
-}
+//void write_to_trip_transactions(vector <Trips>& trip)
+//{
+//	fstream trip_file("trip_transactions.csv", ios::app);
+//
+//	cout << "debug";
+//	trip_file << trip.trip_id << "," << trip.driver_id << "," << trip.start_loc << "," << trip.end_loc << "," << trip.trip_cost << "," << trip.trip_date << endl;
+//
+//	trip_file.close();
+//}
 
 
 
@@ -702,29 +700,25 @@ void write_to_trip_transactions(vector <Trips>& trip)
 
 
 
-vector <Drivers> read_driver_trips()
-{
+//vector <Drivers> read_driver_trips()
+//{
+//
+//	fstream driverRidesFile("driver_rides.csv", ios::in);
+//	vector<Drivers> tempRides;
+//
+//	Drivers d;
+//	string line;
+//
+//	while (getline(driverRidesFile, line))
+//
+//	for (int i = 0; i <= trip.size(); i++)
+//
+//	{
+//		trip_file << trip[i].trip_id << "," << trip[i].driver_id << "," << trip[i].rider_id << "," << trip[i].start_loc << "," << trip[i].end_loc << "," << trip[i].trip_cost << "," << trip[i].trip_date << endl;
+//	}
+//	trip_file.close();
+//}
 
-	fstream driverRidesFile("driver_rides.csv", ios::in);
-	vector<Drivers> tempRides;
-
-	Drivers d;
-	string line;
-
-	while (getline(driverRidesFile, line))
-=======
-	for (int i = 0; i <= trip.size(); i++)
->>>>>>> 2fb12bebe9078e4c38b9116898241fb4037e225a
-	{
-		trip_file << trip[i].trip_id << "," << trip[i].driver_id << "," << trip[i].rider_id << "," << trip[i].start_loc << "," << trip[i].end_loc << "," << trip[i].trip_cost << "," << trip[i].trip_date << endl;
-	}
-	trip_file.close();
-}
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 2fb12bebe9078e4c38b9116898241fb4037e225a
 
 
 vector <Trips> read_trips()
@@ -824,7 +818,3 @@ vector <Trips> confirm_job_screen(vector<Trips> trip, string check_trip_id)
 	tripFiles.close();
 	return (trip);
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 2fb12bebe9078e4c38b9116898241fb4037e225a

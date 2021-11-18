@@ -35,7 +35,7 @@ struct Location* stored_locations(struct Location* ptr)
 	ptr->y = 1.0;
 	ptr++;
 
-	ptr->id = "HATAITAI";
+	ptr->id = "HAITAITAI";
 	ptr->x = 16.0;
 	ptr->y = 2.5;
 	ptr++;
