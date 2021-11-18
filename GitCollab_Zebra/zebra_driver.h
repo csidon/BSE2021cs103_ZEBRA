@@ -113,11 +113,11 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 void output_drivers(vector<Drivers>& driver);
 void driver_account_main(vector<Drivers>& driverFromFile, string check_username);
 void account_settings(vector<Drivers> driverFromFile, string check_username);
-void job_screen(vector <Rider_pid> rider);
+void job_screen(vector <Rider_pid>& rider, string d_username);
 
-vector<Trips> input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driverFromFile, vector <Trips>& trip, string check_name);
+vector<Trips> input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driverFromFile, vector <Trips>& trip, string check_name, string d_username);
 void write_to_trip_transactions(vector <Trips>& trip);
-vector <Trips> read_trips();
+
 //vector <Trips> confirm_job_screen(vector<Trips> trip, string check_trip_id);
 
 #endif
