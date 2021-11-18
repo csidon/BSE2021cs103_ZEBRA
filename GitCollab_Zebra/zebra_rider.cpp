@@ -80,7 +80,7 @@ rider_main_page:
 		writeRiderToFile(rinput);
 		
 		//cout << "Rinput has been written to file! "; //debugging purposes
-		cout << "\t\nYou are now a Zebra Rider!\n";
+		cout << "\n\tYou are now a Zebra Rider!\n";
 		system("pause");
 		goto rider_main_page;
 		
@@ -274,7 +274,8 @@ void r_loggedIn_home(Rider_ridestore &uid)
 		disp_star_line();
 		cout << "\n\t4. View your past rides\n";
 		cout << "\n\t5. View your account settings\n";
-		cout << "\n\t6. Understand Zebra Fares and Charges\n\n\t";
+		cout << "\n\t6. Understand Zebra Fares and Charges\n";
+		cout << "\n\t7. Exit\n\n\t";
 		cin >> booking_select;
 
 		
@@ -288,23 +289,29 @@ void r_loggedIn_home(Rider_ridestore &uid)
 			temp_nopid.rr_startloc = temp_nopid.rr_defaultloc;
 			temp_nopid.rr_endloc = "TE_ARO";
 			cout << "\nEquating the start location with default location -- success? \t" << temp_nopid.rr_startloc;
-			cout << "\nWhat does the pay_avail var store right now? " << temp_nopid.rr_pay_avail;
+			cout << "\nWhat does the pay_avail var store right now? " << temp_nopid.rr_pay_avail <<endl;
 			if (temp_nopid.rr_pay_avail == "No")
 			{
 				//temp_retrieve_info = rider_retrieve_info();
 				temp_retrieve_info = pay_details(temp_nopid, temp_retrieve_info);
+				temp_nopid.rr_pay_avail == "Yes";
 			}
 			cout << "\n\tEnter 'Y' to confirm your booking";
 			cin >> booking_cfm;
+			disp_star_line();
 			cout << "\n\tYour booking has been confirmed.";
+			disp_star_line();
 			cout << "\n\n\tTrip details:";
+			disp_dash_line();
 			cout << "\n\tPickup point\t\t" << temp_nopid.rr_startloc;
 			cout << "\n\tDropoff point\t\t" << temp_nopid.rr_endloc;
-			cout << "\n\tDropoff point\t\t: 3";
+
 			main_dist_calc(temp_nopid.rr_defaultloc, "TE_ARO");
 			cost = main_dist_calc(temp_nopid.rr_startloc, temp_nopid.rr_endloc) * 0.6;
-			cout << "\n\tYour trip cost is " << cost;
+			cout << "\n\tYour trip cost is \t$" << cost;
 			disp_dash_line;
+			system("pause");
+			stay_loggedIn = "y";
 			break;
 		}
 
@@ -320,9 +327,12 @@ void r_loggedIn_home(Rider_ridestore &uid)
 			disp_fares_charges();
 			stay_loggedIn = "y";
 			break;
+		case 7:
+			stay_loggedIn = "n";
+			break;
 		}
 	}
-	
+	rider_main(temp_retrieve_info);
 	//return rselect;
 }
 
@@ -610,7 +620,7 @@ valid_pass:
 	disp_dash_line();
 	cout << "\t" << ri.r_fname << " " << ri.r_lname << "\n\t";
 	cout << ri.r_contact << "\n\t";
-	cout << ri.r_address << "\t[Note: This will be your default pickup address]\n\t";
+	cout << ri.r_address << "\n\t";
 	cout << ri.r_emailusrname << "\t[Reminder: This will be your username]\n\t";
 	disp_star_line();
 	cout << "\n\tIs your information correct?\t:  ";
@@ -749,10 +759,10 @@ vector <Rider_pid> rider_retrieve_info()
 		//cout << read_r.r_pswd << "\tyour code made it to pulling the pswd\n"; //debugging purposes
 
 		tempFile.push_back(read_r);
-		cout << "File pushed back"; //debugging purposes
+		cout << "\nFile pushed back"; //debugging purposes
 	}
 	riderpid_file.close();
-	cout << "File closed"; //debugging purposes
+	cout << "\nFile closed"; //debugging purposes
 	return(tempFile);
 }
 

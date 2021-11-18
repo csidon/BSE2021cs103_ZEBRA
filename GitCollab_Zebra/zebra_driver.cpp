@@ -546,8 +546,6 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 	
 
 
-
-<<<<<<< HEAD
 //vector <Drivers> job_screen(vector <Drivers> driver_rides)
 //{
 //
@@ -568,11 +566,10 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 //}
 
 
-void job_screen(vector <Drivers> driver_rides, vector <Trips> trip)
-=======
+//void job_screen(vector <Drivers> driver_rides, vector <Trips> trip)
 
 void job_screen(vector <Drivers> driver_rides, vector <Trips> trip, vector <Rider_pid> rider)
->>>>>>> 8b472b4600674848816c8372e83cfdd80ab5fc47
+
 {
 	//create_driver_trips(driver_rides);
 	fstream riderFile("riderpid - Copy.csv", ios::in);
@@ -662,7 +659,7 @@ void write_to_trip_transactions(struct Trips trip)
 }
 
 
-<<<<<<< HEAD
+
 //vector <Drivers> read_driver_trips()
 //{
 //
@@ -731,8 +728,6 @@ vector <Drivers> read_driver_trips()
 	return(tempRides);
 }
 
-=======
->>>>>>> 8b472b4600674848816c8372e83cfdd80ab5fc47
 
 
 vector <Trips> read_trips()
@@ -832,7 +827,4 @@ vector <Trips> confirm_job_screen(vector<Trips> trip, string check_trip_id)
 	tripFiles.close();
 	return (trip);
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 8b472b4600674848816c8372e83cfdd80ab5fc47
