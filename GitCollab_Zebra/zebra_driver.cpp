@@ -575,9 +575,7 @@ void job_screen(vector <Rider_pid>& rider, string d_username)
 {
 	vector<Drivers> driverFromFile;
 	vector <Trips> trip;
-
-	srand(time(NULL)); //initialize the random seed
-	int rand_rider = rand() % 2;
+	Trips t;
 
 	fstream riderFile("riderpid.csv", ios::in);
 	rider = rider_retrieve_info();
@@ -608,6 +606,9 @@ void job_screen(vector <Rider_pid>& rider, string d_username)
 
 	input_trip_data(rider, driverFromFile, trip, check_name, d_username);
 	write_to_trip_transactions(trip);
+	string trip_id_check = t.trip_id;
+	trip.push_back(t);
+	confirm_job_screen(rider, trip, check_name, trip_id_check);
 }
 
 
@@ -748,18 +749,57 @@ vector <Trips> read_from_trips()
 
 
 
-vector <Trips> confirm_job_screen(vector<Trips>& trip, string check_trip_id)
+vector <Trips> confirm_job_screen(vector <Rider_pid>& rider, vector<Trips>& trip, string check_name, string trip_id_check)
 {
+	vector <Drivers> driver;
+	Trips t;
 	fstream tripFile("trip_transactions.csv", ios::in);
+	fstream riderFile("riderpid.csv", ios::in);
+	rider = rider_retrieve_info();
 	trip = read_from_trips();
-
-	for (int i = 0; i < trip.size(); i++)
+	for (int i = 0; i<rider.size(); i++)
 	{
-		cout << "\n\tTrip number is:	" << trip[i].trip_id;
-		cout << "\t" << trip[i].trip_date;
-		cout << "\n\n\n\tYour are picking up:	 " << trip[i].rider_id;
-		cout << "\n\tFrom:	" << trip[i].start_loc;
-		cout << "\n\tDestination:		" << trip[i].end_loc;
+		if (check_name == rider[i].r_pname)
+		{
+			cout << "\n\n\n\tYour are picking up:	 " << rider[i].r_pname;
+		}
+	}
+		cout << "\n\tTrip number is:	" << t.trip_id;
+		cout << "\t" << t.trip_date;
+		cout << "\n\tFrom:	" << t.start_loc;
+		cout << "\n\tDestination:		" << t.end_loc;
+	trip.push_back(t);
+	tripFile.close();
+	riderFile.close();
+	string check_username;
+	cout << "\n\tPress any button when you've picked them up";
+	cout << "\n\t[CANCEL] to cancel this booking";
+	cout << "\n\tChoose: ";
+	string choice;
+	cin >> choice;
+	if (choice == "CANCEL")
+	{
+		
+		cout << "\n\tEnter you username to continue	: ";
+		cin >> check_username;
+		cout << "\n\tWARNING! You are about to cancel booking. Would you like to continue?";
+		cout << "\n\t[Y] for yes. [N] for no: ";
+		char can_choice;
+		cin >> can_choice;
+		if (can_choice == 'Y')
+		{
+			driver_account_main(driver, check_username);
+		}
+	}
+	else 
+	{
+		cout << "\n\tAwesome! Press ant button when you've dropped them off";
+		cout << "\n\tEnter you username to to access billing info	: ";
+		cin >> check_username;
+		cout << "\n\tNice! You have earned " << t.trip_cost;
+		trip.push_back(t);
+		system("pause");
+		driver_account_main(driver, check_username);
 	}
 	return (trip);
 }
