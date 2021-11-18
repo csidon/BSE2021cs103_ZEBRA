@@ -1,0 +1,3 @@
+﻿r_uidalpha,r_uidnum,r_fname,r_lname,r_pname,r_phone,r_address,r_emailusrname,r_pswd,r_defaultloc,r_card_type,r_cardholdername,r_card_num,r_expiry,r_cvv
+RCTe,1001,Chris,Test,Bob,2142546,adgsh,chris@test.com,asdQWE123,HAITAITAI,0,,0,0,0
+RFHu,1002,Fake,Human,Fakie,1542567,adsgfh,fake@life.com,asdQWE123,nil,0,,0,0,0
