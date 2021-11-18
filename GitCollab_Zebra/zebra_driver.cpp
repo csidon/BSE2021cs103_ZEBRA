@@ -704,3 +704,62 @@ void write_to_trip_transactions(vector <Trips>& trip)
 
 
 
+vector <Trips> read_from_trips()
+{
+	fstream tripFile("trip_transactions.csv", ios::in);
+	vector <Trips> temp_trip;
+	Trips t;
+
+	string line;
+	while (getline(tripFile, line))
+	{
+		istringstream linestream(line);
+		string single_trip;
+
+		getline(linestream, single_trip, ',');
+		t.trip_id=single_trip;
+
+		getline(linestream, single_trip, ',');
+		t.driver_id = single_trip;
+
+		getline(linestream, single_trip, ',');
+		t.rider_id = single_trip;
+
+		getline(linestream, single_trip, ',');
+		t.start_loc = single_trip;
+
+		getline(linestream, single_trip, ',');
+		t.end_loc = single_trip;
+
+		getline(linestream, single_trip, ',');
+		stringstream ss(single_trip);
+		ss >> t.trip_cost;
+
+		getline(linestream, single_trip, ',');
+		t.trip_date = single_trip;
+
+		temp_trip.push_back(t);
+	}
+
+	tripFile.close();
+
+	return (temp_trip);
+}
+
+
+
+vector <Trips> confirm_job_screen(vector<Trips>& trip, string check_trip_id)
+{
+	fstream tripFile("trip_transactions.csv", ios::in);
+	trip = read_from_trips();
+
+	for (int i = 0; i < trip.size(); i++)
+	{
+		cout << "\n\tTrip number is:	" << trip[i].trip_id;
+		cout << "\t" << trip[i].trip_date;
+		cout << "\n\n\n\tYour are picking up:	 " << trip[i].rider_id;
+		cout << "\n\tFrom:	" << trip[i].start_loc;
+		cout << "\n\tDestination:		" << trip[i].end_loc;
+	}
+	return (trip);
+}

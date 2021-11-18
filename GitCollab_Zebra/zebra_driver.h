@@ -116,8 +116,10 @@ void account_settings(vector<Drivers> driverFromFile, string check_username);
 void job_screen(vector <Rider_pid>& rider, string d_username);
 
 vector<Trips> input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driverFromFile, vector <Trips>& trip, string check_name, string d_username);
+int count_entries_trips();
 void write_to_trip_transactions(vector <Trips>& trip);
+vector <Trips> read_from_trips();
 
-//vector <Trips> confirm_job_screen(vector<Trips> trip, string check_trip_id);
+vector <Trips> confirm_job_screen(vector<Trips> trip, string check_trip_id);
 
 #endif
