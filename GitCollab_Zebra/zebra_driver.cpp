@@ -36,7 +36,7 @@ void driver_main()
 	switch (n)
 	{
 	case 1:
-		//readFromFile();
+		//read_last_line();
 		disp_driver_regist();
 		cout << endl;
 		driver_eligibility(driver, driverFromFile);
@@ -543,7 +543,6 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 
 	return (driverFromFile);
 }
-	
 
 
 
@@ -568,8 +567,6 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 
 
 void job_screen(vector <Rider_pid>& rider, string d_username)
-
-
 {
 	vector<Drivers> driverFromFile;
 	vector <Trips> trip;
@@ -603,6 +600,7 @@ void job_screen(vector <Rider_pid>& rider, string d_username)
 	cin >> check_name;
 
 
+
 	//input_trip_data(rider, driverFromFile, trip, check_name);
 	//write_to_trip_transactions(trip);
 
@@ -610,7 +608,14 @@ void job_screen(vector <Rider_pid>& rider, string d_username)
 	write_to_trip_transactions(trip);
 	string trip_id_check = t.trip_id;
 	trip.push_back(t);
-	confirm_job_screen(rider, trip, check_name, trip_id_check);
+	//confirm_job_screen(rider, trip, check_name, trip_id_check);
+
+	input_trip_data(rider, driverFromFile, trip, check_name, d_username);
+	input_trip_data(rider, driverFromFile, trip, check_name, d_username);
+	write_to_trip_transactions(trip);
+
+	confirm_job_screen(rider, trip, check_name);
+
 }
 
 
@@ -641,9 +646,9 @@ int count_entries_trips()
 vector<Trips> input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driverFromFile, vector <Trips>&trip, string check_name, string d_username)
 {
 	Trips t;
-	time_t now = time(0);// current date/time based on current system
-	char* dt = ctime(&now); //convert now to string form
-
+	//time_t now = time(0);// current date/time based on current system
+	//char* dt = ctime_s(&now); //convert now to string form
+	char dt = 0;
 
 
 	srand(time(NULL)); //initialize the random seed
@@ -667,9 +672,9 @@ vector<Trips> input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driver
 	{
 		string id_num_string_d = to_string(driverFromFile[i].d_idNum);
 		if (d_username == driverFromFile[i].mail)
-
-		t.driver_id = driverFromFile[i].d_idAlph + id_num_string_d;
-
+		{
+			t.driver_id = driverFromFile[i].d_idAlph + id_num_string_d;
+		}
 
 	}
 	string count_entries_string = to_string(count_entries_trips());
@@ -689,6 +694,7 @@ vector<Trips> input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driver
 
 
 
+
 //void write_to_trip_transactions(vector <Trips>& trip)
 //{
 //	fstream trip_file("trip_transactions.csv", ios::app);
@@ -704,7 +710,7 @@ void write_to_trip_transactions(vector <Trips>& trip)
 {
 	//Trips t;
 	fstream trip_file("trip_transactions.csv", ios::app);
-	cout << "debug";
+	//cout << "debug";
 	for (int i = 0; i < trip.size(); i++)
 	{
 		trip_file << trip[i].trip_id << "," << trip[i].driver_id << ","<<trip[i].rider_id<< "," << trip[i].start_loc << "," << trip[i].end_loc << "," << trip[i].trip_cost << "," << trip[i].trip_date << endl;
@@ -713,8 +719,6 @@ void write_to_trip_transactions(vector <Trips>& trip)
 	//trip.push_back(t);
 	trip_file.close();
 }
-
-
 
 
 
@@ -769,6 +773,7 @@ vector <Trips> read_from_trips()
 //	trip_file.close();
 //}
 
+
 		getline(linestream, single_trip, ',');
 		t.trip_date = single_trip;
 
@@ -782,15 +787,14 @@ vector <Trips> read_from_trips()
 
 
 
-
-vector <Trips> confirm_job_screen(vector <Rider_pid>& rider, vector<Trips>& trip, string check_name, string trip_id_check)
+void confirm_job_screen(vector <Rider_pid>& rider, vector<Trips>& trip, string check_name)
 {
 	vector <Drivers> driver;
 	Trips t;
-	fstream tripFile("trip_transactions.csv", ios::in);
+	//fstream tripFile("trip_transactions.csv", ios::in);
 	fstream riderFile("riderpid.csv", ios::in);
 	rider = rider_retrieve_info();
-	trip = read_from_trips();
+	//trip = read_from_trips();
 	for (int i = 0; i<rider.size(); i++)
 	{
 		if (check_name == rider[i].r_pname)
@@ -798,13 +802,14 @@ vector <Trips> confirm_job_screen(vector <Rider_pid>& rider, vector<Trips>& trip
 			cout << "\n\n\n\tYour are picking up:	 " << rider[i].r_pname;
 		}
 	}
-		cout << "\n\tTrip number is:	" << t.trip_id;
-		cout << "\t" << t.trip_date;
-		cout << "\n\tFrom:	" << t.start_loc;
-		cout << "\n\tDestination:		" << t.end_loc;
-	trip.push_back(t);
-	tripFile.close();
 	riderFile.close();
+	cout << "\n\tTrip number is:	" << t.trip_id << "\t" << t.trip_date;
+	cout << "\n\tFrom:	" << t.start_loc;
+	cout << "\n\tDestination:		" << t.end_loc;
+	trip.push_back(t);
+
+	//tripFile.close();
+	
 	string check_username;
 	cout << "\n\tPress any button when you've picked them up";
 	cout << "\n\t[CANCEL] to cancel this booking";
@@ -830,12 +835,14 @@ vector <Trips> confirm_job_screen(vector <Rider_pid>& rider, vector<Trips>& trip
 		cout << "\n\tAwesome! Press ant button when you've dropped them off";
 		cout << "\n\tEnter you username to to access billing info	: ";
 		cin >> check_username;
-		cout << "\n\tNice! You have earned " << t.trip_cost;
 		trip.push_back(t);
+		cout << "\n\tNice! You have earned " << t.trip_cost;
 		system("pause");
 		driver_account_main(driver, check_username);
 	}
-	return (trip);
+	//return (trip);
 
 }
+
+
 

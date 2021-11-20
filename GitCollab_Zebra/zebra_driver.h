@@ -120,6 +120,7 @@ int count_entries_trips();
 void write_to_trip_transactions(vector <Trips>& trip);
 vector <Trips> read_from_trips();
 
-vector <Trips> confirm_job_screen(vector <Rider_pid>& rider, vector<Trips>& trip, string check_name, string trip_id_check);
+void confirm_job_screen(vector <Rider_pid>& rider, vector<Trips>& trip, string check_name);
+//void read_last_line();
 
 #endif

@@ -1,7 +1,4 @@
-﻿  GitCollab_Zebra.cpp
-  misc_functions.cpp
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\misc_functions.cpp(26,20): warning C4018: '<': signed/unsigned mismatch
-  zebra_driver.cpp
+﻿  zebra_driver.cpp
 C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(184,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(201,20): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(225,21): warning C4018: '<': signed/unsigned mismatch
@@ -15,16 +12,10 @@ C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cp
 C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(483,21): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(495,21): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(508,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(649,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(657,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(666,17): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(708,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(794,19): warning C4018: '<': signed/unsigned mismatch
-  zebra_rider.cpp
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_rider.cpp(108,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_rider.cpp(223,3): warning C4551: function call missing argument list
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_rider.cpp(497,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_rider.cpp(917,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_rider.cpp(1032,20): warning C4018: '<': signed/unsigned mismatch
-  Generating Code...
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(654,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(662,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(671,17): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(714,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(798,19): warning C4018: '<': signed/unsigned mismatch
+  LINK : C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe not found or not built by the last incremental link; performing full link
   GitCollab_Zebra.vcxproj -> C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
