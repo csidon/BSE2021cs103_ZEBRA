@@ -546,10 +546,7 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 	
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 5c681fabdd1b71b2f8acc91487bcf03f12f2cbee
 //vector <Drivers> job_screen(vector <Drivers> driver_rides)
 //{
 //
@@ -570,16 +567,8 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 //}
 
 
-//void job_screen(vector <Drivers> driver_rides, vector <Trips> trip)
-
-
-<<<<<<< HEAD
-void job_screen(vector <Rider_pid> rider)
-
-=======
-
 void job_screen(vector <Rider_pid>& rider, string d_username)
->>>>>>> 5c681fabdd1b71b2f8acc91487bcf03f12f2cbee
+
 
 {
 	vector<Drivers> driverFromFile;
@@ -613,16 +602,15 @@ void job_screen(vector <Rider_pid>& rider, string d_username)
 	string check_name;
 	cin >> check_name;
 
-<<<<<<< HEAD
-	input_trip_data(rider, driverFromFile, trip, check_name);
+
+	//input_trip_data(rider, driverFromFile, trip, check_name);
 	//write_to_trip_transactions(trip);
-=======
+
 	input_trip_data(rider, driverFromFile, trip, check_name, d_username);
 	write_to_trip_transactions(trip);
 	string trip_id_check = t.trip_id;
 	trip.push_back(t);
 	confirm_job_screen(rider, trip, check_name, trip_id_check);
->>>>>>> 5c681fabdd1b71b2f8acc91487bcf03f12f2cbee
 }
 
 
@@ -700,7 +688,7 @@ vector<Trips> input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driver
 }
 
 
-<<<<<<< HEAD
+
 //void write_to_trip_transactions(vector <Trips>& trip)
 //{
 //	fstream trip_file("trip_transactions.csv", ios::app);
@@ -710,7 +698,6 @@ vector<Trips> input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driver
 //
 //	trip_file.close();
 //}
-=======
 
 
 void write_to_trip_transactions(vector <Trips>& trip)
@@ -726,7 +713,7 @@ void write_to_trip_transactions(vector <Trips>& trip)
 	//trip.push_back(t);
 	trip_file.close();
 }
->>>>>>> 5c681fabdd1b71b2f8acc91487bcf03f12f2cbee
+
 
 
 
@@ -762,7 +749,7 @@ vector <Trips> read_from_trips()
 		stringstream ss(single_trip);
 		ss >> t.trip_cost;
 
-<<<<<<< HEAD
+
 //vector <Drivers> read_driver_trips()
 //{
 //
@@ -781,7 +768,7 @@ vector <Trips> read_from_trips()
 //	}
 //	trip_file.close();
 //}
-=======
+
 		getline(linestream, single_trip, ',');
 		t.trip_date = single_trip;
 
@@ -792,7 +779,7 @@ vector <Trips> read_from_trips()
 
 	return (temp_trip);
 }
->>>>>>> 5c681fabdd1b71b2f8acc91487bcf03f12f2cbee
+
 
 
 
@@ -849,8 +836,6 @@ vector <Trips> confirm_job_screen(vector <Rider_pid>& rider, vector<Trips>& trip
 		driver_account_main(driver, check_username);
 	}
 	return (trip);
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> 5c681fabdd1b71b2f8acc91487bcf03f12f2cbee
+

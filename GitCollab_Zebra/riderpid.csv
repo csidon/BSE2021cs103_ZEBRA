@@ -1,3 +1,7 @@
-RLSk,1002,Luke,Skywalker,Lookas,13563,asgd,look@sky.com,asdQWE123,nil,,,,0,0
-RYDa,1003,Yo,Da,Psychic,23456,asdf,yoda@theforce.com,asdQWE123,KELBURN,,,,0,0
-RJSp,1004,Jack,Sparrow,Jackie,3467,asdgfhj,jack@sparrow.com,asdQWE123,ARO_VALLEY,,,MASTERCARD,0,0
+﻿﻿r_uidalpha,0,r_fname,r_lname,r_pname,0,r_address,r_emailusrname,r_pswd,r_defaultloc,r_card_type,r_cardholdername,r_card_num,0,0
+RCTe,1001,Chris,Test,Bob,2142546,adgsh,chris@test.com,asdQWE123,HAITAITAI,VISA,Chrisssss,1241 4262 3456 2353,1226,999
+RFHu,1002,Fake,Human,Fakie,1542567,adsgfh,fake@life.com,asdQWE123,,,,,0,0
+RLSk,1003,Luke,Skywalker,Lookas,234637,qwertyw,look@sky.com,asdQWE123,KELBURN,AMEX,Lookas,2462 3465 4575 2342,924,13
+RASk,1004,Anakin,Skywalker,Annie,1234567,sadfgh,an@kin.com,asdQWE123,ARO_VALLEY,MASTERCARD,Anniekin,1234 2463 3456 1345,824,999
+RRD2,1005,R2,D2,Artooo,234567,sadfgh,r2@d2.com,qwewertrasAS1,,,,,0,0
+RBYo,1007,Baby,Yoda,Eggs,2134567,dfdghj,eat@eggs.com,asdQWE234,,,,,0,0
