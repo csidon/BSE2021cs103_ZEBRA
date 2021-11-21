@@ -50,7 +50,7 @@ rider_main_page:
 	{
 		system("cls");
 		rider_pid_struct = r_login(rider_retrieve_info());
-		cout << "\n\tdebug: Checking to make sure if r_login has passed the needed UIDs " << rider_pid_struct.r_idalpha << " and " << rider_pid_struct.r_idnum;
+		//cout << "\n\tdebug: Checking to make sure if r_login has passed the needed UIDs " << rider_pid_struct.r_idalpha << " and " << rider_pid_struct.r_idnum;
 		//Once login is successful, pass the temp pidrider's UID to the r_loggedIn function
 		r_loggedIn_home(rider_pid_struct);
 	}
@@ -101,7 +101,9 @@ Rider_pid r_login(vector <Rider_pid> read_from_file)
 	string r_emailusrname_check, r_pswd_check;
 	int login_success = 0, email_exists = 0;
 
-	cout << "\n\tUsername:\t";
+	disp_rider_logo();
+	disp_h2_lines("Login to your Zebra Rider account");
+	cout << "\n\n\tUsername:\t";
 	cin >> r_emailusrname_check;
 valid_emailusrname:
 	cout << "\tPassword:\t";
@@ -138,7 +140,7 @@ valid_emailusrname:
 	//User Error message if no matching email and password is found
 	if (email_exists == 0 || login_success == 0)
 	{
-		cout << "\n\tYou don't have a Zebra account with that email address or password.\n\tPlease try again, or enter <BACK> to go back to the main Rider page.\n";
+		cout << "\n\tYou don't have a Zebra account with that email address or password.\n\tPlease try again, or enter <BACK> to go back to the main Rider page.\n\n";
 		cout << "\tUsername:\t";
 		cin >> r_emailusrname_check;
 		if (convert_string_to_upper(r_emailusrname_check) == "BACK")
@@ -187,8 +189,8 @@ void r_loggedIn_home(Rider_pid& userInfo)
 	if (userInfo.r_defaultloc == "")
 	{
 		int locInput;
-		cout << "\n\tPlease select a default pickup location: ";
-		cout << "\n\t1. Brooklyn";
+		cout << "\n\n\tPlease select a default pickup location: ";
+		cout << "\n\n\t1. Brooklyn";
 		cout << "\n\t2. Haitaitai";
 		cout << "\n\t3. Aro Valley";
 		cout << "\n\t4. Kelburn";
@@ -226,13 +228,16 @@ void r_loggedIn_home(Rider_pid& userInfo)
 		//cout << "\n\t5. View your account settings\n";
 		cout << "\n\t6. Understand Zebra Fares and Charges\n";
 		cout << "\n\t7. Exit\n\n\t";
+		disp_star_line();
+		cout << "\tChoose: \n\t";
 		cin >> booking_select;
 
 		switch (booking_select)
 		{
 		case 1:			//Express booking option - For user to be able to travel to Te Aro (city center) from their default location quickly
 		{
-			cout << "\n\tYou have selected to book an EXPRESS ride from " << userInfo.r_defaultloc << " to " << "Te Aro";
+			disp_star_line();
+			cout << "\n\n\n\tYou have chosen to book an EXPRESS ride from " << userInfo.r_defaultloc << " to " << "Te Aro";
 			ridesInfo.rr_UIDalpha = userInfo.r_idalpha;
 			ridesInfo.rr_UIDnum = userInfo.r_idnum;
 			//cout << "\nDEBUG: The registered rider UID and pname for RIDESINFO is " << ridesInfo.rr_UIDalpha << ridesInfo.rr_UIDnum << " and " << ridesInfo.rr_pname;
@@ -255,6 +260,7 @@ void r_loggedIn_home(Rider_pid& userInfo)
 			disp_dash_line();
 
 			string user_dest_input = show_destination_options(ridesInfo, locInput);
+			cout << "\n";
 			//cout << "\nDEBUGGING: The destination that the user chose is " << user_dest_input;
 			ridesInfo.rr_endloc = user_dest_input;
 			//cout << "\nDEBUGGING: Destination registered is " << ridesInfo.rr_endloc;
@@ -379,7 +385,7 @@ void book_ride(Rider_pid userPIDInfo, Rider_AllRidesInfo userRidesInfo, double c
 		//cout << "\nDEBUG: Before getting passed, UID is " << userPIDInfo.r_idalpha << userPIDInfo.r_idnum;
 		userPIDInfo = pay_details(userPIDInfo);
 	}
-	disp_star_line();
+	disp_dash_line();
 	cout << "\tReady to book your ride?";
 	disp_dash_line();
 	cout << "\n\tBooking your ride from:\t" << userRidesInfo.rr_startloc << " to " << userRidesInfo.rr_endloc << "\n";
@@ -500,7 +506,6 @@ Rider_pid pay_details(Rider_pid& passed_pid_details)
 			{
 				int cardtype_translate;
 				cout << "\n\tWe need your payment details to proceed";
-				disp_dash_line();
 				cout << "\n\tPayments are secured by WINDCAVE Security";
 				disp_dash_line();
 				cout << "\n\tCredit card Type. Select:";
@@ -523,9 +528,8 @@ Rider_pid pay_details(Rider_pid& passed_pid_details)
 					passed_pid_details.r_card_type = "AMEX";
 					read_from_file[i].r_card_type = passed_pid_details.r_card_type;
 				}
-
-				cout << "\n\n\tCardholder Name\t:  ";
 				cin.ignore();
+				cout << "\n\n\tCardholder Name\t:  ";
 				getline(cin, passed_pid_details.r_cardholder_name);
 				read_from_file[i].r_cardholder_name = passed_pid_details.r_cardholder_name;
 				//cout << "DEBUGGING: Cardholder name registered is " << passed_pid_details.r_cardholder_name;
@@ -565,7 +569,7 @@ Rider_pid pay_details(Rider_pid& passed_pid_details)
 
 				disp_dash_line();
 				cout << "\n\tEnter:\n\t[1] Confirm your credit card details";
-				cout << "\n\t[2]Cancel your booking and return to homepage\n\t";
+				cout << "\n\t[2] Cancel your booking and return to homepage\n\t";
 				cin >> confirm;
 				if (confirm == 2)
 				{
@@ -580,29 +584,26 @@ Rider_pid pay_details(Rider_pid& passed_pid_details)
 					//cout << "\nDebugging: Default loc to be written for this human is " << read_from_file[i].r_defaultloc;
 				}
 			}
-			cout << "\nDebugging: Default loc to be written for this human " << read_from_file[i].r_emailusrname << " is " << read_from_file[i].r_defaultloc;
+			//cout << "\nDebugging: Default loc to be written for this human " << read_from_file[i].r_emailusrname << " is " << read_from_file[i].r_defaultloc;
 			riderpid_file << read_from_file[i].r_idalpha << "," << read_from_file[i].r_idnum << "," << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ",";
 			riderpid_file << read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ",";
 			riderpid_file << read_from_file[i].r_pswd << "," << read_from_file[i].r_defaultloc << "," << read_from_file[i].r_card_type << "," << read_from_file[i].r_cardholder_name << ",";
 			riderpid_file << read_from_file[i].r_card_num << "," << read_from_file[i].r_expiry << "," << read_from_file[i].r_cvv << endl;
-			cout << "\n\tPayment details registered. Thank you!";
 		}
+		cout << "\n\tPayment details registered. Thank you!";
+		store_pay = "n";
 		if (uid_exists == 0)
 		{
 			//cout << "\n\t!!!! ERROR - UID DOES NOT EXIST IN SYSTEM. THIS SHOULD NOT HAPPEN --DEBUGGING \n";
 		}
 		riderpid_file.close();
 		read_from_file = rider_retrieve_info();
+		
 	}
-
-	
-	//return (read_from_file);
-	//passed_nopid_details = temp_creditcard;
-	return (passed_pid_details); //Trying to see if returning the struct instead of vector is more productive
-	/////////////////change pay_details function so that I'm passing (Rider &passed_pid_details, vector <Rider_pid> read_from_file) because i AM working with pid!!! Then transfer it back and equate it dummy
-
+	return (passed_pid_details); 
 }
 
+//To add on headers to csv files if there's time!!**
 //void add_header_riderpid(fstream& addheader)
 //{
 //
@@ -725,17 +726,16 @@ Rider_pid rider_register()
 		cin >> rreg_confirmation;
 
 	}
-	cout << "\nDEBUGGING: The r_idalpha at registration before creation is " << ri.r_idalpha;
-	cout << "\nDEBUGGING: The default location upon registration before creation is " << ri.r_defaultloc;
+	//cout << "\nDEBUGGING: The r_idalpha at registration before creation is " << ri.r_idalpha;
+	//cout << "\nDEBUGGING: The default location upon registration before creation is " << ri.r_defaultloc;
 
 	//This section creates an AlphaID for the registration person upon confirmation of account creation, based on their firstname and last name
 	ri.r_idalpha += "R" + ri.r_fname.substr(0, 1);
 	ri.r_idalpha += ri.r_lname.substr(0, 2);
 	ri.r_idnum = 1001 + count_entries();
-	cout << "The autogen ID alpha is" << ri.r_idalpha; //debugging
-	cout << "The autogen ID num is" << ri.r_idnum; //debugging
+	//cout << "The autogen ID alpha is" << ri.r_idalpha; //debugging
+	//cout << "The autogen ID num is" << ri.r_idnum; //debugging
 
-	//temp_read_riderpid.push_back(ri);
 
 	return (ri);
 }
@@ -749,7 +749,7 @@ void writeRiderToFile(Rider_pid write_r)
 	//add_header_riderpid(riderpid_file);
 
 	//FOR LATER IF THERE'S TIME -- IF COUNT_ENTRIES == 0, INSERT HEADER
-	cout << "Your code made it here"; //debugging
+	//cout << "Your code made it here"; //debugging
 	riderpid_file << write_r.r_idalpha << "," << write_r.r_idnum << "," << write_r.r_fname << "," << write_r.r_lname << "," << write_r.r_pname << ",";
 	riderpid_file << write_r.r_contact << "," << write_r.r_address << "," << write_r.r_emailusrname << ",";
 	riderpid_file << write_r.r_pswd << "," << write_r.r_defaultloc << "," << write_r.r_card_type << "," << write_r.r_cardholder_name << ",";
@@ -835,7 +835,7 @@ vector <Rider_pid> rider_retrieve_info()
 		getline(linestream, get_val, ',');
 		read_r.r_pswd = get_val;
 
-		cout << "\n\nQuick check - What does r_defaultloc register BEFORE getline in rider_retrieve_info?\t" << read_r.r_defaultloc;
+		//cout << "\n\nQuick check - What does r_defaultloc register BEFORE getline in rider_retrieve_info?\t" << read_r.r_defaultloc;
 		getline(linestream, get_val, ',');
 		read_r.r_defaultloc = get_val;
 
@@ -852,17 +852,15 @@ vector <Rider_pid> rider_retrieve_info()
 		stringstream sscvv(get_val);
 		sscvv >> read_r.r_cvv;
 
-
-
-		cout << "\nQuick check - What does r_defaultloc register after getline in rider_retrieve_info?\t" << read_r.r_defaultloc;
+		//cout << "\nQuick check - What does r_defaultloc register after getline in rider_retrieve_info?\t" << read_r.r_defaultloc;
 		//cout << "\n" << read_r.r_emailusrname << "\tyour code made it to pulling the username\n"; //debugging purposes
 		//cout << read_r.r_pswd << "\tyour code made it to pulling the pswd\n"; //debugging purposes
 
 		tempFile.push_back(read_r);
-		cout << "\nFile pushed back"; //debugging purposes
+		//cout << "\nFile pushed back"; //debugging purposes
 	}
 	riderpid_file.close();
-	cout << "\nFile closed"; //debugging purposes
+	//cout << "\nFile closed"; //debugging purposes
 	return(tempFile);
 }
 
@@ -998,14 +996,14 @@ vector <Rider_pid> searchAndUpdate_userDefaultLoc(Rider_pid & updateInfo)
 	read_from_file = rider_retrieve_info();
 	fstream riderpid_file("riderpid.csv", ios::out);
 	
-	cout << "\nUser reaches this part";
+	//cout << "\nUser reaches this part";
 	
 	for (int i = 0; i < read_from_file.size(); i++)
 	{
 		if (updateInfo.r_idnum == read_from_file[i].r_idnum && updateInfo.r_idalpha == read_from_file[i].r_idalpha)
 		{
-			cout << "\nDEBUGGING: UID found in riderpid file";
-			cout << "\nDefault location to be pushed is " << updateInfo.r_defaultloc << " to " << read_from_file[i].r_defaultloc;
+			//cout << "\nDEBUGGING: UID found in riderpid file";
+			//cout << "\nDEBUGGING: Default location to be pushed is " << updateInfo.r_defaultloc << " to " << read_from_file[i].r_defaultloc;
 			read_from_file[i].r_defaultloc = updateInfo.r_defaultloc;
 		}
 		riderpid_file << read_from_file[i].r_idalpha << "," << read_from_file[i].r_idnum << "," << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ",";
@@ -1014,7 +1012,7 @@ vector <Rider_pid> searchAndUpdate_userDefaultLoc(Rider_pid & updateInfo)
 		riderpid_file << read_from_file[i].r_card_num << "," << read_from_file[i].r_expiry << "," << read_from_file[i].r_cvv << endl;
 	}
 	riderpid_file.close();
-	//read_from_file = rider_retrieve_info();
+	read_from_file = rider_retrieve_info();
 	return (read_from_file);
 
 }

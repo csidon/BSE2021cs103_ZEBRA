@@ -32,7 +32,7 @@ int main()
 		cout << "\n\t1. Driver\n";
 		cout << "\n\t2. Passenger\n";
 		disp_dash_line();
-		cout << "\n\t3. Admin\n";
+		//cout << "\n\t3. Admin\n";
 		cout << "\n\t4. Exit\n";
 
 		disp_star_line();
@@ -52,6 +52,13 @@ int main()
 			rider_main();
 			keep_going = "y";
 
+		}
+		else if (main_input == 3)
+		{
+			cout << "\n\tFunctionality under construction. \n\tPlease be patient with us!\n";
+			cout << "\t";
+			system("pause");
+			keep_going = "y";
 		}
 		else
 		{
