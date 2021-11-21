@@ -546,8 +546,27 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 
 
 
-void job_screen(vector <Rider_pid>& rider, string d_username)
+//vector <Drivers> job_screen(vector <Drivers> driver_rides)
+//{
+//
+//	cout << "\n\tKia Ora! Ready to pick up?";
+//	cout << "\n\tere's the available jobs waiting for you to pick up:  ";
+//	cout << "\n\t1. Anakin Skywalker ";
+//	cout << "\n\tDistance from you	:  2.2 kms";
+//	cout << endl;
+//	cout << "\n\t2. Luke Skywalker";
+//	cout << "\n\tDistance from you	:  3.1 kms";
+//	cout << endl;
+//	cout << "\n\t3. Yoda";
+//	cout << "\n\tDistance from you	:  5.2 kms";
+//	cout << endl;
+//	cout << "\n\t4. Baby Yoda";
+//	cout << "\n\tDistance from you	:  5.2 kms";
+//
+//}
 
+
+void job_screen(vector <Rider_pid>& rider, string d_username)
 {
 	vector<Drivers> driverFromFile;
 	vector <Trips> trip;
@@ -580,9 +599,20 @@ void job_screen(vector <Rider_pid>& rider, string d_username)
 	string check_name;
 	cin >> check_name;
 
+
+
+	//input_trip_data(rider, driverFromFile, trip, check_name);
+	//write_to_trip_transactions(trip);
+
+	input_trip_data(rider, driverFromFile, trip, check_name, d_username);
+	//write_to_trip_transactions(trip);
+	string trip_id_check = t.trip_id;
+	trip.push_back(t);
+	//confirm_job_screen(rider, trip, check_name, trip_id_check);
+
 	input_trip_data(rider, driverFromFile, trip, check_name, d_username);
 	input_trip_data(rider, driverFromFile, trip, check_name, d_username);
-	write_to_trip_transactions(trip);
+	//write_to_trip_transactions(trip);
 
 	confirm_job_screen(rider, trip, check_name);
 
@@ -609,6 +639,30 @@ int count_entries_trips()
 
 	}
 	//cout << "\nNumber of lines in file is " << total_entries; //debugging
+
+	return (total_entries);
+}
+
+int count_entries_trips_chrisTest()
+{
+	int total_entries = 0;
+	string s;
+	fstream tripFile("trip_transactions_chris.csv", ios::in);
+	if (!tripFile)
+	{
+		total_entries = 0;
+	}
+	else
+	{
+		while (!tripFile.eof())
+		{
+			getline(tripFile, s);
+			total_entries++;
+		}
+		total_entries = total_entries - 1;
+
+	}
+	cout << "\nNumber of lines in file is " << total_entries; //debugging
 
 	return (total_entries);
 }
@@ -663,20 +717,22 @@ vector<Trips> input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driver
 }
 
 
-void write_to_trip_transactions(vector <Trips>& trip)
-{
-	//Trips t;
-	fstream trip_file("trip_transactions.csv", ios::app);
-	//cout << "debug";
-	for (int i = 0; i < trip.size(); i++)
-	{
-		trip_file << trip[i].trip_id << "," << trip[i].driver_id << ","<<trip[i].rider_id<< "," << trip[i].start_loc << "," << trip[i].end_loc << "," << trip[i].trip_cost << "," << trip[i].trip_date << endl;
-	}
-	
-	//trip.push_back(t);
-	trip_file.close();
-}
 
+
+//IMPT!!! CONFLICTS WITH FUNCTION IN MISC_FUNCTIONS.CPP -- I PASSSED A STRUCT, NOT VECTOR, FOR ARGUMENT!!!********
+//void write_to_trip_transactions(vector <Trips>& trip)
+//{
+//	//Trips t;
+//	fstream trip_file("trip_transactions.csv", ios::app);
+//	//cout << "debug";
+//	for (int i = 0; i < trip.size(); i++)
+//	{
+//		trip_file << trip[i].trip_id << "," << trip[i].driver_id << ","<<trip[i].rider_id<< "," << trip[i].start_loc << "," << trip[i].end_loc << "," << trip[i].trip_cost << "," << trip[i].trip_date << endl;
+//	}
+//	
+//	//trip.push_back(t);
+//	trip_file.close();
+//}
 
 
 
@@ -711,6 +767,27 @@ vector <Trips> read_from_trips()
 		stringstream ss(single_trip);
 		ss >> t.trip_cost;
 
+
+//vector <Drivers> read_driver_trips()
+//{
+//
+//	fstream driverRidesFile("driver_rides.csv", ios::in);
+//	vector<Drivers> tempRides;
+//
+//	Drivers d;
+//	string line;
+//
+//	while (getline(driverRidesFile, line))
+//
+//	for (int i = 0; i <= trip.size(); i++)
+//
+//	{
+//		trip_file << trip[i].trip_id << "," << trip[i].driver_id << "," << trip[i].rider_id << "," << trip[i].start_loc << "," << trip[i].end_loc << "," << trip[i].trip_cost << "," << trip[i].trip_date << endl;
+//	}
+//	trip_file.close();
+//}
+
+
 		getline(linestream, single_trip, ',');
 		t.trip_date = single_trip;
 
@@ -721,7 +798,6 @@ vector <Trips> read_from_trips()
 
 	return (temp_trip);
 }
-
 
 
 
@@ -778,6 +854,8 @@ void confirm_job_screen(vector <Rider_pid>& rider, vector<Trips>& trip, string c
 		system("pause");
 		driver_account_main(driver, check_username);
 	}
+	//return (trip);
+
 }
 
 

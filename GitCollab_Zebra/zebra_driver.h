@@ -117,8 +117,10 @@ void job_screen(vector <Rider_pid>& rider, string d_username);
 
 vector<Trips> input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driverFromFile, vector <Trips>& trip, string check_name, string d_username);
 int count_entries_trips();
-void write_to_trip_transactions(vector <Trips>& trip);
+int count_entries_trips_chrisTest(); //Chris' testing - To remove after
+//void write_to_trip_transactions(vector <Trips>& trip);
 vector <Trips> read_from_trips();
+vector <Trips> read_allTrips();
 
 void confirm_job_screen(vector <Rider_pid>& rider, vector<Trips>& trip, string check_name);
 //void read_last_line();

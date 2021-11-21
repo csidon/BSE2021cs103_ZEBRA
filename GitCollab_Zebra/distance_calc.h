@@ -38,5 +38,8 @@ double main_dist_calc(string startLoc, string endLoc);
 double calc(struct Location start, struct Location end);
 string random_locations(int n);
 
+//Functions for fare charges [Used by both Rider and Driver]
+void disp_fares_charges();
+double calc_ride_cost(double distance);
 
 #endif

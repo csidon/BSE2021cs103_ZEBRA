@@ -7,6 +7,7 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
+#include "zebra_driver.h"
 
 using namespace std;
 
@@ -22,6 +23,10 @@ using namespace std;
 //###############################################
 //Misc functions available for global use
 string convert_string_to_upper(string& string_entry);
-
+Trips input_rider_trip_data(Rider_AllRidesInfo indiv_rider);
+void write_to_trip_transactions(Trips this_trip);
+vector <Trips> read_from_trips();
+string currentDateTime();
+void indiv_rider_report(Rider_pid indiv_user);
 
 #endif
