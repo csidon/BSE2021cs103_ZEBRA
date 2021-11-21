@@ -23,7 +23,7 @@ using namespace std;
 ////Purpose: This file contains small misc functions that can be used globally in the program
 
 
-string convert_string_to_upper(string &string_entry)
+string convert_string_to_upper(string& string_entry)
 {
 	char c;
 	string converted_string;
@@ -63,7 +63,7 @@ Trips input_rider_trip_data(Rider_AllRidesInfo indiv_rider)
 	int rand_driver = rand() % driverFromFile.size();
 	//cout << "\nDEBUGGING: What is the driverFromFile size? " << driverFromFile.size();
 	//cout << "\nDEBUGGING: What is the random driver index number? " << rand_driver;
-	
+
 	string rand_driver_alpha = driverFromFile[rand_driver].d_idAlph;
 	string rand_driver_num = to_string(driverFromFile[rand_driver].d_idNum);
 	string rand_driver_combined_id = rand_driver_alpha + rand_driver_num;
@@ -91,7 +91,7 @@ void write_to_trip_transactions(Trips this_trip)
 {
 	fstream trip_file("trip_transactions.csv", ios::app);
 	trip_file << this_trip.trip_id << "," << this_trip.driver_id << "," << this_trip.rider_id << "," << this_trip.start_loc << ",";
-	trip_file << this_trip.end_loc << "," << this_trip.trip_cost << "," << this_trip.trip_date << endl ;
+	trip_file << this_trip.end_loc << "," << this_trip.trip_cost << "," << this_trip.trip_date << endl;
 
 	trip_file.close();
 }

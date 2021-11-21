@@ -16,11 +16,13 @@ using namespace std;
 //Coder: Anastasiia Karpova
 //File: zebra_driver.cpp
 //Edited on: 4 Nov 2021
-//Last Edited Date:  4 Nov 2021
+//Last Edited Date:  21 Nov 2021
 //Purpose: This file contains the functions for the Zebra Driver
 
 
-//STRUCTURE
+//###############################################
+//		   Structure
+//##############################################
 
 struct Drivers
 {
@@ -99,30 +101,46 @@ struct Trips
 //###############################################
 
 void driver_main();
+<<<<<<< HEAD
+
+//registration part
+void driver_eligibility(vector<Drivers>& driver, vector<Drivers>&driverFromFile);
+=======
 void driver_eligibility(vector<Drivers>& driver, vector<Drivers>& driverFromFile);
 vector<Drivers> driver_login(vector<Drivers>& driverFromFile);
+>>>>>>> e1f186d731ad791b3e409816dbb96b39e5e582cc
 void driver_registration(vector<Drivers>& driver, vector<Drivers>& driverFromFile);
+
+//login
+vector<Drivers> driver_login(vector<Drivers>& driverFromFile);
+
+//DRIVERS file manipulations
 vector <Drivers> input_drivers(vector<Drivers>& driver);
 int count_entries_drive();
-void writeToFile(vector<Drivers>& driver);//returns nothing
+void writeToFile(vector<Drivers>& driver);
+vector<Drivers> pswd_reset_driver(vector <Drivers> driverFromFile);
 vector <Drivers> readFromFile();
-
-
 vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string check_username);
 
-
-void output_drivers(vector<Drivers>& driver);
+//void output_drivers(vector<Drivers>& driver);
 void driver_account_main(vector<Drivers>& driverFromFile, string check_username);
 void account_settings(vector<Drivers> driverFromFile, string check_username);
-void job_screen(vector <Rider_pid>& rider, string d_username);
 
+<<<<<<< HEAD
+//trip file and trip data manipulation
+void job_screen(vector <Rider_pid>& rider, string d_username);
+=======
+>>>>>>> e1f186d731ad791b3e409816dbb96b39e5e582cc
 struct Trips input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driverFromFile, vector <Trips>& trip, string check_name, string d_username);
 int count_entries_trips();
 int count_entries_trips_chrisTest(); //Chris' testing - To remove after
 //void write_to_trip_transactions(vector <Trips>& trip);
 vector <Trips> read_from_trips();
 vector <Trips> read_allTrips();
+<<<<<<< HEAD
+=======
 
+>>>>>>> e1f186d731ad791b3e409816dbb96b39e5e582cc
 void confirm_job_screen(vector <Rider_pid>& rider, Trips trip_struct, string check_name);
 //void read_last_line();
 
