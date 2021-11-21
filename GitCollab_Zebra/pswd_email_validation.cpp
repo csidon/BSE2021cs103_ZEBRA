@@ -54,22 +54,22 @@ bool has_space(char space)
 int creditcard_num_valid(string credit)
 {
 	int flag = 0;
-	cout << "\nChecking card length " << credit.length() << endl;
+	//cout << "\nChecking card length " << credit.length() << endl;
 	//If the input has correct length
 	if (credit.length() == 19)
 
 	{
-		cout << "\n length ok";
+		//cout << "\n length ok";
 		//if input at positions 4, 9, 14, are spaces
 		if ((has_space(credit[4])) || (has_space(credit[9])) || (has_space(credit[14])))
 		{
-			cout << "\nSpace ok";
+			//cout << "\nSpace ok";
 			int chunk = 0;
 			for (int i = 0; i < 4; i++)
 			{
-				cout << "\n chunked value " << chunk;
+				//cout << "\n chunked value " << chunk;
 				string temppull = (credit.substr(chunk, 4));
-				cout << "\ndebugging temppull 1  " << temppull;
+				//cout << "\ndebugging temppull 1  " << temppull;
 				for (int i = 0; i < 4; i++)
 				{
 					if (is_a_digit(temppull[i]))
@@ -78,14 +78,13 @@ int creditcard_num_valid(string credit)
 						flag = 0;
 
 				}
-				cout << "\nflag value after isdigit loop is " << flag;
+				//cout << "\nflag value after isdigit loop is " << flag;
 				chunk += 5;
-				cout << "\n chunked value after loop " << chunk;
+				//cout << "\n chunked value after loop " << chunk;
 			}
 		}
-
 	}
-	cout << "\n" << flag << "  <--This is the flag value\n";
+	//cout << "\n" << flag << "  <--This is the flag value\n";
 	return flag;
 }
 

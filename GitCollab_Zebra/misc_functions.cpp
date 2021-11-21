@@ -151,14 +151,14 @@ void indiv_rider_report(Rider_pid indiv_user)
 	string full_title = title_msg + rider_name;
 
 	disp_h2_lines(full_title);
-	cout << "\n\tDate/Time\tTrip #\tDriver ID\tPickup from\tDropoff at\t\tCost\n";
+	cout << "\n\tDate/Time\t\tTrip #\tDriver ID\tPickup from\tDropoff at\t\tCost\n";
 	for (int i = 0; i < read_from_allTrips.size(); i++)
 	{
 		//cout << "\nDEBUGGING: The combined riderID from the all trip transactions file is " << read_from_allTrips[i].rider_id <<endl; 
 		if (indiv_userID == read_from_allTrips[i].rider_id)
 		{
-			cout << "\t" << read_from_allTrips[i].trip_date << "\t\t" << read_from_allTrips[i].trip_id << "\t" << read_from_allTrips[i].driver_id;
-			cout << "\t" << read_from_allTrips[i].start_loc << "\t" << read_from_allTrips[i].end_loc << "\t\t" << read_from_allTrips[i].trip_cost << endl;
+			cout << "\t" << read_from_allTrips[i].trip_date << "\t" << read_from_allTrips[i].trip_id << "\t" << read_from_allTrips[i].driver_id;
+			cout << "\t" << read_from_allTrips[i].start_loc << "\t" << read_from_allTrips[i].end_loc << "\t\t\t$" << read_from_allTrips[i].trip_cost << endl;
 		}
 	}
 }

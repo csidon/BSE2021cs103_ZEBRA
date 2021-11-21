@@ -31,7 +31,7 @@ void driver_main()
 	vector <Trips> trip;
 	vector <Rider_pid> rider;
 
-	
+
 	int n;
 	cout << "\n\t1. Register\n";
 	cout << "\n\t2. Login\n";
@@ -142,7 +142,7 @@ vector <Drivers> input_drivers(vector<Drivers>& driver)
 	cout << "\n\tPassword: ";
 	cin >> d.password;
 	pswd_valid(d.password);
-	
+
 	//output_drivers(driver);
 
 	cout << "\n\tPlease, enter your: ";
@@ -229,7 +229,7 @@ void writeToFile(vector<Drivers>& driver)
 	for (int i = 0; i < driver.size(); i++)
 	{
 		//cout << "\nsecond DEBUG";	
-		driverFile << driver[i].d_idAlph<<","<<driver[i] .d_idNum<< "," << driver[i].fname << "," << driver[i].sname << "," << driver[i].pref_name << "," << driver[i].phone_num << "," << driver[i].mail << "," << driver[i].password << "," << driver[i].gender << "," << driver[i].birth << "," << driver[i].nationality << "," << driver[i].lice_num << "," << driver[i].doex << "," << driver[i].exp << "," << driver[i].veh_regist << "," << driver[i].veh_age << "," << driver[i].veh_model << "," << driver[i].wof_exp << "," << driver[i].bank_acc << "," << driver[i].bank_name << endl;
+		driverFile << driver[i].d_idAlph << "," << driver[i].d_idNum << "," << driver[i].fname << "," << driver[i].sname << "," << driver[i].pref_name << "," << driver[i].phone_num << "," << driver[i].mail << "," << driver[i].password << "," << driver[i].gender << "," << driver[i].birth << "," << driver[i].nationality << "," << driver[i].lice_num << "," << driver[i].doex << "," << driver[i].exp << "," << driver[i].veh_regist << "," << driver[i].veh_age << "," << driver[i].veh_model << "," << driver[i].wof_exp << "," << driver[i].bank_acc << "," << driver[i].bank_name << endl;
 	}
 	driverFile.close();
 	//cout <<"/nsize of driver"<< driver.size();
@@ -244,10 +244,17 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
 {
 	fstream driverFile("driverFile_pid.csv", ios::in);
 	string login, password;
+<<<<<<< HEAD
 	cout << "\n\tEnter your:";
 	cout << "\n\tUsername:\t";
 	cin >> login;
 	cout << "\n\n\tPassword:\t";
+=======
+	cout << "\n\tEnter your: ";
+	cout << "\n\tUsername: ";
+	cin >> login;
+	cout << "\n\tPassword: ";
+>>>>>>> e1f186d731ad791b3e409816dbb96b39e5e582cc
 	cin >> password;
 	driverFromFile = readFromFile();
 	//cout << "\n\tThe size on vector: " << driverFromFile.size();
@@ -258,7 +265,11 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
 
 		if (driverFromFile[i].mail == login && driverFromFile[i].password == password)
 		{
+<<<<<<< HEAD
 			system("cls");
+=======
+
+>>>>>>> e1f186d731ad791b3e409816dbb96b39e5e582cc
 			driver_account_main(driverFromFile, login);
 
 		}
@@ -384,7 +395,7 @@ vector <Drivers> readFromFile()
 
 	Drivers d;
 	string line;
-	
+
 	while (getline(driverFile, line))
 	{
 		//cout << line << endl;
@@ -446,7 +457,7 @@ vector <Drivers> readFromFile()
 
 void account_settings(vector<Drivers> driverFromFile, string check_username)
 {
-	
+
 	char n;
 	fstream driverFile("driverFile_pid.csv", ios::in);
 	driverFromFile = readFromFile();//assigning read from file data to the vector
@@ -457,7 +468,7 @@ void account_settings(vector<Drivers> driverFromFile, string check_username)
 	{
 		if (check_username == driverFromFile[i].mail)
 		{
-			cout << "\n\tHello, " << driverFromFile[i].pref_name<<endl;
+			cout << "\n\tHello, " << driverFromFile[i].pref_name << endl;
 			/*cout <<"\n\t" <<"First name:			"<<driverFromFile[i].fname;
 			cout << "\n\t" << "Second name:			" << driverFromFile[i].sname;
 			cout << "\n\t" << "Phone number:			" << driverFromFile[i].phone_num;
@@ -657,7 +668,7 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 	char a;
 	cout << "\n\tThe information updated! Would you like to update anything else?";
 
-	for (int i=0; i<3; i++)
+	for (int i = 0; i < 3; i++)
 	{
 		cout << "\n\tChoose[select 'Y' for yes, 'N' for no]:\t";
 		cin >> a;
@@ -687,9 +698,12 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 
 
 
+<<<<<<< HEAD
 //**********************
 //FUNCTION TO DISPLAY AVAILABLE RIDES TO PICK
 //**********************
+=======
+>>>>>>> e1f186d731ad791b3e409816dbb96b39e5e582cc
 
 
 void job_screen(vector <Rider_pid>& rider, string d_username)
@@ -713,11 +727,11 @@ void job_screen(vector <Rider_pid>& rider, string d_username)
 	cout << "\n\t" << rider[2].r_pname;
 	cout << "\n\tDistance from you	:  3.1 kms";//dummy info
 	cout << endl;
-		//cout << "\n\t" << rider[i].r_pname;
-		//cout << "\n\tDistance from you	:  5.2 kms";
-		//cout << endl;
-		//cout << "\n\t" << rider[i].r_pname;
-		//cout << "\n\tDistance from you	:  3.2 kms";
+	//cout << "\n\t" << rider[i].r_pname;
+	//cout << "\n\tDistance from you	:  5.2 kms";
+	//cout << endl;
+	//cout << "\n\t" << rider[i].r_pname;
+	//cout << "\n\tDistance from you	:  3.2 kms";
 
 
 	riderFile.close();
@@ -731,11 +745,22 @@ void job_screen(vector <Rider_pid>& rider, string d_username)
 	//input_trip_data(rider, driverFromFile, trip, check_name);
 	//write_to_trip_transactions(trip);
 
+<<<<<<< HEAD
 	temp_struct = input_trip_data(rider, driverFromFile, trip, check_name, d_username);//passing input struct to the main struct
 
 	//cout << temp_struct.driver_id;
 
 	write_to_trip_transactions(temp_struct);//creating and writing to a new file. Linked to misc header
+=======
+	temp_struct = input_trip_data(rider, driverFromFile, trip, check_name, d_username);
+	//cout << temp_struct.driver_id;
+	write_to_trip_transactions(temp_struct);
+	//string trip_id_check = t.trip_id;
+	//trip.push_back(t);
+	//confirm_job_screen(rider, trip, check_name, trip_id_check);
+
+	confirm_job_screen(rider, temp_struct, check_name);
+>>>>>>> e1f186d731ad791b3e409816dbb96b39e5e582cc
 
 
 	//string trip_id_check = t.trip_id;
@@ -800,11 +825,15 @@ int count_entries_trips_chrisTest()
 	return (total_entries);
 }
 
+<<<<<<< HEAD
 //**********************
 //FUNCTION TO input data for the trip
 //**********************
 
 struct Trips input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driverFromFile, vector <Trips>&trip, string check_name, string d_username)
+=======
+struct Trips input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driverFromFile, vector <Trips>& trip, string check_name, string d_username)
+>>>>>>> e1f186d731ad791b3e409816dbb96b39e5e582cc
 {
 	Trips t;
 	//time_t now = time(0);// current date/time based on current system
@@ -820,14 +849,18 @@ struct Trips input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driverF
 	rider = rider_retrieve_info();
 	for (int i = 0; i < rider.size(); i++)
 	{
+<<<<<<< HEAD
 		string id_num_string_r =to_string(rider[i].r_idnum);//converting int datatype to a string
+=======
+		string id_num_string_r = to_string(rider[i].r_idnum);
+>>>>>>> e1f186d731ad791b3e409816dbb96b39e5e582cc
 		if (check_name == rider[i].r_pname)
 		{
 			t.rider_id = rider[i].r_idalpha + id_num_string_r;
 		}
 
 	}
-	for (int i=0; i<driverFromFile.size();i++)
+	for (int i = 0; i < driverFromFile.size(); i++)
 	{
 		string id_num_string_d = to_string(driverFromFile[i].d_idNum);//converting int datatype to a string
 		if (d_username == driverFromFile[i].mail)
@@ -836,10 +869,15 @@ struct Trips input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driverF
 		}
 
 	}
+<<<<<<< HEAD
 	string count_entries_string = to_string(count_entries_trips()+1);
 
 	//filling the struct with data
 	t.trip_id = "TR"+ count_entries_string;// revise
+=======
+	string count_entries_string = to_string(count_entries_trips() + 1);
+	t.trip_id = "TR" + count_entries_string;// revise
+>>>>>>> e1f186d731ad791b3e409816dbb96b39e5e582cc
 	t.start_loc = random_locations(randloc1);
 	t.end_loc = random_locations(randloc2);
 	t.trip_cost = main_dist_calc(t.start_loc, t.end_loc);
@@ -851,6 +889,10 @@ struct Trips input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driverF
 
 	return (t);
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> e1f186d731ad791b3e409816dbb96b39e5e582cc
 
 
 //**********************
@@ -870,7 +912,7 @@ vector <Trips> read_from_trips()
 		string single_trip;
 
 		getline(linestream, single_trip, ',');
-		t.trip_id=single_trip;
+		t.trip_id = single_trip;
 
 		getline(linestream, single_trip, ',');
 		t.driver_id = single_trip;
@@ -914,7 +956,7 @@ void confirm_job_screen(vector <Rider_pid>& rider, Trips trip_struct, string che
 	fstream riderFile("riderpid.csv", ios::in);
 	rider = rider_retrieve_info();
 	//trip = read_from_trips();
-	for (int i = 0; i<rider.size(); i++)
+	for (int i = 0; i < rider.size(); i++)
 	{
 		if (check_name == rider[i].r_pname)
 		{
@@ -922,13 +964,19 @@ void confirm_job_screen(vector <Rider_pid>& rider, Trips trip_struct, string che
 		}
 	}
 	riderFile.close();
+<<<<<<< HEAD
 	cout << "\n\tTrip number is:\t" << trip_struct.trip_id << "\t" << trip_struct.trip_date;
 	cout << "\n\n\tFrom:\t" << trip_struct.start_loc;
 	cout << "\n\n\tDestination:\t" << trip_struct.end_loc;
+=======
+	cout << "\n\tTrip number is:	" << trip_struct.trip_id << "\t" << trip_struct.trip_date;
+	cout << "\n\tFrom:	" << trip_struct.start_loc;
+	cout << "\n\tDestination:		" << trip_struct.end_loc;
+>>>>>>> e1f186d731ad791b3e409816dbb96b39e5e582cc
 	/*trip.push_back(t);*/
 
 	//tripFile.close();
-	
+
 	string check_username;
 	cout << "\n\tPress any button when you've picked them up\n";
 	cout << "\n\t[CANCEL] to cancel this booking\n";
@@ -937,7 +985,7 @@ void confirm_job_screen(vector <Rider_pid>& rider, Trips trip_struct, string che
 	cin >> choice;
 	if (choice == "CANCEL")
 	{
-		
+
 		cout << "\n\tEnter you username to continue	: ";
 		cin >> check_username;
 		cout << "\n\tWARNING! You are about to cancel booking. Would you like to continue?";
@@ -950,13 +998,21 @@ void confirm_job_screen(vector <Rider_pid>& rider, Trips trip_struct, string che
 			driver_account_main(driver, check_username);//directing user to the main screen
 		}
 	}
+<<<<<<< HEAD
 
 	else 
+=======
+	else
+>>>>>>> e1f186d731ad791b3e409816dbb96b39e5e582cc
 	{
 		cout << "\n\tAwesome! Press ant button when you've dropped them off";
 		cout << "\n\tEnter you username to to access billing info\t: ";
 		cin >> check_username;
+<<<<<<< HEAD
 		cout << "\n\tNice! You have earned\t" << trip_struct.trip_cost;
+=======
+		cout << "\n\tNice! You have earned " << trip_struct.trip_cost;
+>>>>>>> e1f186d731ad791b3e409816dbb96b39e5e582cc
 		system("pause");
 
 		system("cls");
