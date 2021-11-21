@@ -23,7 +23,7 @@ using namespace std;
 ////Purpose: This file contains small misc functions that can be used globally in the program
 
 
-string convert_string_to_upper(string &string_entry)
+string convert_string_to_upper(string& string_entry)
 {
 	char c;
 	string converted_string;
@@ -63,7 +63,7 @@ Trips input_rider_trip_data(Rider_AllRidesInfo indiv_rider)
 	int rand_driver = rand() % driverFromFile.size();
 	//cout << "\nDEBUGGING: What is the driverFromFile size? " << driverFromFile.size();
 	//cout << "\nDEBUGGING: What is the random driver index number? " << rand_driver;
-	
+
 	string rand_driver_alpha = driverFromFile[rand_driver].d_idAlph;
 	string rand_driver_num = to_string(driverFromFile[rand_driver].d_idNum);
 	string rand_driver_combined_id = rand_driver_alpha + rand_driver_num;
@@ -73,7 +73,7 @@ Trips input_rider_trip_data(Rider_AllRidesInfo indiv_rider)
 	string rider_combined_id = rider_alpha + rider_num;
 	//cout << "\nDEBUGGING: userRidesInfo after passing to input_rider_trip_data (now indiv_rider) is: " << indiv_rider.rr_UIDalpha << indiv_rider.rr_UIDnum;
 
-	string count_entries_string = to_string(count_entries_trips_chrisTest() + 1);
+	string count_entries_string = to_string(count_entries_trips() + 1);
 	t.trip_id = "TR" + count_entries_string;
 	t.driver_id = rand_driver_combined_id;
 	t.rider_id = rider_combined_id;
@@ -87,21 +87,19 @@ Trips input_rider_trip_data(Rider_AllRidesInfo indiv_rider)
 }
 
 
-//ALL -- ***********CHECK WITH ANA!!! I PASSSED A STRUCT, NOT VECTOR, FOR ARGUMENT!!!********
 void write_to_trip_transactions(Trips this_trip)
 {
-	fstream trip_file("trip_transactions_chris.csv", ios::app);
+	fstream trip_file("trip_transactions.csv", ios::app);
 	trip_file << this_trip.trip_id << "," << this_trip.driver_id << "," << this_trip.rider_id << "," << this_trip.start_loc << ",";
-	trip_file << this_trip.end_loc << "," << this_trip.trip_cost << "," << this_trip.trip_date << endl ;
+	trip_file << this_trip.end_loc << "," << this_trip.trip_cost << "," << this_trip.trip_date << endl;
 
 	trip_file.close();
 }
 
 
-
 vector <Trips> read_allTrips()
 {
-	fstream tripFile("trip_transactions_chris.csv", ios::in);
+	fstream tripFile("trip_transactions.csv", ios::in);
 	vector <Trips> temp_trip;
 	Trips t;
 
@@ -137,7 +135,6 @@ vector <Trips> read_allTrips()
 	}
 
 	tripFile.close();
-
 	return (temp_trip);
 }
 
@@ -145,7 +142,7 @@ void indiv_rider_report(Rider_pid indiv_user)
 {
 	vector <Trips> read_from_allTrips;
 	read_from_allTrips = read_allTrips();
-	fstream allTrips_file("trip_transactions_chris.csv", ios::in);
+	fstream allTrips_file("trip_transactions.csv", ios::in);
 	string indiv_userID = indiv_user.r_idalpha + to_string(indiv_user.r_idnum);
 	//cout << "\nDEBUGGING: The combined rider's userID alpha and num is " << indiv_userID;
 
@@ -165,61 +162,3 @@ void indiv_rider_report(Rider_pid indiv_user)
 		}
 	}
 }
-
-
-//void confirm_job_screen(vector <Rider_pid>& rider, vector<Trips>& trip, string check_name)
-//{
-//	vector <Drivers> driver;
-//	Trips t;
-//	//fstream tripFile("trip_transactions.csv", ios::in);
-//	fstream riderFile("riderpid.csv", ios::in);
-//	rider = rider_retrieve_info();
-//	//trip = read_from_trips();
-//	for (int i = 0; i < rider.size(); i++)
-//	{
-//		if (check_name == rider[i].r_pname)
-//		{
-//			cout << "\n\n\n\tYour are picking up:	 " << rider[i].r_pname;
-//		}
-//	}
-//	riderFile.close();
-//	cout << "\n\tTrip number is:	" << t.trip_id << "\t" << t.trip_date;
-//	cout << "\n\tFrom:	" << t.start_loc;
-//	cout << "\n\tDestination:		" << t.end_loc;
-//	trip.push_back(t);
-//
-//	//tripFile.close();
-//
-//	string check_username;
-//	cout << "\n\tPress any button when you've picked them up";
-//	cout << "\n\t[CANCEL] to cancel this booking";
-//	cout << "\n\tChoose: ";
-//	string choice;
-//	cin >> choice;
-//	if (choice == "CANCEL")
-//	{
-//
-//		cout << "\n\tEnter you username to continue	: ";
-//		cin >> check_username;
-//		cout << "\n\tWARNING! You are about to cancel booking. Would you like to continue?";
-//		cout << "\n\t[Y] for yes. [N] for no: ";
-//		char can_choice;
-//		cin >> can_choice;
-//		if (can_choice == 'Y')
-//		{
-//			driver_account_main(driver, check_username);
-//		}
-//	}
-//	else
-//	{
-//		cout << "\n\tAwesome! Press ant button when you've dropped them off";
-//		cout << "\n\tEnter you username to to access billing info	: ";
-//		cin >> check_username;
-//		trip.push_back(t);
-//		cout << "\n\tNice! You have earned " << t.trip_cost;
-//		system("pause");
-//		driver_account_main(driver, check_username);
-//	}
-//	//return (trip);
-//
-//}
