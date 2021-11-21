@@ -51,12 +51,14 @@ struct Rider_pid
 
 struct Rider_AllRidesInfo
 {
-	string rr_UIDalpha, rr_pname, rr_defaultloc, rr_startloc, rr_endloc, rr_pay_avail;
-	int rr_UIDnum, rr_tripCost, rr_gst, rr_netTripRevenue;
+	string rr_UIDalpha, rr_pname, rr_defaultloc, rr_startloc, rr_endloc, rr_pay_avail, rr_tripIDa;
+	int rr_UIDnum, rr_tripCost, rr_gst, rr_netTripRevenue, rr_tripIDn;
 
 	//Constructor
-	Rider_AllRidesInfo(string uida = "", string rpn = "", string rdl = "", string rsl = "", string rel = "", string pay = "", int uidn = 0, int tc = 0, int gst = 0, int ntr = 0)
+	Rider_AllRidesInfo(string uida = "", string rpn = "", string rdl = "", string rsl = "", string rel = "", string pay = "", int uidn = 0, int tc = 0, int gst = 0, int ntr = 0, string tida = "", int tidn = 0)
 	{
+		rr_tripIDa = tida;
+		rr_tripIDn = tidn;
 		rr_UIDalpha = uida;
 		rr_pname = rpn;
 		rr_defaultloc = rdl;
@@ -144,7 +146,7 @@ struct Rider_AllRidesInfo
 //  Rider Main function prototypes
 //**********************************
 int count_entries();
-vector <Rider_pid> rider_main();
+int rider_main();
 
 // Option 1: Rider login
 Rider_pid r_login(vector <Rider_pid> read_from_file);
@@ -160,25 +162,44 @@ vector<Rider_pid> pswd_reset(vector <Rider_pid> read_from_file);
 //**************************************
 //  Rider logged in function prototypes
 //**************************************
+void r_loggedIn_home(Rider_pid& userInfo);
+
+//Location translates user's int input to location string so that distance can be calculated
+string location_translate(int user_input);		
+
+//------------------------------------------------------------------------------------------------------------
+//   Rider Booking-specific functions
+// 
+//Initiates a ride booking process when given riderpid structure, allrides information structure, and cost
 void book_ride(Rider_pid userPIDInfo, Rider_AllRidesInfo userRidesInfo, double cost);
+
+//Shows available destination options after removing the pickup options from selection
 string show_destination_options(Rider_AllRidesInfo rideInfo, int userInput);
+
+//Displays all locations available for user to select
 string show_pickup_options(Rider_AllRidesInfo rideInfo, int userInput);
 
+//---End Rider Booking-specific functions ----------------------------------------------------------------------
+
+
+
 //Search and Update functions
+vector <Rider_pid> rider_retrieve_info();
 vector <Rider_pid> searchAndUpdate_userDefaultLoc(Rider_pid& updateInfo);
+
+
+
 
 vector <Rider_pid> rider_register(vector <Rider_pid>& rinput);
 
-vector <Rider_pid> rider_retrieve_info();
+
 
 
 //Rider_ridestore r_login(vector <Rider_pid> temp_pull_file);
 
-void r_loggedIn_home(Rider_pid& uid);
+
 
 //vector<Rider_pid> searchAndUpdate_defaultloc(Rider_ridestore& passed_pid_details, vector <Rider_pid> read_from_file);
-string location_translate(int user_input);
-void disp_fares_charges();
 //vector <Rider_pid> pay_details(Rider_ridestore& passed_nopid_details, vector <Rider_pid> read_from_file);
 //Rider_pid pay_details(Rider_ridestore& passed_nopid_details, vector <Rider_pid> read_from_file);
 void add_header_riderpid(fstream& addheader);

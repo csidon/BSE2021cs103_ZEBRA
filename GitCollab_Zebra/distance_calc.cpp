@@ -2,6 +2,8 @@
 #include <string>
 #include "distance_calc.h"
 #include<cmath>
+#include "makepretty.h"
+#include <iomanip>
 
 using namespace std;
 
@@ -21,8 +23,6 @@ double calc(struct Location p, struct Location ptr)
 	dist = sqrt(pow((p.x - ptr.x), 2) + pow((p.y - ptr.y), 2));
 	return (dist);
 }
-
-
 
 //*****************
 //MANUALY INPUTING COORDINATES USING POINTER
@@ -63,9 +63,9 @@ struct Location* stored_locations(struct Location* ptr)
 	return (ptr);
 }
 
-//*****************
+//*****************************
 //FUNCTION TO SET COORDINATES
-//*****************
+//*****************************
 
 bool set_coordinates(struct Location data_array[], struct Location* coordinates, string input)
 {
@@ -100,14 +100,6 @@ double main_dist_calc(string startLoc, string endLoc)
 	Location arr[6];
 	p = arr;
 	stored_locations(p);
-	//for (int i = 0; i < 6; i++)//debug
-	//{
-	//	cout << arr[i].id << endl;//
-	//}
-	//cout << "\n\tPlease enter a pick up location: ";
-	//cin >> startLoc;
-	//cout << "\n\tPlease enter a drop off location: ";
-	//cin >> endLoc;
 	set_coordinates(arr, &coordinates_A, startLoc);
 	set_coordinates(arr, &coordinates_B, endLoc);
 
@@ -115,9 +107,6 @@ double main_dist_calc(string startLoc, string endLoc)
 	//cout << "The calculated distance between " << startLoc << " and " << endLoc << " is " << dist;
 	return (dist);
 }
-
-
-
 
 string random_locations(int n)
 {
@@ -132,3 +121,45 @@ string random_locations(int n)
 	return random_location;
 }
 
+//****************************************************************************************************
+//  FUNCTION TO CALCULATE COST BASED ON DISTANCE: 
+//  Based off Ola and Uber's rate cards
+//****************************************************************************************************
+
+void disp_fares_charges()
+{
+	disp_star_line();
+	cout << "\n\tBASE FARE";
+	disp_dash_line();
+	cout << "\n\tZebra charges a flat booking fee of 45 cents, and base fare of $1.10 for the first kilometer.\n";
+	disp_dash_line();
+	cout << "\n\tSUBSEQUENT RATE PER KM";
+	cout << "\n\t$1.10 per km - The lowest rates in town!\n";
+	disp_dash_line();
+	cout << "\n\tMINIMUM FARE";
+	cout << "\n\t$3.50\n";
+	//cout << "\n\t[More to be added if there's time]\n\t";
+	system("pause");
+	disp_star_line();
+}
+
+double calc_ride_cost(double distance)
+{
+	double calc_cost, subs_rate_per_km, base_fare;
+	cout << fixed;
+	cout << setprecision(2); //this sets cost price to 2 decimal places
+
+	base_fare = 0.45 + 1.1;
+	subs_rate_per_km = (distance - 1) * 1.1;
+	calc_cost = base_fare + subs_rate_per_km;
+
+	if (calc_cost < 3.5)
+	{
+		return (3.5);
+	}
+	else
+	{
+		return (calc_cost);
+	}
+
+}

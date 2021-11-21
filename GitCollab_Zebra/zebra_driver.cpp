@@ -605,14 +605,14 @@ void job_screen(vector <Rider_pid>& rider, string d_username)
 	//write_to_trip_transactions(trip);
 
 	input_trip_data(rider, driverFromFile, trip, check_name, d_username);
-	write_to_trip_transactions(trip);
+	//write_to_trip_transactions(trip);
 	string trip_id_check = t.trip_id;
 	trip.push_back(t);
 	//confirm_job_screen(rider, trip, check_name, trip_id_check);
 
 	input_trip_data(rider, driverFromFile, trip, check_name, d_username);
 	input_trip_data(rider, driverFromFile, trip, check_name, d_username);
-	write_to_trip_transactions(trip);
+	//write_to_trip_transactions(trip);
 
 	confirm_job_screen(rider, trip, check_name);
 
@@ -639,6 +639,30 @@ int count_entries_trips()
 
 	}
 	//cout << "\nNumber of lines in file is " << total_entries; //debugging
+
+	return (total_entries);
+}
+
+int count_entries_trips_chrisTest()
+{
+	int total_entries = 0;
+	string s;
+	fstream tripFile("trip_transactions_chris.csv", ios::in);
+	if (!tripFile)
+	{
+		total_entries = 0;
+	}
+	else
+	{
+		while (!tripFile.eof())
+		{
+			getline(tripFile, s);
+			total_entries++;
+		}
+		total_entries = total_entries - 1;
+
+	}
+	cout << "\nNumber of lines in file is " << total_entries; //debugging
 
 	return (total_entries);
 }
@@ -695,30 +719,20 @@ vector<Trips> input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driver
 
 
 
+//IMPT!!! CONFLICTS WITH FUNCTION IN MISC_FUNCTIONS.CPP -- I PASSSED A STRUCT, NOT VECTOR, FOR ARGUMENT!!!********
 //void write_to_trip_transactions(vector <Trips>& trip)
 //{
+//	//Trips t;
 //	fstream trip_file("trip_transactions.csv", ios::app);
-//
-//	cout << "debug";
-//	trip_file << trip.trip_id << "," << trip.driver_id << "," << trip.start_loc << "," << trip.end_loc << "," << trip.trip_cost << "," << trip.trip_date << endl;
-//
+//	//cout << "debug";
+//	for (int i = 0; i < trip.size(); i++)
+//	{
+//		trip_file << trip[i].trip_id << "," << trip[i].driver_id << ","<<trip[i].rider_id<< "," << trip[i].start_loc << "," << trip[i].end_loc << "," << trip[i].trip_cost << "," << trip[i].trip_date << endl;
+//	}
+//	
+//	//trip.push_back(t);
 //	trip_file.close();
 //}
-
-
-void write_to_trip_transactions(vector <Trips>& trip)
-{
-	//Trips t;
-	fstream trip_file("trip_transactions.csv", ios::app);
-	//cout << "debug";
-	for (int i = 0; i < trip.size(); i++)
-	{
-		trip_file << trip[i].trip_id << "," << trip[i].driver_id << ","<<trip[i].rider_id<< "," << trip[i].start_loc << "," << trip[i].end_loc << "," << trip[i].trip_cost << "," << trip[i].trip_date << endl;
-	}
-	
-	//trip.push_back(t);
-	trip_file.close();
-}
 
 
 
