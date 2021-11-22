@@ -31,9 +31,11 @@ void driver_main()
 	vector <Trips> trip;
 	vector <Rider_pid> rider;
 
-
+	disp_zebra_driver();
+	cout << endl;
+	disp_h2_lines("What are you up to?");
 	int n;
-	cout << "\n\t1. Register\n";
+	cout << "\n\n\t1. Register\n";
 	cout << "\n\t2. Login\n";
 	cout << "\n\t3. Back\n\n";
 	cout << "\n\t[Enter your choice - 1, 2, 3 or 4]";
@@ -44,6 +46,7 @@ void driver_main()
 	{
 	case 1:
 		//read_last_line();
+
 		disp_driver_regist();//"pretty function"
 		cout << endl;
 		driver_eligibility(driver, driverFromFile);//calling function to check if driver is eligible
@@ -67,7 +70,8 @@ void driver_eligibility(vector<Drivers>& driver, vector<Drivers>& driverFromFile
 	disp_h3_lines("Eligibility Check");
 	char full, n;
 	int car_age, driver_age;
-	cout << "\n\t[Enter Y/N]\n";
+	disp_h3_lines("Enter Y / N");
+
 	cout << "\n\t Do you have full NZ drive license?" << "\t";
 	cin >> full;
 
@@ -80,7 +84,7 @@ void driver_eligibility(vector<Drivers>& driver, vector<Drivers>& driverFromFile
 	cout << "\n\tPlease enter your age" << "\t";
 	cin >> driver_age;
 
-	if (full == 'Y' && n == 'Y' && car_age <= 10 && driver_age >= 21)//checking if driver meets criteria
+	if (tolower(full) == 'Y' && tolower(n) == 'Y' && car_age <= 10 && driver_age >= 21)//checking if driver meets criteria
 	{
 		system("cls");
 		driver_registration(driver, driverFromFile);
@@ -119,9 +123,13 @@ void driver_registration(vector<Drivers>& driver, vector<Drivers>& driverFromFil
 
 vector <Drivers> input_drivers(vector<Drivers>& driver)
 {
+	disp_driver_regist();//pretty function
+	cout << endl;
+	disp_h2_lines("Sign up to Drivers Zeabra!");//pretty function
 	Drivers d;// struct with a temporary varible 
-	cout << "\n\tPlease, enter your: ";
-	cout << "\n\tFirst Name: ";
+	disp_h3_lines("Please, enter your:");
+
+	cout << "\n\n\n\tFirst Name: ";
 	cin >> d.fname;
 	cout << "\n\tSecond Name: ";
 	cin >> d.sname;
@@ -241,17 +249,17 @@ void writeToFile(vector<Drivers>& driver)
 //**********************
 
 vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
+
 {
+	disp_zebra_driver();
+	cout << endl;
+	disp_h2_lines("Login to your Zebra account");
 	fstream driverFile("driverFile_pid.csv", ios::in);
 	string login, password;
 
-	cout << "\n\tEnter your:";
-	cout << "\n\tUsername:\t";
-	cin >> login;
-	cout << "\n\n\tPassword:\t";
+	disp_h3_lines("Please, enter your:");
 
-	cout << "\n\tEnter your: ";
-	cout << "\n\tUsername: ";
+	cout << "\n\n\tUsername: ";
 	cin >> login;
 	cout << "\n\tPassword: ";
 
@@ -284,14 +292,21 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
 
 void driver_account_main(vector<Drivers>& driverFromFile, string check_username)//passing vector and drivers email, to retrieve the correct info from the file
 {
+	disp_zebra_driver();
+	cout << endl;
+	disp_h2_lines("Welcome to your account!");
 	vector <Rider_pid> rider;
 	Rider_pid r;
 	int n;
-	cout << "\n\tKia ora, we are all good to go!";
-	cout << "\n\tPlease choose from the following options:\n";
+	cout << "\n\n\tKia ora, we are all good to go!";
+
+	disp_dash_line();
+
+	cout << "\n\n\tPlease choose from the following options:\n";
 	cout << "\n\t1. Account settings\n";
 	cout << "\n\t2. Pick a ride\n";
 	cout << "\n\t3. Reset your password\n\n";
+
 	cout << "\n\t Choice:\t";
 	cin >> n;
 
@@ -320,6 +335,9 @@ void driver_account_main(vector<Drivers>& driverFromFile, string check_username)
 
 vector<Drivers> pswd_reset_driver(vector <Drivers> driverFromFile)
 {
+	disp_zebra_driver();
+	cout << endl;
+	disp_h2_lines("Reset your password");
 	fstream driver_file("driverFile_pid.csv", ios::out);
 
 	string username, new_pswd;
@@ -455,18 +473,22 @@ vector <Drivers> readFromFile()
 
 void account_settings(vector<Drivers> driverFromFile, string check_username)
 {
-
+	disp_zebra_driver();
+	cout << endl;
+	disp_h2_lines("Account settings");
 	char n;
 	fstream driverFile("driverFile_pid.csv", ios::in);
 	driverFromFile = readFromFile();//assigning read from file data to the vector
-	cout << "\n\tYour account details";
-	cout << "\n\tPlease enter your username:\t";
+
+	disp_h3_lines("Please, enter your:");
 	cin >> check_username;
+
 	for (int i = 0; i < driverFromFile.size(); i++)
 	{
 		if (check_username == driverFromFile[i].mail)
 		{
-			cout << "\n\tHello, " << driverFromFile[i].pref_name << endl;
+			cout << "\n\n\tHello, " << driverFromFile[i].pref_name << endl;
+			disp_dash_line();
 			/*cout <<"\n\t" <<"First name:			"<<driverFromFile[i].fname;
 			cout << "\n\t" << "Second name:			" << driverFromFile[i].sname;
 			cout << "\n\t" << "Phone number:			" << driverFromFile[i].phone_num;
@@ -496,12 +518,14 @@ void account_settings(vector<Drivers> driverFromFile, string check_username)
 		}
 	}
 	driverFile.close();
-	cout << "\n\tSelect [e] to edit your deatils.";
-	cout << "\n\tSelect [b] to go back\n";
+	cout << "\n\tSelect [E] to edit your deatils.";
+	cout << "\n\tSelect [B] to go back\n";
 	cout << "\n\tChoose:\t";
 	cin >> n;
 
-	if (n == 'e')
+	disp_dash_line();
+
+	if (n == 'e'||n=='E')
 	{
 
 		update_acc_details(driverFromFile, check_username);//calling function to change data in the file
@@ -664,7 +688,8 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 	driverFromFile = readFromFile();
 
 	char a;
-	cout << "\n\tThe information updated! Would you like to update anything else?";
+	disp_h3_lines("The information updated! Would you like to update anything else?");
+
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -705,6 +730,9 @@ vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string che
 
 void job_screen(vector <Rider_pid>& rider, string d_username)
 {
+	disp_zebra_driver();
+	cout << endl;
+	disp_h2_lines("Time to pick a rider!");
 	vector<Drivers> driverFromFile;
 	vector <Trips> trip;
 	Trips temp_struct;
@@ -716,6 +744,7 @@ void job_screen(vector <Rider_pid>& rider, string d_username)
 	//cout << "debug" << rand_rider;
 
 	cout << "\n\t\tKia Ora! Ready to work?";
+	disp_dash_line();
 	cout << "\n\t\tThere's the available jobs waiting for you to pick up:  ";
 	cout << endl;
 	cout << "\n\t" << rider[1].r_pname;//hardcoding in the tearms of the assignment
@@ -732,8 +761,9 @@ void job_screen(vector <Rider_pid>& rider, string d_username)
 
 
 	riderFile.close();
-
+	disp_dash_line();
 	cout << "\n\tEnter the name of the rider to pick up a job:\t";
+
 	string check_name;
 	cin >> check_name;
 
@@ -934,6 +964,7 @@ vector <Trips> read_from_trips()
 
 void confirm_job_screen(vector <Rider_pid>& rider, Trips trip_struct, string check_name)
 {
+	disp_dash_line();
 	vector <Drivers> driver;
 	vector <Rider_pid> rider_temp;
 	//fstream tripFile("trip_transactions.csv", ios::in);
@@ -956,6 +987,8 @@ void confirm_job_screen(vector <Rider_pid>& rider, Trips trip_struct, string che
 	/*trip.push_back(t);*/
 
 	//tripFile.close();
+
+	disp_dash_line();
 
 	string check_username;
 	cout << "\n\tPress any button when you've picked them up\n";
@@ -983,13 +1016,13 @@ void confirm_job_screen(vector <Rider_pid>& rider, Trips trip_struct, string che
 
 	else
 	{
+		disp_dash_line();
 		cout << "\n\tAwesome! Press ant button when you've dropped them off";
 		cout << "\n\tEnter you username to to access billing info\t: ";
 		cin >> check_username;
 
 		cout << "\n\tNice! You have earned\t" << trip_struct.trip_cost;
 
-		cout << "\n\tNice! You have earned " << trip_struct.trip_cost;
 
 		system("pause");
 

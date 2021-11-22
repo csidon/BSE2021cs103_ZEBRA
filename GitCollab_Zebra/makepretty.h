@@ -28,6 +28,7 @@ void disp_dash_line();
 void disp_star_line();
 void disp_rider_logo();
 void disp_driver_regist();
+void disp_zebra_driver();
 
 
 #endif

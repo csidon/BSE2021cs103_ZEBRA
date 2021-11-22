@@ -49,6 +49,14 @@ void disp_driver_regist()
 	cout << "\n\t\t           |___/                                       ";
 }
 
+void disp_zebra_driver()
+{
+	cout << "\n\n\t _____    _                 ____       _";
+	cout << "\n\t|__  /___| |__  _ __ __ _  |  _ \\ _ __(_)_   _____ _ __ ";
+	cout << "\n\t  / // _ \\ '_ \\| '__/ _` | | | | | '__| \\ \\ / / _ \\ '__|";
+	cout << "\n\t / /|  __/ |_) | | | (_| | | |_| | |  | |\\ V /  __/ |";
+	cout << "	\n\t/____\\___|_.__/|_|  \\__,_| |____/|_|  |_| \\_/ \\___|_|";
+}
 
 //This function displays a "#####" H2 border around (string title)
 void disp_h2_lines(string title)
