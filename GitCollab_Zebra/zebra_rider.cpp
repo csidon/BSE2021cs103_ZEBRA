@@ -199,7 +199,7 @@ void r_loggedIn_home(Rider_pid& userInfo)
 
 		//temporarily storing it in userInfo struct, then updating records in riderpid.csv file 
 		userInfo.r_defaultloc = location_translate(locInput);
-		searchAndUpdate_userDefaultLoc(userInfo);
+		searchAndUpdate_allUserDetails(userInfo);
 	}
 
 	string stay_loggedIn = "y";
@@ -244,7 +244,7 @@ void r_loggedIn_home(Rider_pid& userInfo)
 			//cout << "\nDEBUG: The registered rider UID and pname for USERINFO is " << userInfo.r_idalpha << userInfo.r_idnum << " and " << userInfo.r_pname;
 			ridesInfo.rr_startloc = userInfo.r_defaultloc;
 			ridesInfo.rr_endloc = "TE_ARO";
-			book_ride(userInfo, ridesInfo, defaultloc_cost);
+			userInfo = book_ride(userInfo, ridesInfo, defaultloc_cost);
 			system("pause");
 			stay_loggedIn = "y";
 			break;
@@ -266,7 +266,7 @@ void r_loggedIn_home(Rider_pid& userInfo)
 			//cout << "\nDEBUGGING: Destination registered is " << ridesInfo.rr_endloc;
 			userCalc_dist = main_dist_calc(ridesInfo.rr_startloc, ridesInfo.rr_endloc);
 			userCalc_cost = calc_ride_cost(userCalc_dist);
-			book_ride(userInfo, ridesInfo, userCalc_cost);
+			userInfo = book_ride(userInfo, ridesInfo, userCalc_cost);
 			cout << "\t";
 			system("pause");
 			stay_loggedIn = "y";
@@ -292,7 +292,7 @@ void r_loggedIn_home(Rider_pid& userInfo)
 			//cout << "\nDEBUGGING: Destination registered is " << ridesInfo.rr_endloc;
 			userCalc_dist = main_dist_calc(ridesInfo.rr_startloc, ridesInfo.rr_endloc);
 			userCalc_cost = calc_ride_cost(userCalc_dist);
-			book_ride(userInfo, ridesInfo, userCalc_cost);
+			userInfo = book_ride(userInfo, ridesInfo, userCalc_cost);
 			cout << "\t";
 			system("pause");
 			stay_loggedIn = "y";
@@ -366,17 +366,18 @@ string show_destination_options(Rider_AllRidesInfo rideInfo, int userInput)
 	return (destination);
 }
 
-void book_ride(Rider_pid userPIDInfo, Rider_AllRidesInfo userRidesInfo, double cost)
+Rider_pid book_ride(Rider_pid userPIDInfo, Rider_AllRidesInfo userRidesInfo, double cost)
 {
 	Trips temp_ride_struct;
 	string creditcard;
 	char booking_cfm;
 	int flag = 0;
+	
 
 	//cout << "\n Are payment details stored? (card number) " << userPIDInfo.r_card_num; //debugging
 	//cout << "\nDEBUG: Equating the start location with default location -- success? \t" << userRidesInfo.rr_startloc;
-	//cout << "\nDEBUG: Is the end location correct? \t" << userRidesInfo.rr_endloc;
-	//cout << "\nDEBUG: Are there payment methods stored right now? " << userPIDInfo.r_card_type << endl;
+	cout << "\nDEBUG: Is the end location correct? \t" << userRidesInfo.rr_endloc;
+	cout << "\nDEBUG: Are there payment methods stored right now? " << userPIDInfo.r_card_type << endl;
 
 	main_dist_calc(userRidesInfo.rr_startloc, userRidesInfo.rr_endloc);
 	if (userPIDInfo.r_card_type == "")
@@ -413,12 +414,15 @@ void book_ride(Rider_pid userPIDInfo, Rider_AllRidesInfo userRidesInfo, double c
 		//Copies desensitised ride booking information to a temporary structure, that then gets passed and written to trip_transactions.csv
 		temp_ride_struct = input_rider_trip_data(userRidesInfo);
 		write_to_trip_transactions(temp_ride_struct);
+		searchAndUpdate_allUserDetails(userPIDInfo);
+		//return (userPIDInfo);
 	}
 	else
 	{
 		cout << "\n\tYour booking has been cancelled\n";
 	}
 	cout << "\t";
+	return (userPIDInfo);
 }
 
 
@@ -555,7 +559,7 @@ Rider_pid pay_details(Rider_pid& passed_pid_details)
 					else
 					{
 						cout << "\n\tYour card number format must be [XXXX XXXX XXXX XXXX].\n";
-						cout << "\n\tHit Enter to try again.\n";
+						cout << "\n\tHit Enter to try again.\n\t";
 					}
 				}
 				cout << "\n\tExpiry date [MMYY]\t:  ";
@@ -990,7 +994,7 @@ valid_emailusrname:
 //
 //}
 
-vector <Rider_pid> searchAndUpdate_userDefaultLoc(Rider_pid & updateInfo)
+vector <Rider_pid> searchAndUpdate_allUserDetails(Rider_pid & updateInfo)
 {
 	vector <Rider_pid> read_from_file;
 	read_from_file = rider_retrieve_info();
@@ -1004,7 +1008,19 @@ vector <Rider_pid> searchAndUpdate_userDefaultLoc(Rider_pid & updateInfo)
 		{
 			//cout << "\nDEBUGGING: UID found in riderpid file";
 			//cout << "\nDEBUGGING: Default location to be pushed is " << updateInfo.r_defaultloc << " to " << read_from_file[i].r_defaultloc;
+			read_from_file[i].r_fname = updateInfo.r_fname;
+			read_from_file[i].r_lname = updateInfo.r_lname;
+			read_from_file[i].r_pname = updateInfo.r_pname;
+			read_from_file[i].r_contact = updateInfo.r_contact;
+			read_from_file[i].r_address = updateInfo.r_address;
+			read_from_file[i].r_emailusrname = updateInfo.r_emailusrname;
+			read_from_file[i].r_pswd = updateInfo.r_pswd;
 			read_from_file[i].r_defaultloc = updateInfo.r_defaultloc;
+			read_from_file[i].r_card_type = updateInfo.r_card_type;
+			read_from_file[i].r_cardholder_name = updateInfo.r_cardholder_name;
+			read_from_file[i].r_card_num = updateInfo.r_card_num;
+			read_from_file[i].r_expiry = updateInfo.r_expiry;
+			read_from_file[i].r_cvv = updateInfo.r_cvv;
 		}
 		riderpid_file << read_from_file[i].r_idalpha << "," << read_from_file[i].r_idnum << "," << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ",";
 		riderpid_file << read_from_file[i].r_contact << "," << read_from_file[i].r_address << "," << read_from_file[i].r_emailusrname << ",";
