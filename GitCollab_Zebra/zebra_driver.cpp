@@ -949,13 +949,9 @@ void confirm_job_screen(vector <Rider_pid>& rider, Trips trip_struct, string che
 	}
 	riderFile.close();
 
-	cout << "\n\tTrip number is:\t" << trip_struct.trip_id << "\t" << trip_struct.trip_date;
+	cout << "\n\n\tTrip number is:\t" << trip_struct.trip_id << "\t" << trip_struct.trip_date;
 	cout << "\n\n\tFrom:\t" << trip_struct.start_loc;
 	cout << "\n\n\tDestination:\t" << trip_struct.end_loc;
-
-	cout << "\n\tTrip number is:	" << trip_struct.trip_id << "\t" << trip_struct.trip_date;
-	cout << "\n\tFrom:	" << trip_struct.start_loc;
-	cout << "\n\tDestination:		" << trip_struct.end_loc;
 
 	/*trip.push_back(t);*/
 
