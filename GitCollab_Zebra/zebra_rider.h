@@ -171,7 +171,7 @@ string location_translate(int user_input);
 //   Rider Booking-specific functions
 // 
 //Initiates a ride booking process when given riderpid structure, allrides information structure, and cost
-void book_ride(Rider_pid userPIDInfo, Rider_AllRidesInfo userRidesInfo, double cost);
+Rider_pid book_ride(Rider_pid userPIDInfo, Rider_AllRidesInfo userRidesInfo, double cost);
 
 //Shows available destination options after removing the pickup options from selection
 string show_destination_options(Rider_AllRidesInfo rideInfo, int userInput);
@@ -185,6 +185,11 @@ string show_pickup_options(Rider_AllRidesInfo rideInfo, int userInput);
 
 //Search and Update functions
 vector <Rider_pid> rider_retrieve_info();
+vector <Rider_pid> searchAndUpdate_allUserDetails(Rider_pid& updateInfo);
+
+
+
+
 vector <Rider_pid> searchAndUpdate_userDefaultLoc(Rider_pid& updateInfo);
 
 
