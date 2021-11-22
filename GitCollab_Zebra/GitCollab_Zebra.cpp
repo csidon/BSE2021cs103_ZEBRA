@@ -14,6 +14,7 @@ using namespace std;
 
 int main()
 {
+	
 	int main_input;
 
 	//Initialising vector class for structure Rider_pid so that the structure can take unlimited entries
@@ -25,7 +26,8 @@ int main()
 	////####### Main Page ########[Chris]
 	while (keep_going == "y")
 	{
-		system("Color 8");
+		system("Color 4");
+
 		disp_main_logo();
 		disp_h2_lines("The Best NZ Taxi Booking System");
 		disp_h3_lines("Select: ");
@@ -40,6 +42,8 @@ int main()
 		cin >> main_input;
 		if (main_input == 1)
 		{
+			system("cls");
+			system("Color 6");
 			driver_main();
 			keep_going = "y";
 		}

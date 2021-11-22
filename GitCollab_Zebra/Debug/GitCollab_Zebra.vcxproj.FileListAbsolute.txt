@@ -9,5 +9,10 @@ C:\Users\200856629\OneDrive - UP Education\Desktop\new_CS103\BSE2021cs103_ZEBRA\
 C:\Users\270158235\OneDrive - UP Education\import Zebra\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
 C:\Users\270158235\OneDrive - UP Education\import Zebra\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.pdb
 C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
+<<<<<<< HEAD
 C:\Users\270158235\OneDrive - UP Education\Desktop\Chris Pull from GH\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
 C:\Users\270158235\OneDrive - UP Education\Desktop\Chris Pull from GH\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.pdb
+=======
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.pdb
+>>>>>>> dd949dd671c17c73828ef3d29c92a90807ff0fcc
