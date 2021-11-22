@@ -1,1 +1,19 @@
-﻿  GitCollab_Zebra.vcxproj -> C:\Users\karpo\Desktop\CS103\New folder\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
+﻿  zebra_driver.cpp
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(237,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(270,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(351,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(486,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(572,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(587,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(600,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(613,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(626,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(639,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(652,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(664,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(677,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(867,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(873,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(884,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(974,20): warning C4018: '<': signed/unsigned mismatch
+  GitCollab_Zebra.vcxproj -> C:\Users\200856629\OneDrive - UP Education\Desktop\103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
