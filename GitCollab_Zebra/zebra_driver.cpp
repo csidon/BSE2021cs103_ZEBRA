@@ -11,6 +11,8 @@
 #include "zebra_rider.h"
 #include "distance_calc.h"
 #include "misc_functions.h"
+
+
 using namespace std;
 
 //Coder: Anastasiia Karpova
@@ -84,7 +86,7 @@ void driver_eligibility(vector<Drivers>& driver, vector<Drivers>& driverFromFile
 	cout << "\n\tPlease enter your age" << "\t";
 	cin >> driver_age;
 
-	if (tolower(full) == 'Y' && tolower(n) == 'Y' && car_age <= 10 && driver_age >= 21)//checking if driver meets criteria
+	if (full == 'Y' && n == 'Y' && car_age <= 10 && driver_age >= 21)//checking if driver meets criteria
 	{
 		system("cls");
 		driver_registration(driver, driverFromFile);
@@ -153,11 +155,11 @@ vector <Drivers> input_drivers(vector<Drivers>& driver)
 
 	//output_drivers(driver);
 
-	cout << "\n\tPlease, enter your: ";
+	cout << "\n\n\tPlease, enter your: ";
 
 	cout << "\n\tDrivers' License #	[Format:AB123456]: ";
 	cin >> d.lice_num;
-	cout << "\n\tDate of Expiry Format:DD / MM / YY]: ";
+	cout << "\n\tDate of Expiry Format[DD / MM / YYYY]: ";
 	cin >> d.doex;
 	cout << "\n\tDriving Experience # of years: ";
 	cin >> d.exp;
@@ -256,7 +258,7 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
 	disp_h2_lines("Login to your Zebra account");
 	fstream driverFile("driverFile_pid.csv", ios::in);
 	string login, password;
-
+loginprocess:
 	disp_h3_lines("Please, enter your:");
 
 	cout << "\n\n\tUsername: ";
@@ -267,6 +269,7 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
 	driverFromFile = readFromFile();
 	//cout << "\n\tThe size on vector: " << driverFromFile.size();
 	//cout << driverFromFile[0].fname;
+
 	for (int i = 0; i < driverFromFile.size(); i++)
 	{
 		//cout << "\nLooping through";//debug
@@ -278,6 +281,23 @@ vector<Drivers> driver_login(vector<Drivers>& driverFromFile)
 
 			driver_account_main(driverFromFile, login);
 
+		}
+		else
+		{
+			cout << "\n\n\tUsername or Password is incorrect";
+			cout << "\n\n\t1. Sign in";
+			cout << "\n\t2. Reset password";
+			int n;
+			cout << "\n\n\tChoose:\t";
+			cin >> n;
+			if (n == 1)
+			{
+				goto loginprocess;
+			}
+			else
+			{
+				pswd_reset_driver(driverFromFile);
+			}
 		}
 
 	}
@@ -305,7 +325,8 @@ void driver_account_main(vector<Drivers>& driverFromFile, string check_username)
 	cout << "\n\n\tPlease choose from the following options:\n";
 	cout << "\n\t1. Account settings\n";
 	cout << "\n\t2. Pick a ride\n";
-	cout << "\n\t3. Reset your password\n\n";
+	cout << "\n\t3. Reset your password\n";
+	cout << "\n\t4. Back\n\n";
 
 	cout << "\n\t Choice:\t";
 	cin >> n;
@@ -326,7 +347,11 @@ void driver_account_main(vector<Drivers>& driverFromFile, string check_username)
 		pswd_reset_driver(driverFromFile);//calling password reset function
 		break;
 
+	case 4:
+		driver_main();
+		break;
 	}
+	
 }
 
 //**********************
@@ -479,10 +504,22 @@ void account_settings(vector<Drivers> driverFromFile, string check_username)
 	char n;
 	fstream driverFile("driverFile_pid.csv", ios::in);
 	driverFromFile = readFromFile();//assigning read from file data to the vector
-
-	disp_h3_lines("Please, enter your:");
+usernamecheck:
+	disp_h3_lines("Please, enter your USERNAME:");
+	cout << endl;
 	cin >> check_username;
-
+	for (int i = 0; i < driverFromFile.size(); i++)
+	{
+		if (check_username == driverFromFile[i].mail)
+		{
+			break;
+		}
+		else
+		{
+			cout << "\n\n\tPlease, enter valid username(case sensative)";
+			goto usernamecheck;
+		}
+	}
 	for (int i = 0; i < driverFromFile.size(); i++)
 	{
 		if (check_username == driverFromFile[i].mail)
@@ -999,8 +1036,6 @@ void confirm_job_screen(vector <Rider_pid>& rider, Trips trip_struct, string che
 	if (choice == "CANCEL")
 	{
 
-		cout << "\n\tEnter you username to continue	: ";
-		cin >> check_username;
 		cout << "\n\tWARNING! You are about to cancel booking. Would you like to continue?";
 		cout << "\n\t[Y] for yes. [N] for no:\t";
 		char can_choice;
@@ -1020,7 +1055,21 @@ void confirm_job_screen(vector <Rider_pid>& rider, Trips trip_struct, string che
 		cout << "\n\tAwesome! Press ant button when you've dropped them off";
 		cout << "\n\tEnter you username to to access billing info\t: ";
 		cin >> check_username;
-
+	usernamecheck:
+		disp_h3_lines("Please, enter your USERNAME to access bill information:");
+		cin >> check_username;
+		for (int i = 0; i < driver.size(); i++)
+		{
+			if (check_username == driver[i].mail)
+			{
+				break;
+			}
+			else
+			{
+				cout << "\n\n\tPlease, enter valid username(case sensative)";
+				goto usernamecheck;
+			}
+		}
 		cout << "\n\tNice! You have earned\t" << trip_struct.trip_cost;
 
 
