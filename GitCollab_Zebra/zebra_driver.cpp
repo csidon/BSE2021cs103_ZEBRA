@@ -4,13 +4,8 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
-#include "makepretty.h"
-#include "pswd_email_validation.h"
-#include "GitCollab_Zebra.h"
-#include "zebra_driver.h"
-#include "zebra_rider.h"
-#include "distance_calc.h"
-#include "misc_functions.h"
+
+#include "all_headers.h"
 
 
 using namespace std;
@@ -833,166 +828,55 @@ void job_screen(vector <Rider_pid>& rider, string d_username)
 
 }
 
-//**********************
-//FUNCTION TO count line in the file
-//**********************
-int count_entries_trips()
-{
-	int total_entries = 0;
-	string s;
-	fstream tripFile("trip_transactions.csv", ios::in);
-	if (!tripFile)
-	{
-		total_entries = 0;
-	}
-	else
-	{
-		while (!tripFile.eof())
-		{
-			getline(tripFile, s);
-			total_entries++;
-		}
-		total_entries = total_entries - 1;
-
-	}
-	//cout << "\nNumber of lines in file is " << total_entries; //debugging
-
-	return (total_entries);
-}
-//**********************
-//FUNCTION TO count lines in the file !DEBUG! *does not conflict*
-//**********************
-
-int count_entries_trips_chrisTest()
-{
-	int total_entries = 0;
-	string s;
-	fstream tripFile("trip_transactions_chris.csv", ios::in);
-	if (!tripFile)
-	{
-		total_entries = 0;
-	}
-	else
-	{
-		while (!tripFile.eof())
-		{
-			getline(tripFile, s);
-			total_entries++;
-		}
-		total_entries = total_entries - 1;
-
-	}
-	//cout << "\nNumber of lines in file is " << total_entries; //debugging
-
-	return (total_entries);
-}
-
-//**********************
-//FUNCTION TO input data for the trip
-//**********************
-
-
-struct Trips input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driverFromFile, vector <Trips>& trip, string check_name, string d_username)
-
-{
-	Trips t;
-	//time_t now = time(0);// current date/time based on current system
-	//char* dt = ctime_s(&now); //convert now to string form
-	//char dt = 0;
-
-
-	srand(time(NULL)); //initialize the random seed
-	int randloc1 = rand() % 6;
-	int randloc2 = rand() % 6;
-	//cout << randloc2 << randloc1;
-	driverFromFile = readFromFile();
-	rider = rider_retrieve_info();
-	for (int i = 0; i < rider.size(); i++)
-	{
-
-		string id_num_string_r =to_string(rider[i].r_idnum);//converting int datatype to a string
-
-		if (check_name == rider[i].r_pname)
-		{
-			t.rider_id = rider[i].r_idalpha + id_num_string_r;
-		}
-
-	}
-	for (int i = 0; i < driverFromFile.size(); i++)
-	{
-		string id_num_string_d = to_string(driverFromFile[i].d_idNum);//converting int datatype to a string
-		if (d_username == driverFromFile[i].mail)
-		{
-			t.driver_id = driverFromFile[i].d_idAlph + id_num_string_d;
-		}
-
-	}
-
-	//filling the struct with data
-	string count_entries_string = to_string(count_entries_trips() + 1);
-	t.trip_id = "TR" + count_entries_string;// revise
-
-	t.start_loc = random_locations(randloc1);
-	t.end_loc = random_locations(randloc2);
-	t.trip_cost = main_dist_calc(t.start_loc, t.end_loc);
-	t.trip_date = currentDateTime();
-
-	//trip.push_back(t);
-
-
-
-	return (t);
-}
-
 
 
 //**********************
 //FUNCTION TO READ DATA FROM THE TRIP FILE
 //**********************
 
-vector <Trips> read_from_trips()
-{
-	fstream tripFile("trip_transactions.csv", ios::in);
-	vector <Trips> temp_trip;
-	Trips t;
-
-	string line;
-	while (getline(tripFile, line))
-	{
-		istringstream linestream(line);
-		string single_trip;
-
-		getline(linestream, single_trip, ',');
-		t.trip_id = single_trip;
-
-		getline(linestream, single_trip, ',');
-		t.driver_id = single_trip;
-
-		getline(linestream, single_trip, ',');
-		t.rider_id = single_trip;
-
-		getline(linestream, single_trip, ',');
-		t.start_loc = single_trip;
-
-		getline(linestream, single_trip, ',');
-		t.end_loc = single_trip;
-
-		getline(linestream, single_trip, ',');
-		stringstream ss(single_trip);
-		ss >> t.trip_cost;
-
-
-
-		getline(linestream, single_trip, ',');
-		t.trip_date = single_trip;
-
-		temp_trip.push_back(t);
-	}
-
-	tripFile.close();
-
-	return (temp_trip);
-}
+//vector <Trips> read_from_trips()
+//{
+//	fstream tripFile("trip_transactions.csv", ios::in);
+//	vector <Trips> temp_trip;
+//	Trips t;
+//
+//	string line;
+//	while (getline(tripFile, line))
+//	{
+//		istringstream linestream(line);
+//		string single_trip;
+//
+//		getline(linestream, single_trip, ',');
+//		t.trip_id = single_trip;
+//
+//		getline(linestream, single_trip, ',');
+//		t.driver_id = single_trip;
+//
+//		getline(linestream, single_trip, ',');
+//		t.rider_id = single_trip;
+//
+//		getline(linestream, single_trip, ',');
+//		t.start_loc = single_trip;
+//
+//		getline(linestream, single_trip, ',');
+//		t.end_loc = single_trip;
+//
+//		getline(linestream, single_trip, ',');
+//		stringstream ss(single_trip);
+//		ss >> t.trip_cost;
+//
+//
+//
+//		getline(linestream, single_trip, ',');
+//		t.trip_date = single_trip;
+//
+//		temp_trip.push_back(t);
+//	}
+//
+//	tripFile.close();
+//
+//	return (temp_trip);
+//}
 
 
 //**********************
