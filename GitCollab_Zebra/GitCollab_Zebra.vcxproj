@@ -146,7 +146,6 @@
     <ClCompile Include="misc_functions.cpp" />
     <ClCompile Include="zebra_rider.cpp" />
     <ClCompile Include="zebra_driver.cpp" />
-    <ClCompile Include="zebra_rider_OLD.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="distance_calc.h" />

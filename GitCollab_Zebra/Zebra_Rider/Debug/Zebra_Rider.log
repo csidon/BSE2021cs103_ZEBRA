@@ -1,6 +1,0 @@
-﻿  Zebra_Rider.cpp
-C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Zebra_Rider\Zebra_Rider.cpp(108,12): warning C4129: '_': unrecognized character escape sequence
-C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Zebra_Rider\Zebra_Rider.cpp(306,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Zebra_Rider\Zebra_Rider.cpp(355,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Zebra_Rider\Zebra_Rider.cpp(409,20): warning C4018: '<': signed/unsigned mismatch
-  Zebra_Rider.vcxproj -> C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Zebra_Rider\Debug\Zebra_Rider.exe

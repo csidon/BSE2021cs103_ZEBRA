@@ -1,3 +1,0 @@
-C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Zebra_Rider\Debug\Zebra_Rider.exe
-C:\Users\270158235\OneDrive - UP Education\1 CS103\BSE2021cs103_ZEBRA\GitCollab_Zebra\Zebra_Rider\Debug\Zebra_Rider.pdb
-C:\Users\Chris\Desktop\Yoobee\CS103_Oct21\BSE2021cs103_ZEBRA\GitCollab_Zebra\Zebra_Rider\Debug\Zebra_Rider.exe
