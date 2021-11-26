@@ -1,20 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="distance_calc.cpp" />
     <ClCompile Include="GitCollab_Zebra.cpp" />
-    <ClCompile Include="pswd_email_validation.cpp" />
-    <ClCompile Include="makepretty.cpp" />
     <ClCompile Include="zebra_driver.cpp" />
-    <ClCompile Include="misc_functions.cpp" />
     <ClCompile Include="zebra_rider.cpp" />
+    <ClCompile Include="shared_functions.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="zebra_driver.h" />
-    <ClInclude Include="makepretty.h" />
-    <ClInclude Include="pswd_email_validation.h" />
-    <ClInclude Include="zebra_rider.h" />
-    <ClInclude Include="misc_functions.h" />
-    <ClInclude Include="distance_calc.h" />
+    <ClInclude Include="all_headers.h" />
   </ItemGroup>
 </Project>

@@ -4,13 +4,9 @@
 #include <sstream>
 #include <fstream>
 #include <string>
-#include "makepretty.h"
-#include "zebra_rider.h"
-#include "pswd_email_validation.h"
-#include "misc_functions.h"
-#include "distance_calc.h"
 #include <typeinfo>
 #include <iomanip>
+#include "all_headers.h"
 
 using namespace std;
 
@@ -767,16 +763,97 @@ void writeRiderToFile(Rider_pid write_r)
 	riderpid_file.close();
 }
 
-//void writeRiderPubFile(vector <Rider_ridestore>& write_r)
-//{
-//	fstream riderpub_file("riderrides.csv", ios::app);
-//	for (int i = 0; i < write_r.size(); i++)
-//	{
-//		riderpub_file << endl << write_r[i].rr_UIDalpha << "," << write_r[i].rr_UIDnum << "," << write_r[i].rr_pname << "," << write_r[i].rr_defaultloc << "," << write_r[i].rr_startloc << "," << write_r[i].rr_endloc << ",";
-//		riderpub_file << write_r[i].rr_pay_avail << "," << write_r[i].rr_tripCost << "," << write_r[i].rr_gst << "," << write_r[i].rr_netTripRevenue;
-//	}
-//	riderpub_file.close();
-//}
+//Recording trip data to write to trip_transactions.csv file
+Trips input_rider_trip_data(Rider_AllRidesInfo indiv_rider)
+{
+	vector <Trips> allTrips;
+	vector <Drivers> driverFromFile;
+	Trips t;
+
+	allTrips = read_from_trips();
+	driverFromFile = readFromFile();
+	//Randomising a driver for this trip
+	srand(time(NULL)); //initialize the random seed
+	int rand_driver = rand() % driverFromFile.size();
+	//cout << "\nDEBUGGING: What is the driverFromFile size? " << driverFromFile.size();
+	//cout << "\nDEBUGGING: What is the random driver index number? " << rand_driver;
+
+	string rand_driver_alpha = driverFromFile[rand_driver].d_idAlph;
+	string rand_driver_num = to_string(driverFromFile[rand_driver].d_idNum);
+	string rand_driver_combined_id = rand_driver_alpha + rand_driver_num;
+
+	string rider_alpha = indiv_rider.rr_UIDalpha;
+	string rider_num = to_string(indiv_rider.rr_UIDnum);
+	string rider_combined_id = rider_alpha + rider_num;
+	cout << "\nDEBUGGING: userRidesInfo after passing to input_rider_trip_data (now indiv_rider) is: " << indiv_rider.rr_UIDalpha << indiv_rider.rr_UIDnum;
+
+	string count_entries_string = to_string(count_entries_trips() + 1);
+	t.trip_id = "TR" + count_entries_string;
+	t.driver_id = rand_driver_combined_id;
+	t.rider_id = rider_combined_id;
+	t.start_loc = indiv_rider.rr_startloc;
+	t.end_loc = indiv_rider.rr_endloc;
+	t.trip_cost = main_dist_calc(t.start_loc, t.end_loc);  //don't need to recalculate, but choosing to so that I know if things aren't matching up somewhere
+	t.trip_date = currentDateTime();
+	//cout << "\nDEBUGGING: Trip ID = " << t.trip_id << "\tDriver ID = " << t.driver_id << "\tRider ID = " << t.rider_id;
+	//cout << "\nDEBUGGING: Trip startLoc = " << t.start_loc << "\tEnd loc = " << t.end_loc << "\tTrip cost = " << t.trip_cost << "\tTrip Date = " << t.trip_date;
+	return(t);
+}
+
+void indiv_rider_report(Rider_pid indiv_user)
+{
+	vector <Trips> read_from_allTrips;
+	read_from_allTrips = read_from_trips();
+	fstream allTrips_file("trip_transactions.csv", ios::in);
+	string indiv_userID = indiv_user.r_idalpha + to_string(indiv_user.r_idnum);
+	//cout << "\nDEBUGGING: The combined rider's userID alpha and num is " << indiv_userID;
+
+	string title_msg = "Ride History for ";
+	string rider_name = indiv_user.r_pname;
+	string full_title = title_msg + rider_name;
+
+	disp_h2_lines(full_title);
+	cout << "\n\tDate/Time\t\tTrip #\tDriver ID\tPickup from\tDropoff at\t\tCost\n";
+	for (int i = 0; i < read_from_allTrips.size(); i++)
+	{
+		//cout << "\nDEBUGGING: The combined riderID from the all trip transactions file is " << read_from_allTrips[i].rider_id <<endl; 
+		if (indiv_userID == read_from_allTrips[i].rider_id)
+		{
+			cout << "\t" << read_from_allTrips[i].trip_date << "\t" << read_from_allTrips[i].trip_id << "\t" << read_from_allTrips[i].driver_id;
+			cout << "\t" << read_from_allTrips[i].start_loc << startloc_space_control(read_from_allTrips, i) << read_from_allTrips[i].end_loc << endloc_space_control(read_from_allTrips, i) << read_from_allTrips[i].trip_cost << endl;
+		}
+	}
+}
+
+//These functions help to control the spacing in the reports depending on location word length ----------------+
+string startloc_space_control(vector <Trips> read_length, int j)
+{
+	string tabspace;
+	if (read_length[j].start_loc.size() > 7)
+	{
+		tabspace = "\t";
+	}
+	else
+	{
+		tabspace = "\t\t";
+	}
+	return tabspace;
+}
+
+string endloc_space_control(vector <Trips> read_length, int j)
+{
+	string tabspace;
+	if (read_length[j].end_loc.size() > 7)
+	{
+		tabspace = "\t\t$";
+	}
+	else
+	{
+		tabspace = "\t\t\t$";
+	}
+	return tabspace;
+}
+//------------------------------------ Control spacing end-----------------------------------------------------+
 
 //This function counts the number of lines stored in the riderpid.csv file
 int count_entries()
