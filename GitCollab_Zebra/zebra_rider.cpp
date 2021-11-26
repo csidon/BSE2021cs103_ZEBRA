@@ -72,7 +72,7 @@ rider_main_page:
 	{
 		rider_read_file_info = rider_retrieve_info();
 		rider_read_file_info = pswd_reset(rider_read_file_info);
-		cout << "\n\t Password reset successful :)\n\t";
+		cout << "\n\tPassword reset successful :)\n\t";
 		system("pause");
 		goto rider_main_page;
 	}
@@ -230,7 +230,7 @@ void r_loggedIn_home(Rider_pid& userInfo)
 		cout << "\n\t7. Exit\n\n\t";
 		disp_star_line();
 		cout << "\tChoose: \n\t";
-		cin >> booking_select;
+ 		cin >> booking_select;
 
 		switch (booking_select)
 		{
@@ -238,6 +238,7 @@ void r_loggedIn_home(Rider_pid& userInfo)
 		{
 			disp_star_line();
 			cout << "\n\n\n\tYou have chosen to book an EXPRESS ride from " << userInfo.r_defaultloc << " to " << "Te Aro";
+			//writing to trip transactions file
 			ridesInfo.rr_UIDalpha = userInfo.r_idalpha;
 			ridesInfo.rr_UIDnum = userInfo.r_idnum;
 			//cout << "\nDEBUG: The registered rider UID and pname for RIDESINFO is " << ridesInfo.rr_UIDalpha << ridesInfo.rr_UIDnum << " and " << ridesInfo.rr_pname;
@@ -267,7 +268,6 @@ void r_loggedIn_home(Rider_pid& userInfo)
 			userCalc_dist = main_dist_calc(ridesInfo.rr_startloc, ridesInfo.rr_endloc);
 			userCalc_cost = calc_ride_cost(userCalc_dist);
 			userInfo = book_ride(userInfo, ridesInfo, userCalc_cost);
-			cout << "\t";
 			system("pause");
 			stay_loggedIn = "y";
 			break;
@@ -293,7 +293,6 @@ void r_loggedIn_home(Rider_pid& userInfo)
 			userCalc_dist = main_dist_calc(ridesInfo.rr_startloc, ridesInfo.rr_endloc);
 			userCalc_cost = calc_ride_cost(userCalc_dist);
 			userInfo = book_ride(userInfo, ridesInfo, userCalc_cost);
-			cout << "\t";
 			system("pause");
 			stay_loggedIn = "y";
 			break;
@@ -312,6 +311,7 @@ void r_loggedIn_home(Rider_pid& userInfo)
 			break;
 		case 6:
 			disp_fares_charges();
+			disp_star_line();
 			cout << "\t";
 			system("pause");
 			stay_loggedIn = "y";
@@ -376,10 +376,11 @@ Rider_pid book_ride(Rider_pid userPIDInfo, Rider_AllRidesInfo userRidesInfo, dou
 
 	//cout << "\n Are payment details stored? (card number) " << userPIDInfo.r_card_num; //debugging
 	//cout << "\nDEBUG: Equating the start location with default location -- success? \t" << userRidesInfo.rr_startloc;
-	cout << "\nDEBUG: Is the end location correct? \t" << userRidesInfo.rr_endloc;
-	cout << "\nDEBUG: Are there payment methods stored right now? " << userPIDInfo.r_card_type << endl;
+	//cout << "\nDEBUG: Is the end location correct? \t" << userRidesInfo.rr_endloc;
+	//cout << "\nDEBUG: Are there payment methods stored right now? " << userPIDInfo.r_card_type << endl;
 
-	main_dist_calc(userRidesInfo.rr_startloc, userRidesInfo.rr_endloc);
+	userRidesInfo.rr_tripDist = main_dist_calc(userRidesInfo.rr_startloc, userRidesInfo.rr_endloc);
+
 	if (userPIDInfo.r_card_type == "")
 	{
 		//cout << "\nDEBUG: Did the code come here?";
@@ -409,7 +410,7 @@ Rider_pid book_ride(Rider_pid userPIDInfo, Rider_AllRidesInfo userRidesInfo, dou
 		cout << "\n\tYour trip cost is \t$" << cost << endl;
 		disp_dash_line();
 		disp_star_line();
-		//cout << "\nDEBUGGING: userRidesInfo before passing to input_rider_trip_data is: " << userRidesInfo.rr_UIDalpha << userRidesInfo.rr_UIDnum;
+		cout << "\nDEBUGGING: userRidesInfo before passing to input_rider_trip_data is: " << userRidesInfo.rr_UIDalpha << userRidesInfo.rr_UIDnum;
 
 		//Copies desensitised ride booking information to a temporary structure, that then gets passed and written to trip_transactions.csv
 		temp_ride_struct = input_rider_trip_data(userRidesInfo);
@@ -537,7 +538,7 @@ Rider_pid pay_details(Rider_pid& passed_pid_details)
 				getline(cin, passed_pid_details.r_cardholder_name);
 				read_from_file[i].r_cardholder_name = passed_pid_details.r_cardholder_name;
 				//cout << "DEBUGGING: Cardholder name registered is " << passed_pid_details.r_cardholder_name;
-				// 
+				
 				//Credit card # validation
 				int flag = 0;
 				while (flag == 0)
@@ -583,7 +584,7 @@ Rider_pid pay_details(Rider_pid& passed_pid_details)
 				else
 				{
 					//cout << "Card number to be input into system is \t:" << read_from_file[i].r_card_num; //debugging purposes
-					uid_exists += 1;
+					uid_exists = 1;
 					//cout << "\nUID_exists = " << uid_exists << endl;
 					//cout << "\nDebugging: Default loc to be written for this human is " << read_from_file[i].r_defaultloc;
 				}
@@ -728,6 +729,10 @@ Rider_pid rider_register()
 		cout << "\n\tIs your information correct?\t:  ";
 		cout << "\n\tSelect [1] to confirm and [2] to edit:\n\t";
 		cin >> rreg_confirmation;
+		if (rreg_confirmation == 2)
+		{
+			rreg_confirmation = 0;
+		}
 
 	}
 	//cout << "\nDEBUGGING: The r_idalpha at registration before creation is " << ri.r_idalpha;
@@ -880,9 +885,10 @@ vector<Rider_pid> pswd_reset(vector <Rider_pid> read_from_file)
 	fstream riderpid_file("riderpid.csv", ios::out);
 
 	string search_email, new_pswd;
-	int reset_code = 0, email_exists = 0;
+	string reset_code;
+	int email_exists = 0;
 valid_emailusrname:
-	cout << "\n\tNeed to reset your password? Please enter your email address:\t";
+	cout << "\n\tNeed to reset your password? Please enter your email address:\n\t";
 	cin >> search_email;
 	disp_dash_line();
 
@@ -892,13 +898,13 @@ valid_emailusrname:
 		if (check_dup(search_email, read_from_file[i].r_emailusrname) == 1)
 		{
 			cout << "\n\tEmail exists in database\n"; //debugging purposes
-			cout << "\tPlease check your email to reset your password and enter your 5-digit password reset code below.\n";
+			cout << "\tPlease check your email to reset your password and enter your \n\t5-digit password reset code below.\n";
 			cout << "\t[For the purposes of this assignment, please enter 12345]\n";
 			//reset_code added to simulate "email verification"
 		enter_reset_code:
 			cout << "\n\tEnter password reset code:\t";
 			cin >> reset_code;
-			if (reset_code == 12345)
+			if (reset_code == "12345")
 			{
 			enter_new_pass:
 				cin.ignore();
@@ -920,8 +926,10 @@ valid_emailusrname:
 			else
 			{
 				cout << "\n\tYou've entered the wrong password reset code.";
-				cout << "\n\t[Hint: Just enter 12345 for the purposes of this assignment.";
+				cout << "\n\t[Hint: Just enter 12345 for the purposes of this assignment.\n\t";
 				goto enter_reset_code;
+				break;
+
 			}
 		}
 		riderpid_file << read_from_file[i].r_idalpha << "," << read_from_file[i].r_idnum << "," << read_from_file[i].r_fname << "," << read_from_file[i].r_lname << "," << read_from_file[i].r_pname << ",";
@@ -935,6 +943,7 @@ valid_emailusrname:
 		cout << "\n\tYou don't have a Zebra account with that email address.\n\tPlease try again.\n";
 		goto valid_emailusrname;
 	}
+
 
 	riderpid_file.close();
 	read_from_file = rider_retrieve_info();

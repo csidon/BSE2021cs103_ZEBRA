@@ -82,7 +82,9 @@ struct Trips
 	string end_loc;
 	double trip_cost;
 	string trip_date;
-	Trips(string trip_i = "", string di = "", string ri = "", string sl = "", string el = "", double tc = 0, string td = "")
+	double trip_dist;
+
+	Trips(string trip_i = "", string di = "", string ri = "", string sl = "", string el = "", double tc = 0, string td = "", double tdist = 0)
 	{
 		trip_id = trip_i;
 		driver_id = di;
@@ -91,6 +93,7 @@ struct Trips
 		end_loc = el;
 		trip_cost = tc;
 		trip_date = td;
+		trip_dist = tdist;
 	}
 };
 

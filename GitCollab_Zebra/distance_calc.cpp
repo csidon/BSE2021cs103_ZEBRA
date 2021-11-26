@@ -131,18 +131,17 @@ void disp_fares_charges()
 	disp_star_line();
 	disp_h3_lines("Zebra Taxi: Our Rate Card");
 	cout << "\n\n\tBASE FARE";
-	cout << "\n\tZebra charges a flat booking fee of 45 cents, and base fare of $1.10 for the first kilometer.\n";
+	cout << "\n\tZebra charges a flat booking fee of 45 cents, and base fare\n\tof $1.10 for the first kilometer.\n";
 	disp_dash_line();
 	cout << "\n\tSUBSEQUENT RATE PER KM";
 	cout << "\n\t$1.10 per km - The lowest rates in town!\n";
 	disp_dash_line();
 	cout << "\n\tMINIMUM FARE";
 	cout << "\n\t$3.50\n";
-	disp_dash_line();
 	//cout << "\n\t[More to be added if there's time]\n\t";
 	cout << "\n\t";
-	system("pause");
-	disp_star_line();
+
+	
 }
 
 double calc_ride_cost(double distance)

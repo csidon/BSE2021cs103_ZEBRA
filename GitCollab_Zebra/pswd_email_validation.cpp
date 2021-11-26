@@ -122,7 +122,7 @@ int email_valid(string remail)
 		}
 		else
 		{
-			cout << "\nPlease enter a valid email address\n";
+			cout << "\n\tPlease enter a valid email address\n";
 			return 0;
 		}
 
@@ -134,7 +134,7 @@ int email_valid(string remail)
 	}
 	else
 	{
-		cout << "\nPlease enter a valid email address\n";
+		cout << "\n\tPlease enter a valid email address\n";
 		return 0;
 	}
 }
@@ -150,7 +150,7 @@ int pswd_valid(string rpswd)
 	vector<char> rpswd_arr; //defining a vector called remail_arr
 	if (rpswd.length() < 8)
 	{
-		cout << "\nPlease enter a password with more than 8 characters\n";
+		cout << "\n\tPlease enter a password with more than 8 characters\n";
 		return 0;
 	}
 	for (int i = 0; i < rpswd.length(); i++)
@@ -172,17 +172,17 @@ int pswd_valid(string rpswd)
 	}
 	if (smchar == 0)
 	{
-		cout << "\nPlease use at least one small letter\n";
+		cout << "\n\tPlease use at least one small letter\n";
 		return 0;
 	}
 	else if (bchar == 0)
 	{
-		cout << "\nPlease use at least one capital letter\n";
+		cout << "\n\tPlease use at least one capital letter\n";
 		return 0;
 	}
 	else if (num == 0)
 	{
-		cout << "\nPlease use at least one number\n";
+		cout << "\n\tPlease use at least one number\n";
 		return 0;
 	}
 	else
