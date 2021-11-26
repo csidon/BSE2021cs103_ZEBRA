@@ -45,7 +45,7 @@ string currentDateTime()
 	char buf[80];
 	tstruct = *localtime(&now);
 	strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
-	cout << buf;
+	//cout << buf;
 	return(buf);
 }
 
@@ -71,7 +71,7 @@ Trips input_rider_trip_data(Rider_AllRidesInfo indiv_rider)
 	string rider_alpha = indiv_rider.rr_UIDalpha;
 	string rider_num = to_string(indiv_rider.rr_UIDnum);
 	string rider_combined_id = rider_alpha + rider_num;
-	//cout << "\nDEBUGGING: userRidesInfo after passing to input_rider_trip_data (now indiv_rider) is: " << indiv_rider.rr_UIDalpha << indiv_rider.rr_UIDnum;
+	cout << "\nDEBUGGING: userRidesInfo after passing to input_rider_trip_data (now indiv_rider) is: " << indiv_rider.rr_UIDalpha << indiv_rider.rr_UIDnum;
 
 	string count_entries_string = to_string(count_entries_trips() + 1);
 	t.trip_id = "TR" + count_entries_string;
@@ -79,7 +79,7 @@ Trips input_rider_trip_data(Rider_AllRidesInfo indiv_rider)
 	t.rider_id = rider_combined_id;
 	t.start_loc = indiv_rider.rr_startloc;
 	t.end_loc = indiv_rider.rr_endloc;
-	t.trip_cost = main_dist_calc(t.start_loc, t.end_loc);
+	t.trip_cost = main_dist_calc(t.start_loc, t.end_loc);  //don't need to recalculate, but choosing to so that I know if things aren't matching up somewhere
 	t.trip_date = currentDateTime();
 	//cout << "\nDEBUGGING: Trip ID = " << t.trip_id << "\tDriver ID = " << t.driver_id << "\tRider ID = " << t.rider_id;
 	//cout << "\nDEBUGGING: Trip startLoc = " << t.start_loc << "\tEnd loc = " << t.end_loc << "\tTrip cost = " << t.trip_cost << "\tTrip Date = " << t.trip_date;
@@ -158,7 +158,35 @@ void indiv_rider_report(Rider_pid indiv_user)
 		if (indiv_userID == read_from_allTrips[i].rider_id)
 		{
 			cout << "\t" << read_from_allTrips[i].trip_date << "\t" << read_from_allTrips[i].trip_id << "\t" << read_from_allTrips[i].driver_id;
-			cout << "\t" << read_from_allTrips[i].start_loc << "\t" << read_from_allTrips[i].end_loc << "\t\t\t$" << read_from_allTrips[i].trip_cost << endl;
+			cout << "\t" << read_from_allTrips[i].start_loc << startloc_space_control(read_from_allTrips, i) << read_from_allTrips[i].end_loc << endloc_space_control(read_from_allTrips, i) << read_from_allTrips[i].trip_cost << endl;
 		}
 	}
+}
+
+string startloc_space_control(vector <Trips> read_length, int j)
+{
+	string tabspace;
+	if (read_length[j].start_loc.size() > 7)
+	{
+		tabspace = "\t";
+	}
+	else
+	{
+		tabspace = "\t\t";
+	}
+	return tabspace;
+}
+
+string endloc_space_control(vector <Trips> read_length, int j)
+{
+	string tabspace;
+	if (read_length[j].end_loc.size() > 7)
+	{
+		tabspace = "\t\t$";
+	}
+	else
+	{
+		tabspace = "\t\t\t$";
+	}
+	return tabspace;
 }

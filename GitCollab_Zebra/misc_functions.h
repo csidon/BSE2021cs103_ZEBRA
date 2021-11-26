@@ -28,5 +28,7 @@ void write_to_trip_transactions(Trips this_trip);
 vector <Trips> read_from_trips();
 string currentDateTime();
 void indiv_rider_report(Rider_pid indiv_user);
+string endloc_space_control(vector <Trips> read_length, int j);
+string startloc_space_control(vector <Trips> read_length, int j);
 
 #endif

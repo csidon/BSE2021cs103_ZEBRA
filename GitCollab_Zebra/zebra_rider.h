@@ -49,13 +49,15 @@ struct Rider_pid
 	}
 };
 
+//This struct is not strictly necessary, but created with the thought of eventually having a rider-unique trip transaction file. Due to time constraints this was not realised
 struct Rider_AllRidesInfo
 {
 	string rr_UIDalpha, rr_pname, rr_defaultloc, rr_startloc, rr_endloc, rr_pay_avail, rr_tripIDa;
 	int rr_UIDnum, rr_tripCost, rr_gst, rr_netTripRevenue, rr_tripIDn;
+	double rr_tripDist;
 
 	//Constructor
-	Rider_AllRidesInfo(string uida = "", string rpn = "", string rdl = "", string rsl = "", string rel = "", string pay = "", int uidn = 0, int tc = 0, int gst = 0, int ntr = 0, string tida = "", int tidn = 0)
+	Rider_AllRidesInfo(string uida = "", string rpn = "", string rdl = "", string rsl = "", string rel = "", string pay = "", int uidn = 0, int tc = 0, int gst = 0, int ntr = 0, string tida = "", int tidn = 0, double tdist = 0)
 	{
 		rr_tripIDa = tida;
 		rr_tripIDn = tidn;
@@ -68,6 +70,7 @@ struct Rider_AllRidesInfo
 		rr_gst = gst;
 		rr_netTripRevenue = ntr;
 		rr_pay_avail = pay;
+		rr_tripDist = tdist;
 	}
 };
 
