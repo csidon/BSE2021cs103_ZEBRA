@@ -11,9 +11,6 @@
 #include <fstream>
 #include <ctime>
 
-#include "zebra_rider.h"
-#include "zebra_driver.h"
-
 
 using namespace std;
 

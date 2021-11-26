@@ -68,7 +68,7 @@ void driver_eligibility(vector<Drivers>& driver, vector<Drivers>& driverFromFile
 	char full, n;
 	int car_age, driver_age;
 	disp_h3_lines("Enter Y / N");
-
+	cout << "\n\t Please note that input is case-sensitive";
 	cout << "\n\t Do you have full NZ drive license?" << "\t";
 	cin >> full;
 
@@ -140,13 +140,24 @@ vector <Drivers> input_drivers(vector<Drivers>& driver)
 	cin >> d.birth;
 	cout << "\n\tNationality: ";
 	cin >> d.nationality;
-	cout << "\n\tE-mail adress";
-	cout << "\n\t[Note: This will also be  Your username]: ";
+valid_email:
+	cout << "\n\tEnter Your Email Address";
+	cout << "\n\t[Note: This will also";
+	cout << "\n\tbe your username]\t:  ";
 	cin >> d.mail;
+pswd_valid:
 	email_valid(d.mail);
+	if (email_valid(d.mail) == 0)
+	{
+		goto valid_email;
+	}
+
 	cout << "\n\tPassword: ";
 	cin >> d.password;
-	pswd_valid(d.password);
+	if (pswd_valid(d.password) == 0)
+	{
+		goto pswd_valid;
+	}
 
 	//output_drivers(driver);
 
@@ -180,7 +191,6 @@ vector <Drivers> input_drivers(vector<Drivers>& driver)
 
 	driver.push_back(d);
 	return (driver);
-
 }
 
 //**********************
