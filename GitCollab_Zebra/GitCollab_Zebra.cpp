@@ -1,12 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "makepretty.h"
-#include "pswd_email_validation.h"
-#include "zebra_rider.h"
-#include "zebra_driver.h"
-#include "GitCollab_Zebra.h"
-#include "distance_calc.h"
 #include "all_headers.h"
 
 using namespace std;

@@ -1,18 +1,18 @@
 ﻿  zebra_driver.cpp
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(234,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(268,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(371,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(506,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(518,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(604,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(619,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(632,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(645,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(658,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(671,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(684,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(696,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(709,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(895,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(945,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(244,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(278,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(381,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(516,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(528,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(614,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(629,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(642,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(655,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(668,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(681,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(694,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(706,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(719,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(905,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\zebra_driver.cpp(955,21): warning C4018: '<': signed/unsigned mismatch
   GitCollab_Zebra.vcxproj -> C:\Users\Chris\Desktop\Yoobee\BSE2021cs103_ZEBRA\GitCollab_Zebra\Debug\GitCollab_Zebra.exe
