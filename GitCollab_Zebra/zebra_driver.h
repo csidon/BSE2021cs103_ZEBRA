@@ -72,7 +72,7 @@ struct Drivers
 	}
 };
 
-struct Trips
+struct Trips//THIS STRUCT IS USED FOR BOTH OF US
 {
 
 	string trip_id;
@@ -106,15 +106,16 @@ struct Trips
 void driver_main();
 
 //registration part
-void driver_eligibility(vector<Drivers>& driver, vector<Drivers>&driverFromFile);
 
 void driver_eligibility(vector<Drivers>& driver, vector<Drivers>& driverFromFile);
 vector<Drivers> driver_login(vector<Drivers>& driverFromFile);
 
 void driver_registration(vector<Drivers>& driver, vector<Drivers>& driverFromFile);
 
+
 //login
 vector<Drivers> driver_login(vector<Drivers>& driverFromFile);
+
 
 //DRIVERS file manipulations
 vector <Drivers> input_drivers(vector<Drivers>& driver);
@@ -124,25 +125,25 @@ vector<Drivers> pswd_reset_driver(vector <Drivers> driverFromFile);
 vector <Drivers> readFromFile();
 vector<Drivers> update_acc_details(vector < Drivers > driverFromFile, string check_username);
 
-//void output_drivers(vector<Drivers>& driver);
+
 void driver_account_main(vector<Drivers>& driverFromFile, string check_username);
 void account_settings(vector<Drivers> driverFromFile, string check_username);
 
 
-//trip file and trip data manipulation
+
 void job_screen(vector <Rider_pid>& rider, string d_username);
 
 
-struct Trips input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driverFromFile, vector <Trips>& trip, string check_name, string d_username);
-int count_entries_trips();
-int count_entries_trips_chrisTest(); //Chris' testing - To remove after
-//void write_to_trip_transactions(vector <Trips>& trip);
+struct Trips input_trip_data(vector <Rider_pid>& rider, vector<Drivers>& driverFromFile, vector <Trips>& trip, string check_name, string d_username);//USING FOR BITH OF US
+int count_entries_trips();//USIGN FOR BOTH OF US
+
+
 vector <Trips> read_from_trips();
-vector <Trips> read_allTrips();
+vector <Trips> read_allTrips();//USING FOR BITH OF US
 
 
 
 void confirm_job_screen(vector <Rider_pid>& rider, Trips trip_struct, string check_name);
-//void read_last_line();
+
 
 #endif
