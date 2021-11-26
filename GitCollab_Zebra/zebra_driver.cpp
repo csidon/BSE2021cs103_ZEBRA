@@ -859,33 +859,6 @@ int count_entries_trips()
 
 	return (total_entries);
 }
-//**********************
-//FUNCTION TO count lines in the file !DEBUG! *does not conflict*
-//**********************
-
-int count_entries_trips_chrisTest()
-{
-	int total_entries = 0;
-	string s;
-	fstream tripFile("trip_transactions_chris.csv", ios::in);
-	if (!tripFile)
-	{
-		total_entries = 0;
-	}
-	else
-	{
-		while (!tripFile.eof())
-		{
-			getline(tripFile, s);
-			total_entries++;
-		}
-		total_entries = total_entries - 1;
-
-	}
-	//cout << "\nNumber of lines in file is " << total_entries; //debugging
-
-	return (total_entries);
-}
 
 //**********************
 //FUNCTION TO input data for the trip
